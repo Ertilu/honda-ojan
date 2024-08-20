@@ -1,14 +1,15 @@
 import React from "react";
 import Navbar from "../components/navbar";
 import Produk from "../components/produk";
+import Footer from "../components/footer";
 import Image from "next/image";
 import Banner1 from "@/image/banner1.jpg";
 import Banner2 from "@/image/banner2.jpg";
 
 export default function Home() {
   return (
-    <main className="bg-white sm:container sm:mx-auto overflow-x-hidden w-full h-auto">
-      <div>
+    <main className="w-screen h-auto flex flex-col items-center md:container md:mx-auto">
+      <div className="w-full sticky top-0">
         <Navbar />
       </div>
       <div id="promo">
@@ -18,6 +19,9 @@ export default function Home() {
         <Produk />
       </div>
       <div id="kontak"></div>
+      <div id="footer">
+        <Footer />
+      </div>
     </main>
   );
 }

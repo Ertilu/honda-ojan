@@ -55,10 +55,13 @@ export default function Produk() {
               </em>
             </p>
           </div>
-          <div className="flex justify-center items-end flex-grow">
-            <p className="font-normal text-md  text-abu2 text-center transition group-hover:text-black ease-in-out delay-50 group-hover:-translate-y-4 group-hover:text-lg group-hover:font-medium">
-              Selengkapnya
-            </p>
+
+          <div className="flex flex-grow">
+            <div className="flex justify-center items-end">
+              <p className="font-normal text-md  text-abu2 text-center transition group-hover:text-black ease-in-out delay-50 group-hover:-translate-y-4 group-hover:text-lg group-hover:font-medium">
+                Selengkapnya
+              </p>
+            </div>
           </div>
         </div>
 
