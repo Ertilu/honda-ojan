@@ -8,7 +8,7 @@ import Pcx from "@/image/pcx.png";
 
 export default function Produk() {
   return (
-    <div className="text-black font-poppins min-h-screen">
+    <div className="text-black font-poppins w-full min-h-screen px-6 border-2 border-red-500">
       <div className="w-full h-auto flex justify-center">
         <p className="font-extrabold text-4xl">Motor HONDA</p>
       </div>
@@ -27,7 +27,7 @@ export default function Produk() {
         </div>
       </div>
 
-      <div className="bg-abu1 w-[276px] h-[43px] rounded-xl grid grid-cols-6 items-center justify-center my-6 cursor-pointer hover:brightness-90 transition delay-50">
+      <div className="bg-abu1 w-[276px] h-[43px] rounded-xl grid grid-cols-6 items-center justify-center my-6 lg:mx-12   mx-auto cursor-pointer hover:brightness-90 transition delay-50">
         <div className="col-span-1 justify-self-center">
           <Image src={Sort} alt="" />
         </div>
@@ -39,73 +39,79 @@ export default function Produk() {
         </div>
       </div>
 
-      <div className="w-full h-auto grid grid-cols-3">
-        <div className="col-span-1 w-[400px] h-[479px] bg-abu1 rounded-xl p-6 flex flex-col cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
-          <div className="w-[344px] h-[245px] justify-self-center mx-auto flex justify-center items-end mb-2 ">
+      <div className="w-full h-auto grid lg:grid-cols-3 grid-cols-2 justify-center">
+        <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-xl lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
+          <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
             <Image src={Beat} className="h-auto w-100" alt="" />
           </div>
-          <div className="mt-4 mb-2">
-            <p className="font-semibold text-2xl">BeAT Street</p>
+          <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
+            <p className="font-semibold lg:text-2xl text-lg">BeAT Street</p>
           </div>
-          <div className="mb-2">
-            <p className="font-normal text-md  text-abu2">
+          <div className="mb-2 lg:px-0 px-4">
+            <p className="font-normal lg:text-md text-sm text-abu2">
               Mulai dari <br />
-              <em className="text-2xl font-semibold text-black not-italic">
+              <span className="lg:text-2xl text-md font-semibold text-black">
                 Rp. 15,550,000
-              </em>
+              </span>
             </p>
           </div>
 
-          <div className="flex flex-grow">
-            <div className="flex justify-center items-end">
-              <p className="font-normal text-md  text-abu2 text-center transition group-hover:text-black ease-in-out delay-50 group-hover:-translate-y-4 group-hover:text-lg group-hover:font-medium">
+          <div className="flex flex-grow lg:mb-0 mb-2">
+            <div className="flex justify-center items-end flex-grow">
+              <p className="font-normal lg:text-md text-sm text-abu2 text-center transition group-hover:text-black ease-in-out delay-75 lg:group-hover:-translate-y-4 group-hover:-translate-y-2 lg:group-hover:text-lg group-hover:text-md group-hover:font-medium">
                 Selengkapnya
               </p>
             </div>
           </div>
         </div>
 
-        <div className="col-span-1 w-[400px] h-[479px] bg-abu1 rounded-xl p-6 flex flex-col cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
-          <div className="w-[344px] h-[245px] justify-self-center mx-auto flex justify-center items-end mb-2 ">
-            <Image src={Scoopy} className="h-auto w-100" alt="" />
+        <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-xl lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
+          <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
+            <Image src={Pcx} className="h-auto w-100" alt="" />
           </div>
-          <div className="mt-4 mb-2">
-            <p className="font-semibold text-2xl">Scoopy</p>
+          <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
+            <p className="font-semibold lg:text-2xl text-lg">PCS 160</p>
           </div>
-          <div className="mb-2">
-            <p className="font-normal text-md  text-abu2">
+          <div className="mb-2 lg:px-0 px-4">
+            <p className="font-normal lg:text-md text-sm text-abu2">
               Mulai dari <br />
-              <em className="text-2xl font-semibold text-black not-italic">
+              <span className="lg:text-2xl text-md font-semibold text-black">
                 Rp. 15,550,000
-              </em>
+              </span>
             </p>
           </div>
-          <div className="flex justify-center items-end flex-grow">
-            <p className="font-normal text-md  text-abu2 text-center transition group-hover:text-black ease-in-out delay-50 group-hover:-translate-y-4 group-hover:text-lg group-hover:font-medium">
-              Selengkapnya
-            </p>
+
+          <div className="flex flex-grow lg:mb-0 mb-2">
+            <div className="flex justify-center items-end flex-grow">
+              <p className="font-normal lg:text-md text-sm text-abu2 text-center transition group-hover:text-black ease-in-out delay-75 lg:group-hover:-translate-y-4 group-hover:-translate-y-2 lg:group-hover:text-lg group-hover:text-md group-hover:font-medium">
+                Selengkapnya
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="col-span-1 w-[400px] h-[479px] bg-abu1 rounded-xl p-6 flex flex-col cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
-          <div className="w-[344px] h-[245px] justify-self-center mx-auto flex justify-center items-end mb-2 ">
-            <Image src={Pcx} className="h-auto w-100" alt="" />
+        <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-xl lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-90 transition ease-in-out delay-50">
+          <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
+            <Image src={Scoopy} className="h-auto w-100" alt="" />
           </div>
-          <div className="mt-4 mb-2">
-            <p className="font-semibold text-2xl">PCX 160</p>
+          <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
+            <p className="font-semibold lg:text-2xl text-lg">Scoopy</p>
           </div>
-          <div className="mb-2">
-            <p className="font-normal text-md  text-abu2">
+          <div className="mb-2 lg:px-0 px-4">
+            <p className="font-normal lg:text-md text-sm text-abu2">
               Mulai dari <br />
-              <em className="text-2xl font-semibold text-black not-italic">
+              <span className="lg:text-2xl text-md font-semibold text-black">
                 Rp. 15,550,000
-              </em>
+              </span>
             </p>
           </div>
-          <div className="flex justify-center items-end w-100 h-auto flex-grow">
-            <p className="font-normal text-md  text-abu2 text-center transition group-hover:text-black ease-in-out delay-50 group-hover:-translate-y-4 group-hover:text-lg group-hover:font-medium">
-              Selengkapnya
-            </p>
+
+          <div className="flex flex-grow lg:mb-0 mb-2">
+            <div className="flex justify-center items-end flex-grow">
+              <p className="font-normal lg:text-md text-sm text-abu2 text-center transition group-hover:text-black ease-in-out delay-75 lg:group-hover:-translate-y-4 group-hover:-translate-y-2 lg:group-hover:text-lg group-hover:text-md group-hover:font-medium">
+                Selengkapnya
+              </p>
+            </div>
           </div>
         </div>
       </div>

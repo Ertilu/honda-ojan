@@ -1,100 +1,55 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { Carousel } from "primereact/carousel";
 import Image from "next/image";
 import Banner1 from "@/image/banner1.jpg";
 import Banner2 from "@/image/banner2.jpg";
+import axios from "axios";
 
 export default function Banner() {
+  const [products, setProducts] = useState([
+    { id: 1, img: "../../image/banner1.jpg" },
+    { id: 2, img: "../../image/banner2.jpg" },
+  ]);
+  const clientId = process.env.NEXT_PUBLIC_UNSPLASH_CLIENT_ID;
+  const UNSPLASH_ROOT = "https://api.unsplash.com";
+
+  useEffect(() => {
+    const getPhotosByQuery = async ({ query }: { query: string }) => {
+      const { data } = await axios.get(
+        `${UNSPLASH_ROOT}/search/photos?query=${query}&client_id=${clientId}&per_page=20`
+      );
+
+      setProducts(data);
+      return data;
+    };
+  }, []);
+
+  // const productTemplate = (product) => {
+  //   return (
+  //     <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
+  //       <div className="mb-3">
+  //         <img
+  //           src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
+  //           alt={product.name}
+  //           className="w-6 shadow-2"
+  //         />
+  //       </div>
+  //     </div>
+  //   );
+  // };
   return (
     <div>
-      {/* <div
-          id="default-carousel"
-          className="relative w-full"
-          data-carousel="slide"
-        >
-          <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-            <div className="duration-700 ease-in-out" data-carousel-item>
-              <Image
-                src={Banner1}
-                className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt=""
-              />
-            </div>
-
-            <div className="duration-700 ease-in-out" data-carousel-item>
-              <Image
-                src={Banner2}
-                className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt="..."
-              />
-            </div>
-          </div>
-
-          <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-            <button
-              type="button"
-              className="w-3 h-3 rounded-full"
-              aria-current="true"
-              aria-label="Slide 1"
-              data-carousel-slide-to="0"
-            ></button>
-            <button
-              type="button"
-              className="w-3 h-3 rounded-full"
-              aria-current="false"
-              aria-label="Slide 2"
-              data-carousel-slide-to="1"
-            ></button>
-          </div>
-
-          <button
-            type="button"
-            className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-prev
-          >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg
-                className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 6 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 1 1 5l4 4"
-                />
-              </svg>
-              <span className="sr-only">Previous</span>
-            </span>
-          </button>
-          <button
-            type="button"
-            className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-next
-          >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg
-                className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 6 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 9 4-4-4-4"
-                />
-              </svg>
-              <span className="sr-only">Next</span>
-            </span>
-          </button>
-        </div> */}
+      <Carousel
+        value={products}
+        numVisible={1}
+        numScroll={1}
+        className="custom-carousel"
+        circular
+        autoplayInterval={3000}
+        // itemTemplate={productTemplate}
+      />
     </div>
   );
 }

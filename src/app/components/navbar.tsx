@@ -14,8 +14,8 @@ import { IoClose } from "react-icons/io5";
 export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
   return (
-    <div className="w-full h-16 lg:h-24 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black border-2 border-red-500">
-      <div className="col-span-2 lg:col-span-3 h-full w-full flex justify-start items-center">
+    <div className="w-full h-20 lg:h-24 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black border-2 border-red-500">
+      <div className="col-span-2 lg:col-span-3 h-full w-full flex justify-start items-center lg:px-8">
         <Image src={Logo} alt="" className="h-12 w-auto lg:h-14" />
         <p className="text-4xl lg:text-5xl font-thin mx-8">|</p>
         <p className="text-5xl lg:text-5xl font-bebas">BAM</p>
@@ -40,7 +40,7 @@ export default function Navbar() {
       </div>
 
       <div className="lg:hidden col-span-1 flex justify-end items-center">
-        <HiMenu size={38} onClick={() => setVisibleRight(true)} />
+        <HiMenu size={32} onClick={() => setVisibleRight(true)} />
 
         <Sidebar
           visible={visibleRight}
