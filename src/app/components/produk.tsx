@@ -8,14 +8,14 @@ import Pcx from "@/image/pcx.png";
 
 export default function Produk() {
   return (
-    <div className="text-black font-poppins w-full min-h-screen px-6 border-2 border-red-500">
+    <div className="text-black font-poppins w-full min-h-screen px-6">
       <div className="w-full h-auto flex justify-center">
         <p className="font-extrabold text-4xl">Motor HONDA</p>
       </div>
 
       <div className="w-full h-auto flex justify-center mt-8">
         <div className="bg-abu1 h-[63px] w-[418px] rounded-xl grid grid-cols-3 m-auto justify-center items-center">
-          <div className="col-span-1 bg-white h-[43px] w-[113px] rounded-xl justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:bg-abu2 transition ease-in-out delay-50">
+          <div className="col-span-1 bg-white h-[43px] lg:w-[113px] w-[100px] rounded-xl justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:bg-abu2 transition ease-in-out delay-50">
             <p className="font-semibold">Matic</p>
           </div>
           <div className="col-span-1 h-[43px] w-[113px] justify-self-center mx-auto rounded-xl flex justify-center items-center cursor-pointer hover:bg-abu2 transition ease-in-out delay-50">

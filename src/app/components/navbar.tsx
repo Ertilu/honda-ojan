@@ -10,11 +10,12 @@ import { FaSearch } from "react-icons/fa";
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { IoClose } from "react-icons/io5";
+import Link from "next/link";
 
 export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
   return (
-    <div className="w-full h-20 lg:h-24 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black border-2 border-red-500">
+    <div className="w-full h-20 lg:h-24 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black lg:container justify-self-center mx-auto">
       <div className="col-span-2 lg:col-span-3 h-full w-full flex justify-start items-center lg:px-8">
         <Image src={Logo} alt="" className="h-12 w-auto lg:h-14" />
         <p className="text-4xl lg:text-5xl font-thin mx-8">|</p>
@@ -23,13 +24,19 @@ export default function Navbar() {
 
       <div className="lg:col-span-2 h-full w-full lg:grid sm:grid-cols-5 items-center font-poppins hidden">
         <div className="text-end col-span-1">
-          <p className="cursor-pointer font-semibold text-xl">Home</p>
+          <Link href="/">
+            <p className="cursor-pointer font-semibold text-xl">Home</p>
+          </Link>
         </div>
         <div className="text-end col-span-1">
-          <p className="cursor-pointer font-semibold text-xl">Produk</p>
+          <Link href="/pages/produk">
+            <p className="cursor-pointer font-semibold text-xl">Produk</p>
+          </Link>
         </div>
         <div className="text-end col-span-1">
-          <p className="cursor-pointer font-semibold text-xl">Promo</p>
+          <Link href="/pages/promo">
+            <p className="cursor-pointer font-semibold text-xl">Promo</p>
+          </Link>
         </div>
         <div className="text-end col-span-1">
           <p className="cursor-pointer font-semibold text-xl">Kontak</p>
@@ -57,13 +64,19 @@ export default function Navbar() {
               />
             </div>
             <div className="border-b-2 border-abu2 w-full h-10 my-2">
-              <p className="text-2xl font-semibold text-end">Home</p>
+              <Link href="/">
+                <p className="text-2xl font-semibold text-end">Home</p>
+              </Link>
             </div>
             <div className="border-b-2 border-abu2 w-full h-10 my-2">
-              <p className="text-2xl font-semibold text-end">Produk</p>
+              <Link href="/pages/produk">
+                <p className="text-2xl font-semibold text-end">Produk</p>
+              </Link>
             </div>
             <div className="border-b-2 border-abu2 w-full h-10 my-2">
-              <p className="text-2xl font-semibold text-end">Promo</p>
+              <Link href="/pages/promo">
+                <p className="text-2xl font-semibold text-end">Promo</p>
+              </Link>
             </div>
             <div className="border-b-2 border-abu2 w-full h-10 my-2">
               <p className="text-2xl font-semibold text-end">Kontak</p>
