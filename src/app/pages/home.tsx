@@ -10,10 +10,11 @@ import Banner2 from "@/image/banner2.jpg";
 
 export default function Home() {
   return (
-    <main className="bg-white w-screen h-auto flex flex-col items-center lg:mx-auto">
+    <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
         <Navbar />
       </div>
+
       <div id="promo">
         <Image
           src={Banner2}
@@ -22,9 +23,11 @@ export default function Home() {
         />
         {/* <Banner /> */}
       </div>
+
       <div id="produk" className="w-full my-8 lg:container">
         <Produk />
       </div>
+
       <div id="kontak"></div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />

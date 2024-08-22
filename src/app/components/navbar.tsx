@@ -25,24 +25,32 @@ export default function Navbar() {
       <div className="lg:col-span-2 h-full w-full lg:grid sm:grid-cols-5 items-center font-poppins hidden">
         <div className="text-end col-span-1">
           <Link href="/">
-            <p className="cursor-pointer font-semibold text-xl">Home</p>
+            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+              Home
+            </p>
           </Link>
         </div>
         <div className="text-end col-span-1">
           <Link href="/pages/produk">
-            <p className="cursor-pointer font-semibold text-xl">Produk</p>
+            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+              Produk
+            </p>
           </Link>
         </div>
         <div className="text-end col-span-1">
           <Link href="/pages/promo">
-            <p className="cursor-pointer font-semibold text-xl">Promo</p>
+            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+              Promo
+            </p>
           </Link>
         </div>
         <div className="text-end col-span-1">
-          <p className="cursor-pointer font-semibold text-xl">Kontak</p>
+          <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+            Kontak
+          </p>
         </div>
         <div className="col-span-1 flex justify-center">
-          <FaSearch size={20} />
+          <FaSearch size={20} className="hover:text-[#cc0000] cursor-pointer" />
         </div>
       </div>
 

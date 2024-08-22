@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import ProdukM from "../../components/produk";
 import Footer from "../../components/footer";
+import Link from "next/link";
 
 export default function Produk() {
   return (
@@ -9,14 +10,14 @@ export default function Produk() {
       <div className="w-full sticky top-0 z-50 bg-white">
         <Navbar />
       </div>
-      <div className="w-full p-6">
-        <div className="bg-abu1 w-full h-20 rounded-xl p-2">
-          <div className="bg-white w-full h-full rounded-xl flex justify-center items-center cursor-pointer hover:bg-abu1 hover:brightness-90 transition ease-in-out delay-75 active:abu2">
-            <p className="text-black font-poppins text-xl font-semibold">
+      <div className="w-full lg:px-16 p-6">
+        <Link href="/pages/list">
+          <div className="bg-abu1 w-full lg:h-12 rounded-xl border-2 border-abu2 p-2 flex justify-center items-center cursor-pointer hover:brightness-90">
+            <p className="text-black font-poppins text-lg font-semibold">
               Cek List Harga Disini
             </p>
           </div>
-        </div>
+        </Link>
       </div>
       <div id="produk" className="w-full my-8 lg:container">
         <ProdukM />
