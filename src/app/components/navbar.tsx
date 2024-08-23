@@ -11,11 +11,14 @@ import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { IoClose } from "react-icons/io5";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
+  const currentPath = usePathname();
+
   return (
-    <div className="w-full h-20 lg:h-24 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black lg:container justify-self-center mx-auto">
+    <div className="w-full h-20 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black lg:container justify-self-center mx-auto">
       <div className="col-span-2 lg:col-span-3 h-full w-full flex justify-start items-center lg:px-8">
         <Image src={Logo} alt="" className="h-12 w-auto lg:h-14" />
         <p className="text-4xl lg:text-5xl font-thin mx-8">|</p>
@@ -24,24 +27,39 @@ export default function Navbar() {
 
       <div className="lg:col-span-2 h-full w-full lg:grid sm:grid-cols-5 items-center font-poppins hidden">
         <div className="text-end col-span-1">
-          <Link href="/">
-            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
-              Home
-            </p>
+          <Link
+            href="/"
+            className={
+              currentPath === "/"
+                ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
+                : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
+            }
+          >
+            <p className="font-semibold text-xl ">Home</p>
           </Link>
         </div>
         <div className="text-end col-span-1">
-          <Link href="/pages/produk">
-            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
-              Produk
-            </p>
+          <Link
+            href="/pages/produk"
+            className={
+              currentPath === "/pages/produk"
+                ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
+                : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
+            }
+          >
+            <p className="font-semibold text-xl ">Produk</p>
           </Link>
         </div>
         <div className="text-end col-span-1">
-          <Link href="/pages/promo">
-            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
-              Promo
-            </p>
+          <Link
+            href="/pages/promo"
+            className={
+              currentPath === "/pages/promo"
+                ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
+                : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
+            }
+          >
+            <p className="font-semibold text-xl ">Promo</p>
           </Link>
         </div>
         <div className="text-end col-span-1">

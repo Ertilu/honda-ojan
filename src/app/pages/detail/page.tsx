@@ -8,13 +8,12 @@ import WA from "@/image/icon-wa-putih.png";
 import Logo from "@/image/logo-beat.png";
 import Banner1 from "@/image/banner1.jpg";
 import Beat from "@/image/beat.png";
-import {
-  Circle,
-  Donut,
-  CircleGrid,
-  Cross,
-  SquareDonut,
-} from "react-awesome-shapes";
+import Lingkaran1 from "@/image/svg-lingkaran1.svg";
+import Lingkaran2 from "@/image/svg-lingkaran2.png";
+import Segitiga from "@/image/svg-segitiga.svg";
+import Bulet1 from "@/image/svg-bulet1.png";
+import Cross from "@/image/svg-cross.png";
+import Kotak1 from "@/image/svg-kotak1.png";
 import { motion } from "framer-motion";
 
 export default function Detail() {
@@ -24,77 +23,80 @@ export default function Detail() {
         <Navbar />
       </div>
 
-      <div className="w-full min-h-[600px] lg:px-16 p-6">
+      <div className="w-full lg:h-[600px] h-auto lg:px-16 p-6">
         <div className="w-full flex justify-center">
           <Image src={Logo} alt="" className="lg:h-24 w-auto" />
         </div>
-        <div className="w-full flex justify-center mt-6">
-          <Image src={Banner1} alt="" className="h-[400px] w-auto" />
-        </div>
-
-        <div className="w-full h-[700px] relative mt-6">
+        <div className="w-full h-auto flex justify-center mt-12">
           <Image
-            src={Beat}
+            src={Banner1}
             alt=""
-            className="h-80 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="lg:h-[400px] lg:w-auto h-auto w-full"
           />
+        </div>
+      </div>
 
-          <div className="bg-abu1 w-[250px] h-[35px] rounded-full absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-full h-full grid grid-cols-4 items-center px-6">
-              <div className="bg-red-500 rounded-full w-[20px] h-[20px] col-span-1 justify-self-center "></div>
-              <div className="bg-blue-500 rounded-full w-[20px] h-[20px] col-span-1 justify-self-center "></div>
-              <div className="bg-green-500 rounded-full w-[20px] h-[20px] col-span-1 justify-self-center outline outline-4 outline-offset-2 outline-abu2"></div>
-              <div className="bg-gray-500 rounded-full w-[20px] h-[20px] col-span-1 justify-self-center "></div>
-            </div>
+      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 p-6 relative mt-6">
+        <Image
+          src={Beat}
+          alt=""
+          className="lg:h-80 h-44 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        />
+
+        <div className="bg-abu1 lg:w-[250px] w-[200px] lg:h-[35px] h-[25px] rounded-full absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-full h-full grid grid-cols-4 items-center px-6">
+            <div className="bg-red-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer"></div>
+            <div className="bg-blue-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer "></div>
+            <div className="bg-green-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer outline outline-4 outline-offset-2 outline-abu2"></div>
+            <div className="bg-gray-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer "></div>
           </div>
 
+          <div className="w-full flex justify-center mt-4">
+            <p className="text-abu2 text-xl font-poppins font-semibold">
+              Ijo Miskin
+            </p>
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          // viewport={{ once: true }}
+        >
+          <Image
+            src={Lingkaran1}
+            alt=""
+            className="absolute lg:top-[12%] top-[17%] lg:left-[27%] left-[15%] lg:h-[430px] h-[200px] w-auto"
+          />
+          <Image
+            src={Lingkaran2}
+            alt=""
+            className="absolute top-[30%] left-[45%] w-auto lg:h-[300px] h-[150px]"
+          />
+          <Image
+            src={Bulet1}
+            alt=""
+            className="absolute top-[65%] lg:left-[10%] left-0 lg:h-[150px] h-[50px] w-auto"
+          />
+
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            // viewport={{ once: true }}
+            animate={{ rotate: [0, 360], x: [0, 20, 0], y: [0, 20, 0] }}
+            transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
+            className="absolute top-[20%] left-[75%] transform -translate-x-1/2 -translate-y-1/2"
           >
-            <Circle
-              color="linear-gradient(135deg, #a5b4fc, #6366f1)"
-              size="300px"
-              zIndex={2}
-              className="absolute top-[15%] left-[25%]"
-            />
-            <Donut
-              color="#f43f5e"
-              size="250px"
-              width={["40px", "40px", "60px", "60px"]}
-              zIndex={2}
-              className="absolute top-[25%] left-[40%]"
-            />
-            <CircleGrid
-              color="#10b981"
-              size="175px"
-              zIndex={2}
-              className="absolute top-[40%] left-[10%]"
-            />
-            <div className="absolute top-[25%] left-[80%]">
-              <div className="relative">
-                <motion.div
-                  animate={{ rotate: [0, 360], x: [0, 20, 0], y: [0, 20, 0] }}
-                  transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-                >
-                  <Cross
-                    size="100px"
-                    zIndex={2}
-                    color="#0ea5e9"
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                  />
-                </motion.div>
-              </div>
-            </div>
-            <SquareDonut
-              size="100px"
-              zIndex={2}
-              color="#ef4444"
-              className="absolute top-[28%] left-[80%]"
+            <Image
+              src={Cross}
+              alt=""
+              className="lg:h-[100px] h-[25px] w-auto"
             />
           </motion.div>
-        </div>
+
+          <Image
+            src={Kotak1}
+            alt=""
+            className="absolute lg:top-[37%] top-[30%] left-[80%] lg:h-[100px] h-[25px] w-auto"
+          />
+        </motion.div>
       </div>
 
       <div className="w-full h-[500px] bg-[#1d1d1d] lg:px-16 p-6">
@@ -109,17 +111,19 @@ export default function Detail() {
         </div>
       </div>
 
-      <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 grid grid-cols-2 gap-4 mt-6">
+      <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-4 mt-6">
         <div className=" font-poppins">
           <p className="text-black text-xl font-semibold">Honda BeAT</p>
-          <p className="text-abu2">Mulai dari</p>
-          <p className="font-bold text-[#dd2020] text-4xl">Rp. 15,000,000</p>
+          <p className="text-abu2 text-sm">Mulai dari</p>
+          <p className="font-bold text-[#dd2020] lg:text-4xl text-xl">
+            Rp. 15,000,000
+          </p>
           <div className="w-full h-12 bg-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer mt-6 hover:bg-[#cc0000]">
             <p className="font-medium">Hubungi Kami</p>
           </div>
         </div>
 
-        <div className="">
+        <div className="lg:mt-0 mt-6">
           <table className="border-collapse border-2 border-abu1 w-full">
             <thead>
               <tr className="bg-[#1d1d1d]">
@@ -129,16 +133,16 @@ export default function Detail() {
             </thead>
             <tbody>
               <tr className="text-abu2">
-                <td className="h-8 w-1/2 px-">BeAT CBS</td>
-                <td className="h-8 w-1/2">Rp. 15.550.000</td>
+                <td className="h-8 w-1/2 px-2">BeAT CBS</td>
+                <td className="h-8 w-1/2 px-2">Rp. 15.550.000</td>
               </tr>
               <tr className="text-abu2">
-                <td className="bg-abu1 h-8">BeAT Deluxe</td>
-                <td className="bg-abu1 h-8">Rp. 15.550.000</td>
+                <td className="bg-abu1 h-8 w-1/2 px-2">BeAT Deluxe</td>
+                <td className="bg-abu1 h-8 w-1/2 px-2">Rp. 15.550.000</td>
               </tr>
               <tr className="text-abu2">
-                <td className="h-8 w-1/2">BeAT Deluxe Smart Key</td>
-                <td className="h-8 w-1/2">Rp. 15.550.000</td>
+                <td className="h-8 w-1/2 px-2">BeAT Deluxe Smart Key</td>
+                <td className="h-8 w-1/2 px-2">Rp. 15.550.000</td>
               </tr>
             </tbody>
           </table>
