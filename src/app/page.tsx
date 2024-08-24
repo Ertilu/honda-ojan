@@ -1,9 +1,10 @@
 import Home from "./pages/home";
+import ReactQueryProvider from "./reactQueryProvider";
 
 export default function Root() {
   return (
-    <div>
+    <ReactQueryProvider>
       <Home />
-    </div>
+    </ReactQueryProvider>
   );
 }

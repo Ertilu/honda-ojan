@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Navbar from "../components/navbar";
 import Banner from "@/app/components/banner";
@@ -7,8 +9,14 @@ import Image from "next/image";
 import WA from "@/image/icon-wa-putih.png";
 import Banner1 from "@/image/banner1.jpg";
 import Banner2 from "@/image/banner2.jpg";
+import { useProductService } from "../queries/product.query";
 
 export default function Home() {
+  const { getCatalogueList } = useProductService({
+    getCatalogueListParams: {},
+  });
+
+  console.log("getCatalogueList", getCatalogueList);
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
