@@ -16,7 +16,6 @@ export default function Home() {
     getCatalogueListParams: {},
   });
 
-  console.log("getCatalogueList", getCatalogueList);
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
@@ -33,7 +32,7 @@ export default function Home() {
       </div>
 
       <div id="produk" className="w-full my-8 lg:container">
-        <Produk />
+        <Produk getCatalogueList={getCatalogueList} />
       </div>
 
       <div id="kontak"></div>
