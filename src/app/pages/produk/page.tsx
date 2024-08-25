@@ -3,12 +3,19 @@ import Navbar from "../../components/navbar";
 import ProdukM from "../../components/produk";
 import Footer from "../../components/footer";
 import Link from "next/link";
+import { useProductService } from "../../queries/product.query";
 
 export default function Produk() {
+  // const { getCatalogueList } = useProductService({
+  //   getCatalogueListParams: {},
+  // });
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
         <Navbar />
+      </div>
+      <div className="w-full h-16 bg-[#cc0000] flex justify-center items-center">
+        <p className="font-medium font-poppins text-3xl">Produk</p>
       </div>
       <div className="w-full lg:px-16 p-6">
         <Link href="/pages/list">
@@ -19,7 +26,7 @@ export default function Produk() {
           </div>
         </Link>
       </div>
-      <div id="produk" className="w-full my-8 lg:container">
+      <div id="produk" className="w-full my-2 lg:container">
         <ProdukM />
       </div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">

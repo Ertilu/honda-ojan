@@ -18,14 +18,14 @@ export default function Navbar() {
   const currentPath = usePathname();
 
   return (
-    <div className="w-full h-20 bg-white py-4 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-5 text-black lg:container justify-self-center mx-auto">
-      <div className="col-span-2 lg:col-span-3 h-full w-full flex justify-start items-center lg:px-8">
-        <Image src={Logo} alt="" className="h-12 w-auto lg:h-14" />
-        <p className="text-4xl lg:text-5xl font-thin mx-8">|</p>
+    <div className="w-full h-16 bg-white px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto">
+      <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
+        <Image src={Logo} alt="" className="h-12 w-auto" />
+        <p className="text-3xl lg:text-4xl font-thin mx-8">|</p>
         <p className="text-5xl lg:text-5xl font-bebas">BAM</p>
       </div>
 
-      <div className="lg:col-span-2 h-full w-full lg:grid sm:grid-cols-5 items-center font-poppins hidden">
+      <div className="lg:col-span-3 h-full w-full lg:grid lg:grid-cols-6 items-center font-poppins hidden">
         <div className="text-end col-span-1">
           <Link
             href="/"
@@ -63,12 +63,30 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="text-end col-span-1">
-          <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
-            Kontak
-          </p>
+          <Link
+            href="/pages/kontak"
+            className={
+              currentPath === "/pages/kontak"
+                ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
+                : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
+            }
+          >
+            <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+              Kontak
+            </p>
+          </Link>
         </div>
-        <div className="col-span-1 flex justify-center">
-          <FaSearch size={20} className="hover:text-[#cc0000] cursor-pointer" />
+        <div className="col-span-2 flex flex-col px-8 h-10">
+          <div className="flex items-center px-2 border-2 border-abu2 w-full h-10 rounded-full">
+            <FaSearch
+              size={20}
+              className="hover:text-[#cc0000] cursor-pointer"
+            />
+            <input
+              type="text"
+              className="flex-grow mx-2 focus:outline-none w-10 "
+            />
+          </div>
         </div>
       </div>
 

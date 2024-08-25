@@ -14,7 +14,7 @@ const config: Config = {
       },
       colors: {
         primaryRed: "#E61B33",
-        abu1: "#ECECEC",
+        abu1: "#f2f2f2",
         abu2: "#7E7E7E",
       },
       backgroundImage: {

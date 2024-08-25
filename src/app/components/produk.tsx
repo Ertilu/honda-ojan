@@ -71,14 +71,14 @@ export default function Produk({
         </div>
       </div>
 
-      <div className="w-full h-auto grid lg:grid-cols-3 grid-cols-2 justify-center">
+      <div className="w-full h-auto ">
         {getCatalogueList?.isPending ? (
           [1, 2, 3]?.map((item) => LoadingComponent)
         ) : (
-          <div>
+          <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
             {getCatalogueList?.data?.results?.map((item: any) => {
               return (
-                <Link href={`/pages/detail/${item?.id}`}>
+                <Link href={`/pages/detail/${item?.id}`} key={item?.id}>
                   <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50">
                     <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
                       <img
