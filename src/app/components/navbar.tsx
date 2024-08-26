@@ -90,14 +90,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="lg:hidden col-span-1 flex justify-end items-center">
+      <div className="lg:hidden col-span-1 flex justify-end items-center h-full">
         <HiMenu size={32} onClick={() => setVisibleRight(true)} />
 
         <Sidebar
           visible={visibleRight}
           position="right"
           onHide={() => setVisibleRight(false)}
-          className="bg-white text-black font-poppins"
+          className="bg-white text-black font-poppins h-full"
         >
           <div className="flex flex-col justify-end px-6 py-6">
             <div className="w-full h-10 border-2 border-abu2 rounded-2xl flex items-center px-2">

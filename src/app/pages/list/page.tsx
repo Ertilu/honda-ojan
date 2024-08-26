@@ -6,6 +6,8 @@ import Adira from "@/image/adira.png";
 import Adiraku from "@/image/adiraku.png";
 import AHM from "@/image/ahm.png";
 import One from "@/image/one-heart.png";
+import Brosur from "@/image/brosur.jpeg";
+import Link from "next/link";
 
 export default function List() {
   return (
@@ -43,7 +45,7 @@ export default function List() {
         </div>
       </div>
 
-      <div className="w-full h-[700px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-8">
+      {/* <div className="w-full h-[700px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-8">
         <table className="border-collapse border-2 border-abu2 w-full text-center lg:col-span-1">
           <thead className="text-white">
             <tr>
@@ -427,6 +429,22 @@ export default function List() {
             </tr>
           </tbody>
         </table>
+      </div> */}
+
+      <div className="w-full min-h-[400px] h-auto lg:px-16 lg:p-6 lg:mt-0 mt-20">
+        <Image
+          src={Brosur}
+          alt=""
+          className="lg:w-full lg:h-auto w-auto h-full lg:rotate-0 rotate-90"
+        />
+
+        <a href="image/brosur.jpeg" download="brosur-BAM.jpeg">
+          <div className="bg-[#cc0000] rounded-md hover:brightness-95 cursor-pointer flex justify-center items-center h-8">
+            <p className="font-semibold font-poppins text-md text-white ">
+              Unduh Brosur
+            </p>
+          </div>
+        </a>
       </div>
 
       <div id="footer" className="bg-[#363636] w-full flex justify-center">

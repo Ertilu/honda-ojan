@@ -17,10 +17,10 @@ export default function Produk() {
       <div className="w-full h-16 bg-[#cc0000] flex justify-center items-center">
         <p className="font-medium font-poppins text-3xl">Produk</p>
       </div>
-      <div className="w-full lg:px-16 p-6">
+      <div className="w-full flex justify-center lg:px-16 p-6">
         <Link href="/pages/list">
-          <div className="bg-abu1 w-full lg:h-12 rounded-xl border-2 border-abu2 p-2 flex justify-center items-center cursor-pointer hover:brightness-90">
-            <p className="text-black font-poppins text-lg font-semibold">
+          <div className="bg-[#cc0000] rounded-md hover:brightness-95 lg:w-[500px] w-full lg:h-12  p-2 flex justify-center items-center cursor-pointer ">
+            <p className="text-white mx-6 font-poppins text-lg font-semibold">
               Cek List Harga Disini
             </p>
           </div>

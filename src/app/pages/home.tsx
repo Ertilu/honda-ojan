@@ -9,7 +9,7 @@ import Image from "next/image";
 import WA from "@/image/icon-wa-putih.png";
 import Banner1 from "@/image/banner1.jpg";
 import Banner2 from "@/image/banner2.jpg";
-import Kontakwa from "@/app/components/kontakWA";
+import Kontakwa from "@/app/components/kontakwa";
 import { useProductService } from "../queries/product.query";
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
         <Footer />
       </div>
 
-      <div className="w-full lg:px-16 p-6">
+      <div className="w-full">
         <Kontakwa />
       </div>
     </main>
