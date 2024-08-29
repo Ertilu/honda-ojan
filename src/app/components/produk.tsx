@@ -14,30 +14,28 @@ export default function Produk({
 }) {
   const LoadingComponent = useMemo(() => {
     return (
-      <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
-        <div
-          role="status"
-          className="animate-pulse col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
-        >
-          <div className="lg:w-[344px]   w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
-            <svg
-              className="w-10 h-10 text-gray-200 dark:text-gray-600"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
-              <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-            </svg>
-          </div>
-          <div className="w-full lg:mt-4 lg:mb-2 lg:px-0 px-4">
-            <div className="h-6  bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-            <div className="h-2 w-48 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-            <div className="h-4 w-48 2-10 bg-gray-200 rounded-full dark:bg-gray-700 mb-5"></div>
-            <div className="h-4 w-40 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5 mx-auto"></div>
-          </div>
-          <span className="sr-only">Loading...</span>
+      <div
+        role="status"
+        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+      >
+        <div className="lg:w-[344px]   w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
+          <svg
+            className="w-10 h-10 text-gray-200 dark:text-gray-600"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 18"
+          >
+            <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+          </svg>
         </div>
+        <div className="w-full lg:mt-4 lg:mb-2 lg:px-0 px-4">
+          <div className="h-6  bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+          <div className="h-2 w-48 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+          <div className="h-4 w-48 2-10 bg-gray-200 rounded-full dark:bg-gray-700 mb-5"></div>
+          <div className="h-4 w-40 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5 mx-auto"></div>
+        </div>
+        <span className="sr-only">Loading...</span>
       </div>
     );
   }, []);
@@ -73,9 +71,11 @@ export default function Produk({
         </div>
       </div>
 
-      <div className="w-full h-auto ">
+      <div className="w-full h-auto d-grid">
         {getCatalogueList?.isPending ? (
-          [1, 2, 3]?.map((item) => LoadingComponent)
+          <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
+            {[1, 2, 3]?.map((item) => LoadingComponent)}
+          </div>
         ) : (
           <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
             {getCatalogueList?.data?.results?.map((item: any) => {

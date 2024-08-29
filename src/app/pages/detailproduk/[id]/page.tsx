@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
+import Navbar from "../../../components/navbar";
+import Footer from "../../../components/footer";
 import Image from "next/image";
 import WA from "@/image/icon-wa-putih.png";
 import Logo from "@/image/logo-beat.png";
