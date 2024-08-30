@@ -95,7 +95,7 @@ export default function Kontak() {
             </div>
             <div className=" flex flex-col justify-center items-center">
               <div>
-                <p className="font-semibold text-xl">08126942069</p>
+                <p className="font-semibold text-xl">Hubungi via WA</p>
               </div>
             </div>
           </div>

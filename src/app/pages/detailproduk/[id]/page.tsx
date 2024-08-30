@@ -16,11 +16,12 @@ import Cross from "@/image/svg-cross.png";
 import Kotak1 from "@/image/svg-kotak1.png";
 import { motion } from "framer-motion";
 import Kontakwa from "@/app/components/kontakwa";
+import Link from "next/link";
 
 export default function Detail() {
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
-      <div className="w-full sticky top-0 z-50 bg-white">
+      <div className="w-full sticky top-0 z-50 bg-white ">
         <Navbar />
       </div>
 
@@ -148,9 +149,11 @@ export default function Detail() {
             </tbody>
           </table>
 
-          <div className="w-[200px] h-[40px] bg-abu1 border-2 border-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer hover:brightness-90 mt-6">
-            <p className="text-[#1d1d1d] font-semibold">Detail Angsuran</p>
-          </div>
+          <Link href="/pages/list">
+            <div className="w-[200px] h-[40px] bg-abu1 border-2 border-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer hover:brightness-90 mt-6 lg:cursor-pointer">
+              <p className="text-[#1d1d1d] font-semibold">Detail Angsuran</p>
+            </div>
+          </Link>
         </div>
       </div>
 
