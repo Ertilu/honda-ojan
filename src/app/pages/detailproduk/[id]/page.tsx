@@ -1,61 +1,102 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../../../components/navbar";
 import Footer from "../../../components/footer";
 import Image from "next/image";
-import WA from "@/image/icon-wa-putih.png";
-import Logo from "@/image/logo-beat.png";
 import Banner1 from "@/image/banner1.jpg";
 import Beat from "@/image/beat.png";
 import Lingkaran1 from "@/image/svg-lingkaran1.svg";
 import Lingkaran2 from "@/image/svg-lingkaran2.png";
-import Segitiga from "@/image/svg-segitiga.svg";
 import Bulet1 from "@/image/svg-bulet1.png";
 import Cross from "@/image/svg-cross.png";
 import Kotak1 from "@/image/svg-kotak1.png";
 import { motion } from "framer-motion";
 import Kontakwa from "@/app/components/kontakwa";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+// import required modules
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+import { GlobalContext } from "@/app/context/globalContext";
+import { useDetailProductUtil } from "./page.util";
 
 export default function Detail() {
+  const { data } = useContext(GlobalContext);
+  console.log("data", data);
+
+  const {
+    state: { selectedColor },
+    event: { setSelectedColorId },
+  } = useDetailProductUtil({ data });
+
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white ">
         <Navbar />
       </div>
 
-      <div className="w-full lg:h-[600px] h-auto lg:px-16 p-6">
+      <div className="w-full h-auto lg:px-16">
         <div className="w-full flex justify-center">
-          <Image src={Logo} alt="" className="lg:h-24 w-auto" />
-        </div>
-        <div className="w-full h-auto flex justify-center mt-12">
-          <Image
-            src={Banner1}
-            alt=""
-            className="lg:h-[400px] lg:w-auto h-auto w-full"
-          />
+          <img src={data?.logo} className="h-full w-80" alt="" />
         </div>
       </div>
 
+      <div className="w-full h-auto flex justify-center mt-5">
+        <Swiper
+          pagination={{
+            dynamicBullets: true,
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={true}
+          navigation={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+        >
+          {data?.banners?.map((b: any, idx: any) => {
+            return (
+              <SwiperSlide>
+                <div className="flex justify-center items-center">
+                  <img src={b} alt={`banner-${idx}`} />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+
       <div className="w-full lg:h-[700px] h-[400px] lg:px-16 p-6 relative mt-6">
-        <Image
-          src={Beat}
+        <img
+          src={selectedColor?.image}
           alt=""
           className="lg:h-80 h-44 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
 
-        <div className="bg-abu1 lg:w-[250px] w-[200px] lg:h-[35px] h-[25px] rounded-full absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-full h-full grid grid-cols-4 items-center px-6">
-            <div className="bg-red-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer"></div>
-            <div className="bg-blue-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer "></div>
-            <div className="bg-green-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer outline outline-4 outline-offset-2 outline-abu2"></div>
-            <div className="bg-gray-500 rounded-full lg:w-[20px] w-[10px] lg:h-[20px] h-[10px] col-span-1 justify-self-center cursor-pointer "></div>
+        <div className="lg:w-[350px] w-[200px] lg:h-[35px] h-[25px] absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="bg-abu1 w-full h-auto rounded-full">
+            <div className="py-2 flex items-center justify-center flex-wrap gap-6">
+              {data?.colors?.map((c: any) => (
+                <div
+                  className="rounded-full w-[25px] h-[25px] col-span-1 cursor-pointer"
+                  style={{ backgroundColor: c?.code }}
+                  onClick={() => setSelectedColorId(c._id)}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="w-full flex justify-center mt-4">
             <p className="text-abu2 text-xl font-poppins font-semibold">
-              Ijo Miskin
+              {selectedColor?.name}
             </p>
           </div>
         </div>
@@ -106,19 +147,25 @@ export default function Detail() {
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-8">
-          <div className="border-2 border-abu1 rounded-md w-full h-40"></div>
-          <div className="border-2 border-abu1 rounded-md w-full h-40"></div>
-          <div className="border-2 border-abu1 rounded-md w-full h-40"></div>
-          <div className="border-2 border-abu1 rounded-md w-full h-40"></div>
+          <div className="border-2 border-abu1 rounded-md w-full h-40 flex justify-center">
+            {data?.featureImages?.map((fi: any) => (
+              <img
+                src={fi}
+                className="h-full w-80"
+                alt=""
+                style={{ objectFit: "contain" }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
       <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-4 mt-6">
         <div className=" font-poppins">
-          <p className="text-black text-xl font-semibold">Honda BeAT</p>
+          <p className="text-black text-xl font-semibold">{data?.name}</p>
           <p className="text-abu2 text-sm">Mulai dari</p>
           <p className="font-bold text-[#dd2020] lg:text-4xl text-xl">
-            Rp. 15,000,000
+            Rp. {new Intl.NumberFormat("en-US").format(data?.price)}
           </p>
           <div className="w-full h-12 bg-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer mt-6 hover:bg-[#cc0000]">
             <p className="font-medium">Hubungi Kami</p>

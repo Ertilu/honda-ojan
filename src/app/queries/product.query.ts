@@ -10,12 +10,11 @@ export const useProductService = ({
   const getCatalogueList = useQuery({
     queryKey: ["getCatalogues"],
     queryFn: async ({ signal }) => {
-      console.log("getCatalogueListParams", getCatalogueListParams);
       let req = new Request("https://honda-bam-api.vercel.app/v1/catalogues", {
         signal,
       });
       const response = await fetch(req);
-      console.log("response", response);
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

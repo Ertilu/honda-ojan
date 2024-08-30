@@ -1,17 +1,20 @@
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import Sort from "@/image/icon-sort.svg";
 import Arrow from "@/image/icon-arrow.svg";
 import Beat from "@/image/beat.png";
 import Scoopy from "@/image/scoopy.png";
 import Pcx from "@/image/pcx.png";
 import Link from "next/link";
+import { GlobalContext } from "../context/globalContext";
 
 export default function Produk({
   getCatalogueList,
 }: {
   getCatalogueList: any;
 }) {
+  const { setData } = useContext(GlobalContext);
+
   const LoadingComponent = useMemo(() => {
     return (
       <div
@@ -80,7 +83,15 @@ export default function Produk({
           <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
             {getCatalogueList?.data?.results?.map((item: any) => {
               return (
-                <Link href={`/pages/detailproduk/${item?.id}`} key={item?.id}>
+                <Link
+                  href={{
+                    pathname: `/pages/detailproduk/${item?.id}`,
+                  }}
+                  onClick={() => {
+                    setData(item);
+                  }}
+                  key={item?.id}
+                >
                   <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[170px] h-[230px] lg:my-0 my-2 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50">
                     <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
                       <img
@@ -98,7 +109,8 @@ export default function Produk({
                       <p className="font-normal lg:text-md text-sm text-abu2">
                         Mulai dari <br />
                         <span className="lg:text-2xl text-md font-semibold text-black">
-                          Rp. 15,550,000
+                          Rp{" "}
+                          {new Intl.NumberFormat("en-US").format(item?.price)}
                         </span>
                       </p>
                     </div>
