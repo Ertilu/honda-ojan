@@ -1,14 +1,16 @@
+"use client";
 import React, { useContext, useMemo } from "react";
 import Link from "next/link";
 import { GlobalContext } from "../context/globalContext";
 import { MdSort } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useProductService } from "../queries/product.query";
 
-export default function Produk({
-  getCatalogueList,
-}: {
-  getCatalogueList: any;
-}) {
+export default function Produk() {
+  const { getCatalogueList } = useProductService({
+    getCatalogueListParams: {},
+  });
+
   const { setData } = useContext(GlobalContext);
 
   const LoadingComponent = useMemo(() => {
@@ -81,7 +83,7 @@ export default function Produk({
               return (
                 <Link
                   href={{
-                    pathname: `/pages/detailproduk/${item?.id}`,
+                    pathname: `/detailproduk/${item?.id}`,
                   }}
                   onClick={() => {
                     setData(item);

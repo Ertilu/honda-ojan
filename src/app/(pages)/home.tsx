@@ -13,10 +13,6 @@ import Kontakwa from "@/app/components/kontakwa";
 import { useProductService } from "../queries/product.query";
 
 export default function Home() {
-  const { getCatalogueList } = useProductService({
-    getCatalogueListParams: {},
-  });
-
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
@@ -33,7 +29,7 @@ export default function Home() {
       </div>
 
       <div id="produk" className="w-full my-8 lg:container">
-        <Produk getCatalogueList={getCatalogueList} />
+        <Produk />
       </div>
 
       <div id="kontak"></div>

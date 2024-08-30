@@ -15,7 +15,7 @@ export const GlobalContext = createContext<GlobalContextType>(
   GlobalContextDefaultValues
 );
 
-function Context({ children }: { children: ReactNode }) {
+function GlobalProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState(null);
 
   const onSetData = useCallback((data: any) => {
@@ -40,4 +40,4 @@ function Context({ children }: { children: ReactNode }) {
   );
 }
 
-export default Context;
+export default GlobalProvider;
