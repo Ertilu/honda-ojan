@@ -1,4 +1,6 @@
-import React, { useContext, useMemo } from "react";
+"use client";
+
+import React, { useContext, useMemo, useState } from "react";
 import Link from "next/link";
 import { GlobalContext } from "../context/globalContext";
 import { MdSort } from "react-icons/md";
@@ -10,6 +12,11 @@ export default function Produk({
   getCatalogueList: any;
 }) {
   const { setData } = useContext(GlobalContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSort = () => {
+    setIsOpen(!isOpen);
+  };
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -58,7 +65,14 @@ export default function Produk({
         </div>
       </div>
 
-      <div className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12   mx-auto cursor-pointer hover:brightness-95 transition delay-50">
+      <div
+        className={
+          isOpen
+            ? "bg-abu1 w-[276px] h-[200px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95   "
+            : "bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95  "
+        }
+        onClick={handleSort}
+      >
         <div className="col-span-1 justify-self-center">
           <MdSort />
         </div>
