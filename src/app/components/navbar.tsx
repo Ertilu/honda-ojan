@@ -11,12 +11,28 @@ import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { IoClose } from "react-icons/io5";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
   const currentPath = usePathname();
+  const router = useRouter();
+  const [cariProduk, setCariProduk] = useState("");
 
+  const handleKeyInput = (e: any) => {
+    e.preventDefault();
+    if (e.charCode == 13 && cariProduk !== "") {
+      router.push(`/detailcari`);
+    }
+  };
+
+  const handleInput = (e: any) => {
+    // e.preventDefault();
+    console.log("eee", `${e.target.value}`);
+    setCariProduk(e.target.value);
+  };
+
+  console.log("cari", cariProduk);
   return (
     <div className="w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div className="w-full h-16 bg-white px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
@@ -41,9 +57,9 @@ export default function Navbar() {
           </div>
           <div className="text-end col-span-1">
             <Link
-              href="/pages/produk"
+              href="/produk"
               className={
-                currentPath === "/pages/produk"
+                currentPath === "/produk"
                   ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
@@ -53,9 +69,9 @@ export default function Navbar() {
           </div>
           <div className="text-end col-span-1">
             <Link
-              href="/pages/promo"
+              href="/promo"
               className={
-                currentPath === "/pages/promo"
+                currentPath === "/promo"
                   ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
@@ -65,9 +81,9 @@ export default function Navbar() {
           </div>
           <div className="text-end col-span-1">
             <Link
-              href="/pages/kontak"
+              href="/kontak"
               className={
-                currentPath === "/pages/kontak"
+                currentPath === "/kontak"
                   ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
@@ -85,7 +101,10 @@ export default function Navbar() {
               />
               <input
                 type="text"
-                className="flex-grow mx-2 focus:outline-none w-10 "
+                className="flex-grow mx-2 focus:outline-none w-10 text-black"
+                onKeyDown={handleKeyInput}
+                onChange={handleInput}
+                value={cariProduk}
               />
             </div>
           </div>
@@ -106,6 +125,7 @@ export default function Navbar() {
                 <input
                   type="text"
                   className="flex-grow mx-2 focus:outline-none"
+                  onKeyPress={handleKeyInput}
                 />
               </div>
               <div className="border-b-2 border-abu2 w-full h-10 my-2">
@@ -114,17 +134,19 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="border-b-2 border-abu2 w-full h-10 my-2">
-                <Link href="/pages/produk">
+                <Link href="/produk">
                   <p className="text-2xl font-semibold text-end">Produk</p>
                 </Link>
               </div>
               <div className="border-b-2 border-abu2 w-full h-10 my-2">
-                <Link href="/pages/promo">
+                <Link href="/promo">
                   <p className="text-2xl font-semibold text-end">Promo</p>
                 </Link>
               </div>
               <div className="border-b-2 border-abu2 w-full h-10 my-2">
-                <p className="text-2xl font-semibold text-end">Kontak</p>
+                <Link href="/promo">
+                  <p className="text-2xl font-semibold text-end">Kontak</p>
+                </Link>
               </div>
             </div>
           </Sidebar>

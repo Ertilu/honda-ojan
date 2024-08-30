@@ -104,7 +104,7 @@ export default function Kontak() {
         <div className="border-b-2 border-abu2 mt-6"></div>
       </div>
 
-      <div className="w-full px-6 my-2">
+      <div className="w-full px-6 my-2 mb-6">
         <p className="font-poppins font-semibold text-lg text-black mb-4">
           Email
         </p>

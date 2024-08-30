@@ -6,6 +6,8 @@ import Beat from "@/image/beat.png";
 import Scoopy from "@/image/scoopy.png";
 import Pcx from "@/image/pcx.png";
 import Link from "next/link";
+import { MdSort } from "react-icons/md";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Produk({
   getCatalogueList,
@@ -61,13 +63,13 @@ export default function Produk({
 
       <div className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12   mx-auto cursor-pointer hover:brightness-95 transition delay-50">
         <div className="col-span-1 justify-self-center">
-          <Image src={Sort} alt="" />
+          <MdSort />
         </div>
         <div className="col-span-4">
           <p>Terbaru</p>
         </div>
         <div className="col-span-1 justify-self-center">
-          <Image src={Arrow} alt="" />
+          <IoMdArrowDropdown />
         </div>
       </div>
 
@@ -80,9 +82,9 @@ export default function Produk({
           <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
             {getCatalogueList?.data?.results?.map((item: any) => {
               return (
-                <Link href={`/pages/detailproduk/${item?.id}`} key={item?.id}>
-                  <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[170px] h-[230px] lg:my-0 my-2 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50">
-                    <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
+                <Link href={`/detailproduk/${item?.id}`} key={item?.id}>
+                  <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[170px] h-[230px] lg:my-0 my-2 bg-abu1 rounded-md lg:p-6 py-2 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50">
+                    <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[105px] justify-self-center mx-auto flex justify-center items-end mb-2">
                       <img
                         src={item?.images?.[0]}
                         className="h-full w-auto"
