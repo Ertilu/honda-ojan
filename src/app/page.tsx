@@ -1,4 +1,4 @@
-import Home from "./pages/home";
+import Home from "./(pages)/home";
 import ReactQueryProvider from "./reactQueryProvider";
 
 export default function Root() {

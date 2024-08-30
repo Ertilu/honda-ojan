@@ -18,7 +18,7 @@ export default function Produk() {
         <p className="font-medium font-poppins text-3xl">Produk</p>
       </div>
       <div className="w-full flex justify-center lg:px-16 p-6">
-        <Link href="/pages/list">
+        <Link href="/list">
           <div className="bg-[#cc0000] rounded-md hover:brightness-95 lg:w-[500px] w-full lg:h-12  p-2 flex justify-center items-center cursor-pointer ">
             <p className="text-white mx-6 font-poppins text-lg font-semibold">
               Cek List Harga Disini

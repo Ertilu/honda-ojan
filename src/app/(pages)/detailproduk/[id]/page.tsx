@@ -196,7 +196,7 @@ export default function Detail() {
             </tbody>
           </table>
 
-          <Link href="/pages/list">
+          <Link href="/list">
             <div className="w-[200px] h-[40px] bg-abu1 border-2 border-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer hover:brightness-90 mt-6 lg:cursor-pointer">
               <p className="text-[#1d1d1d] font-semibold">Detail Angsuran</p>
             </div>

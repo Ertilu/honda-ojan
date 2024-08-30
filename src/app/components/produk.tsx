@@ -1,12 +1,8 @@
-import Image from "next/image";
 import React, { useContext, useMemo } from "react";
-import Sort from "@/image/icon-sort.svg";
-import Arrow from "@/image/icon-arrow.svg";
-import Beat from "@/image/beat.png";
-import Scoopy from "@/image/scoopy.png";
-import Pcx from "@/image/pcx.png";
 import Link from "next/link";
 import { GlobalContext } from "../context/globalContext";
+import { MdSort } from "react-icons/md";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Produk({
   getCatalogueList,
@@ -64,13 +60,13 @@ export default function Produk({
 
       <div className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12   mx-auto cursor-pointer hover:brightness-95 transition delay-50">
         <div className="col-span-1 justify-self-center">
-          <Image src={Sort} alt="" />
+          <MdSort />
         </div>
         <div className="col-span-4">
           <p>Terbaru</p>
         </div>
         <div className="col-span-1 justify-self-center">
-          <Image src={Arrow} alt="" />
+          <IoMdArrowDropdown />
         </div>
       </div>
 

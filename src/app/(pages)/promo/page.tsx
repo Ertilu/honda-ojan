@@ -17,7 +17,7 @@ export default function Promo() {
 
       <div className="w-full lg:min-h-screen min-h-80 lg:container px-6 my-6">
         <div className="grid lg:grid-cols-4 px-6">
-          <Link href={`/pages/detailpromo`}>
+          <Link href={`/detailpromo`}>
             <div className="col-span-1 shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-[250px] bg-white cursor-pointer group hover:brightness-95 transition">
               <Image src={Banner1} alt="" className="w-full h-auto" />
               <div className="px-4 py-2">
