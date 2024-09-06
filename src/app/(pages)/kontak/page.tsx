@@ -12,16 +12,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Kontak() {
-  const [isPesanTerkirim, setIsPesanTerkirim] = useState(false);
-  const [textNotifPesan, setTextNotifPesan] = useState("");
   const [dataPesan, setDataPesan] = useState({
-    nama: "",
-    email: "",
-    pesan: "",
-    tanggal: "",
+    namaCust: "",
+    emailCust: "",
+    pesanCust: "",
+    tanggalEmailCust: "",
   });
   const tanggal = new Date();
-  const notify = () => toast("Wow so easy!");
+
+  const notifyGagal = (pesan: any) => toast.error(pesan);
+  const notifySukses = (pesan: any) => toast.success(pesan);
 
   const handleInput = (e: any) => {
     e.preventDefault();
@@ -30,29 +30,32 @@ export default function Kontak() {
 
   const handleKirim = (e: any) => {
     e.preventDefault();
-    if (dataPesan.pesan === "" && dataPesan.email === "") {
-      setIsPesanTerkirim(false);
-    } else if (dataPesan.email === "") {
-      setIsPesanTerkirim(true);
-      setTextNotifPesan("Email tidak boleh kosong!");
-    } else if (dataPesan.pesan === "") {
-      setIsPesanTerkirim(true);
-      setTextNotifPesan("Pesan tidak boleh kosong!");
-    } else {
-      const tgl_input =
-        tanggal.getDate() +
-        "/" +
-        (+tanggal.getMonth() + 1) +
-        "/" +
-        tanggal.getFullYear();
-      setDataPesan((data) => ({ ...data, tanggal: tgl_input }));
 
+    const tgl_input =
+      tanggal.getDate() +
+      "/" +
+      (+tanggal.getMonth() + 1) +
+      "/" +
+      tanggal.getFullYear() +
+      ", " +
+      tanggal.getHours() +
+      ":" +
+      tanggal.getMinutes();
+    setDataPesan((data) => ({ ...data, tanggalEmailCust: tgl_input }));
+
+    if (dataPesan.namaCust === "") {
+      notifyGagal("Nama tidak boleh kosong!");
+    } else if (dataPesan.emailCust === "") {
+      notifyGagal("Email tidak boleh kosong!");
+    } else if (dataPesan.pesanCust === "") {
+      notifyGagal("Pesan tidak boleh kosong!");
+    } else {
       emailjs
         .send(
-          "service_66ojacq",
-          "template_kglw8uv",
+          "service_5xvgtf6",
+          "template_uxt46rk",
           dataPesan,
-          "w3RTvXknr0E_40EQG"
+          "JJk7fWuFBmuUuR02t"
         )
         .then(
           (result) => {
@@ -63,24 +66,23 @@ export default function Kontak() {
           }
         );
 
-      setIsPesanTerkirim(true);
-      setTextNotifPesan("Pesan Terkirim");
-      setDataPesan((data) => ({ ...data, email: "", pesan: "", tanggal: "" }));
+      notifySukses("Pesan Terkirim");
+
+      setDataPesan((data) => ({
+        ...data,
+        namaCust: "",
+        emailCust: "",
+        pesanCust: "",
+        tanggalEmailCust: "",
+      }));
     }
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsPesanTerkirim(false);
-    }, 1500);
-  }, [isPesanTerkirim]);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
         <Navbar />
       </div>
-
       <div className="w-full h-16 bg-[#cc0000] flex justify-center items-center">
         <p className="font-medium font-poppins text-3xl">Kontak</p>
       </div>
@@ -103,7 +105,6 @@ export default function Kontak() {
 
         <div className="border-b-2 border-abu2 mt-6"></div>
       </div>
-
       <div className="w-full px-6 my-2 mb-6">
         <p className="font-poppins font-semibold text-lg text-black mb-4">
           Email
@@ -116,7 +117,8 @@ export default function Kontak() {
                 <input
                   type="text"
                   className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4"
-                  id="nama"
+                  id="namaCust"
+                  value={dataPesan.namaCust}
                   onChange={handleInput}
                 />
               </div>
@@ -125,7 +127,8 @@ export default function Kontak() {
                 <input
                   type="text"
                   className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4"
-                  id="email"
+                  id="emailCust"
+                  value={dataPesan.emailCust}
                   onChange={handleInput}
                 />
               </div>
@@ -133,11 +136,15 @@ export default function Kontak() {
                 <p>Pertanyaan / Pesan</p>
                 <textarea
                   className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4"
-                  id="pesan"
+                  id="pesanCust"
+                  value={dataPesan.pesanCust}
                   onChange={handleInput}
                 />
               </div>
-              <div className="bg-[#cc0000] rounded-md hover:brightness-95 cursor-pointer flex justify-center items-center h-8">
+              <div
+                className="bg-[#cc0000] rounded-md hover:brightness-95 cursor-pointer flex justify-center items-center h-8"
+                onClick={handleKirim}
+              >
                 <p className="font-semibold font-poppins text-md text-white ">
                   Kirim
                 </p>
@@ -146,7 +153,16 @@ export default function Kontak() {
           </div>
         </form>
       </div>
-
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="light"
+      />
+      ;
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />
       </div>
