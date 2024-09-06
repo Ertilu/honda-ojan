@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar";
 import ProdukM from "../../components/produk";
 import Footer from "../../components/footer";
 import Link from "next/link";
+import Kontakwa from "@/app/components/kontakwa";
 
 export default function Produk() {
   return (
@@ -27,6 +28,9 @@ export default function Produk() {
       </div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />
+      </div>
+      <div className="w-full">
+        <Kontakwa />
       </div>
     </div>
   );

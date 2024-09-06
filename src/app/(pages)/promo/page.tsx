@@ -7,6 +7,7 @@ import moment from "moment";
 import Link from "next/link";
 import { usePromoService } from "@/app/queries/promo.query";
 import { GlobalContext } from "@/app/context/globalContext";
+import Kontakwa from "@/app/components/kontakwa";
 
 export default function Promo() {
   const { getPromoList } = usePromoService({ getPromoListParams: {} });
@@ -97,6 +98,9 @@ export default function Promo() {
 
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />
+      </div>
+      <div className="w-full">
+        <Kontakwa />
       </div>
     </div>
   );

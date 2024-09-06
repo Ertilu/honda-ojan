@@ -11,6 +11,8 @@ import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { IoClose } from "react-icons/io5";
 import Link from "next/link";
+import LogoBeat from "@/image/logo-beat.png";
+import Beat from "@/image/beat.png";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -18,6 +20,7 @@ export default function Navbar() {
   const currentPath = usePathname();
   const router = useRouter();
   const [cariProduk, setCariProduk] = useState("");
+  const [cariProdukMobile, setCariProdukMobile] = useState("");
 
   const handleKeyInput = (e: any) => {
     e.preventDefault();
@@ -30,6 +33,12 @@ export default function Navbar() {
     // e.preventDefault();
     console.log("eee", `${e.target.value}`);
     setCariProduk(e.target.value);
+  };
+
+  const handleInputMobile = (e: any) => {
+    // e.preventDefault();
+    console.log("eee", `${e.target.value}`);
+    setCariProdukMobile(e.target.value);
   };
 
   console.log("cari", cariProduk);
@@ -103,7 +112,6 @@ export default function Navbar() {
               <input
                 type="text"
                 className="flex-grow mx-2 focus:outline-none w-10 text-black"
-                onKeyDown={handleKeyInput}
                 onChange={handleInput}
                 value={cariProduk}
               />
@@ -126,7 +134,8 @@ export default function Navbar() {
                 <input
                   type="text"
                   className="flex-grow mx-2 focus:outline-none"
-                  onKeyPress={handleKeyInput}
+                  onChange={handleInputMobile}
+                  value={cariProdukMobile}
                 />
               </div>
               <div className="border-b-2 border-abu2 w-full h-10 my-2">
@@ -153,6 +162,23 @@ export default function Navbar() {
           </Sidebar>
         </div>
       </div>
+      {cariProduk === "" ? null : (
+        <div>
+          <div className="w-full h-screen bg-black opacity-70 absolute top-16"></div>
+          <div className="absolute top-16 w-full h-screen lg:container">
+            <div className="bg-white h-80 w-full py-4 flex justify-center items-center">
+              <div className="bg-abu1 rounded-md h-full w-[300px] p-4 cursor-pointer hover:brightness-95">
+                <div className="w-full flex justify-center items-center">
+                  <Image src={LogoBeat} alt="" className="w-36 h-auto mb-6" />
+                </div>
+                <div className="w-full flex justify-center items-center">
+                  <Image src={Beat} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

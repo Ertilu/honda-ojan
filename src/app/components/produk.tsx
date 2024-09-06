@@ -44,9 +44,9 @@ export default function Produk() {
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[479px] w-[157px] h-[213px] lg:my-4 my-2 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
-        <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] mb-2 flex justify-center items-center">
+        <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] flex justify-center items-center">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -104,38 +104,40 @@ export default function Produk() {
         </div>
       </div>
 
-      <div
-        className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
-        onClick={handleSort}
-      >
-        <div className="col-span-1 justify-self-center">
-          <MdSort />
-        </div>
-        <div className="col-span-4">
-          {isTerbaru ? <p>Terbaru</p> : <p>Termurah</p>}
-        </div>
-        <div className="col-span-1 justify-self-center">
-          <IoMdArrowDropdown />
-        </div>
-      </div>
-
-      {isOpen ? (
-        <div className="bg-abu1 w-[276px] h-auto absolute lg:mx-12 lg:top-[29.5em] top-[29em] lg:left-[29.5px] left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
-          <div
-            className="cursor-pointer hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
-            onClick={() => {
-              setIsTerbaru(!isTerbaru), setIsOpen(!isOpen);
-            }}
-          >
-            {isTerbaru ? <p>Termurah</p> : <p>Terbaru</p>}
+      <div className="w-full">
+        <div
+          className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
+          onClick={handleSort}
+        >
+          <div className="col-span-1 justify-self-center">
+            <MdSort />
+          </div>
+          <div className="col-span-4">
+            {isTerbaru ? <p>Terbaru</p> : <p>Termurah</p>}
+          </div>
+          <div className="col-span-1 justify-self-center">
+            <IoMdArrowDropdown />
           </div>
         </div>
-      ) : null}
+
+        {isOpen ? (
+          <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 top-2 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
+            <div
+              className="cursor-pointer hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
+              onClick={() => {
+                setIsTerbaru(!isTerbaru), setIsOpen(!isOpen);
+              }}
+            >
+              {isTerbaru ? <p>Termurah</p> : <p>Terbaru</p>}
+            </div>
+          </div>
+        ) : null}
+      </div>
 
       <div className="w-full h-auto">
         {getCatalogueList?.isPending ? (
           <div className="grid lg:grid-cols-3 grid-cols-2 justify-center">
-            {[1, 2, 3]?.map((item) => LoadingComponent)}
+            {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
           </div>
         ) : (
           <div className="grid lg:grid-cols-3 grid-cols-2 justify-center items-center gap-4">
