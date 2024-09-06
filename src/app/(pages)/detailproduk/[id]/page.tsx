@@ -64,7 +64,7 @@ export default function Detail() {
         >
           {data?.banners?.map((b: any, idx: any) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={idx}>
                 <div className="flex justify-center items-center">
                   <img
                     src={b}
@@ -88,11 +88,12 @@ export default function Detail() {
         <div className="lg:w-[350px] w-[200px] lg:h-[35px] h-[25px] absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="bg-abu1 w-full h-auto rounded-full">
             <div className="py-2 flex items-center justify-center flex-wrap gap-6">
-              {data?.colors?.map((c: any) => (
+              {data?.colors?.map((c: any, idx: any) => (
                 <div
                   className="rounded-full w-[25px] h-[25px] col-span-1 cursor-pointer"
                   style={{ backgroundColor: c?.code }}
                   onClick={() => setSelectedColorId(c._id)}
+                  key={idx}
                 />
               ))}
             </div>
@@ -158,6 +159,7 @@ export default function Detail() {
                 className="h-full w-80"
                 alt=""
                 style={{ objectFit: "contain" }}
+                key={fi}
               />
             ))}
           </div>
@@ -185,9 +187,9 @@ export default function Detail() {
               </tr>
             </thead>
             <tbody>
-              {data?.types?.map((t: any) => {
+              {data?.types?.map((t: any, idx: any) => {
                 return (
-                  <tr className="text-abu2">
+                  <tr className="text-abu2" key={idx}>
                     <td className="h-8 w-1/2 px-2">{t?.name}</td>
                     <td className="h-8 w-1/2 px-2">
                       Rp. {new Intl.NumberFormat("en-US").format(t?.price)}
