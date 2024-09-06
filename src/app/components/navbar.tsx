@@ -59,7 +59,8 @@ export default function Navbar() {
             <Link
               href="/produk"
               className={
-                currentPath === "/produk"
+                currentPath === "/produk" ||
+                currentPath?.includes("/detailproduk")
                   ? "cursor-pointer underline text-[#cc0000] underline-offset-8 "
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }

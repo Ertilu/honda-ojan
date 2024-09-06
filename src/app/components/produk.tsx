@@ -47,6 +47,7 @@ export default function Produk() {
       </div>
     );
   }, []);
+
   return (
     <div className="text-black font-poppins w-full min-h-screen px-6">
       <div className="w-full h-auto flex justify-center">

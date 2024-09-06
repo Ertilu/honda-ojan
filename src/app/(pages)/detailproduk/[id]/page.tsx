@@ -66,7 +66,11 @@ export default function Detail() {
             return (
               <SwiperSlide>
                 <div className="flex justify-center items-center">
-                  <img src={b} alt={`banner-${idx}`} />
+                  <img
+                    src={b}
+                    alt={`banner-${idx}`}
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
               </SwiperSlide>
             );
@@ -181,18 +185,16 @@ export default function Detail() {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-abu2">
-                <td className="h-8 w-1/2 px-2">BeAT CBS</td>
-                <td className="h-8 w-1/2 px-2">Rp. 15.550.000</td>
-              </tr>
-              <tr className="text-abu2">
-                <td className="bg-abu1 h-8 w-1/2 px-2">BeAT Deluxe</td>
-                <td className="bg-abu1 h-8 w-1/2 px-2">Rp. 15.550.000</td>
-              </tr>
-              <tr className="text-abu2">
-                <td className="h-8 w-1/2 px-2">BeAT Deluxe Smart Key</td>
-                <td className="h-8 w-1/2 px-2">Rp. 15.550.000</td>
-              </tr>
+              {data?.types?.map((t: any) => {
+                return (
+                  <tr className="text-abu2">
+                    <td className="h-8 w-1/2 px-2">{t?.name}</td>
+                    <td className="h-8 w-1/2 px-2">
+                      Rp. {new Intl.NumberFormat("en-US").format(t?.price)}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
 
