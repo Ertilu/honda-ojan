@@ -3,12 +3,8 @@ import Navbar from "../../components/navbar";
 import ProdukM from "../../components/produk";
 import Footer from "../../components/footer";
 import Link from "next/link";
-import { useProductService } from "../../queries/product.query";
 
 export default function Produk() {
-  // const { getCatalogueList } = useProductService({
-  //   getCatalogueListParams: {},
-  // });
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
