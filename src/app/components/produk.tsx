@@ -13,10 +13,31 @@ export default function Produk() {
 
   const { setData } = useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isActiveMatic, setIsActiveMatic] = useState(true);
+  const [isActiveSport, setIsActiveSport] = useState(false);
+  const [isActiveCub, setIsActiveCub] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
 
   const handleSort = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleMatic = () => {
+    setIsActiveMatic(true);
+    setIsActiveSport(false);
+    setIsActiveCub(false);
+  };
+
+  const handleSport = () => {
+    setIsActiveMatic(false);
+    setIsActiveSport(true);
+    setIsActiveCub(false);
+  };
+
+  const handleCub = () => {
+    setIsActiveMatic(false);
+    setIsActiveSport(false);
+    setIsActiveCub(true);
   };
 
   const LoadingComponent = useMemo(() => {
@@ -56,13 +77,28 @@ export default function Produk() {
 
       <div className="w-full h-auto flex justify-center mt-8">
         <div className="bg-abu1 h-[63px] w-[418px] rounded-md grid grid-cols-3 m-auto justify-center items-center">
-          <div className="col-span-1 bg-white h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 transition ease-in-out delay-50">
+          <div
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+              isActiveMatic ? `bg-white` : `bg-abu1`
+            }`}
+            onClick={handleMatic}
+          >
             <p className="font-semibold">Matic</p>
           </div>
-          <div className="col-span-1 bg-abu1 h-[43px] lg:w-[113px] w-[90px] justify-self-center mx-auto rounded-md flex justify-center items-center cursor-pointer hover:brightness-95 transition ease-in-out delay-50">
+          <div
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+              isActiveSport ? `bg-white` : `bg-abu1`
+            }`}
+            onClick={handleSport}
+          >
             <p className="font-semibold">Sport</p>
           </div>
-          <div className="col-span-1 bg-abu1 h-[43px] lg:w-[113px] w-[90px] justify-self-center mx-auto rounded-md flex justify-center items-center cursor-pointer hover:brightness-95 transition ease-in-out delay-50">
+          <div
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+              isActiveCub ? `bg-white` : `bg-abu1`
+            }`}
+            onClick={handleCub}
+          >
             <p className="font-semibold">Cub</p>
           </div>
         </div>
