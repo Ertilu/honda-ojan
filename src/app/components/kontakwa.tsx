@@ -12,12 +12,9 @@ export default function kontakwa() {
             <div className="col-span-1 flex items-center">
               <Image src={WA} alt="" className="w-10 h-10" />
             </div>
-            <div className="col-span-3 flex flex-col justify-center items-center">
+            <div className="col-span-3 flex justify-center items-center">
               <div>
-                <p className="font-medium text-sm">Hubungi Kami</p>
-              </div>
-              <div>
-                <p className="font-semibold text-2xl">08126942069</p>
+                <p className="font-medium text-sm">Hubungi Via WhatsApp</p>
               </div>
             </div>
           </div>

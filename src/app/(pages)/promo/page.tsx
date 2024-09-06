@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import Image from "next/image";
 import Banner1 from "@/image/Banner-Vario-160.jpg";
 import Link from "next/link";
+import Kontakwa from "@/app/components/kontakwa";
 
 export default function Promo() {
   return (
@@ -42,6 +43,9 @@ export default function Promo() {
 
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />
+      </div>
+      <div className="w-full">
+        <Kontakwa />
       </div>
     </div>
   );

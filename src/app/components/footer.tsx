@@ -102,9 +102,9 @@ export default function Footer() {
           <p>nanti ini gmaps bisa digeser-geser</p>
         </div>
         <Link href="https://wa.me/625162955851?text=Halo mas" target="_blank">
-          <div className="w-50 h-16 bg-[#1d1d1d] rounded-3xl flex items-center justify-center p-2 lg:cursor-pointer">
+          <div className="w-50 h-16 bg-[#1d1d1d] rounded-md flex items-center justify-center p-2 lg:cursor-pointer">
             <div className="mr-4">
-              <Image src={WA} alt="" className=" h-12 w-12" />
+              <Image src={WA} alt="" className=" lg:h-12 lg:w-12 h-8 w-8" />
             </div>
             <div>
               <p className="text-lg">Hubungi via WA</p>
