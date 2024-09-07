@@ -17,6 +17,7 @@ export const GlobalContext = createContext<GlobalContextType>(
 
 function GlobalProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState(null);
+  const [promo, setPromo] = useState(null);
 
   const onSetData = useCallback((data: any) => {
     setData(data);
@@ -25,16 +26,29 @@ function GlobalProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const onSetPromo = useCallback((data: any) => {
+    setPromo(data);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("promo-data", JSON.stringify(data));
+    }
+  }, []);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("produk-data")) {
         setData(JSON.parse(localStorage.getItem("produk-data") as string));
       }
+
+      if (localStorage.getItem("promo-data")) {
+        setPromo(JSON.parse(localStorage.getItem("promo-data") as string));
+      }
     }
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ data, setData: onSetData }}>
+    <GlobalContext.Provider
+      value={{ data, setData: onSetData, promo, setPromo }}
+    >
       {children}
     </GlobalContext.Provider>
   );
