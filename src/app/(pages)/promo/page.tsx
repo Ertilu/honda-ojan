@@ -16,7 +16,7 @@ export default function Promo() {
         <p className="font-medium font-poppins text-3xl">Promo</p>
       </div>
 
-      <div className="w-full lg:min-h-screen min-h-80 lg:container px-6 my-6">
+      <div className="w-full lg:min-h-screen lg:h-80 lg:container px-6 my-6">
         <div className="grid lg:grid-cols-4 px-6">
           <Link href={`/detailpromo`}>
             <div className="col-span-1 shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-[250px] bg-white cursor-pointer group hover:brightness-95 transition">
