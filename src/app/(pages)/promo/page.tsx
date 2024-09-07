@@ -17,9 +17,9 @@ export default function Promo() {
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[280px] w-[157px] h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[280px] w-full h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
-        <div className="lg:w-[344px] lg:h-[750px] w-[132px] h-[111px] mb-2 flex justify-center items-center">
+        <div className="lg:w-[344px] lg:h-[750px] w-full h-[111px] mb-2 flex justify-center items-center">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -50,20 +50,18 @@ export default function Promo() {
         <p className="font-medium font-poppins text-3xl">Promo</p>
       </div>
 
-      <div className="w-full grid grid-cols-4 lg:min-h-screen min-h-80 lg:container px-6 my-6">
+      <div>
         {getPromoList?.isFetching ? (
-          LoadingComponent
+          <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container px-6 my-6">
+            {LoadingComponent}
+          </div>
         ) : (
-          <div>
+          <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container px-6 my-6">
             {getPromoList?.data?.results?.map((item: any, idx: string) => {
               return (
-                <div
-                  className="grid lg:grid-cols px-6"
-                  key={idx}
-                  onClick={() => setPromo(item)}
-                >
+                <div key={idx} onClick={() => setPromo(item)}>
                   <Link href={`/detailpromo`}>
-                    <div className="col-span-1 shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-auto pb-4 bg-white cursor-pointer group hover:brightness-95 transition">
+                    <div className="col-span-1 lg:w-full shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-auto pb-4 bg-white cursor-pointer group hover:brightness-95 transition">
                       <img
                         src={item?.images?.[0]}
                         alt=""
