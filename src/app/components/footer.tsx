@@ -20,8 +20,17 @@ export default function Footer() {
       <div className="col-span-1 p-6 hidden lg:block">
         <p className="text-7xl font-bebas">BAM</p>
         <p className="font-poppins text-lg">Bumen Abadi Motor</p>
-        <div className="bg-abu2 h-[113px] w-[229px] mt-2 flex justify-center items-center">
-          <p>nanti ini gmaps bisa digeser-geser</p>
+        <div className="bg-abu2 h-auto w-full mt-2 flex justify-center items-center">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0400536322336!2d106.83096277474974!3d-6.1253123938614085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1e1a80420c57%3A0x275b93253d2232e3!2sDunia%20Fantasi!5e0!3m2!1sid!2sid!4v1725955230762!5m2!1sid!2sid"
+            // width="400"
+            // height="300"
+            // style="border:0;"
+            // allowfullscreen=""
+            loading="lazy"
+            className="w-full h-[200px]"
+            // referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 
@@ -98,8 +107,17 @@ export default function Footer() {
           nec gravida id diam velit bibendum. Tortor sodales turpis imperdiet
           nunc bibendum amet.
         </p>
-        <div className="bg-abu2 h-[113px] w-[229px] mt-2 flex justify-center items-center justify-self-center mx-auto my-6">
-          <p>nanti ini gmaps bisa digeser-geser</p>
+        <div className="bg-abu2 h-auto w-full mt-2 flex justify-center items-center justify-self-center mx-auto my-6">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0400536322336!2d106.83096277474974!3d-6.1253123938614085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1e1a80420c57%3A0x275b93253d2232e3!2sDunia%20Fantasi!5e0!3m2!1sid!2sid!4v1725955230762!5m2!1sid!2sid"
+            // width="400"
+            // height="300"
+            // style="border:0;"
+            // allowfullscreen=""
+            loading="lazy"
+            className="w-[400px] h-[200px]"
+            // referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
         <Link href="https://wa.me/625162955851?text=Halo mas" target="_blank">
           <div className="w-50 h-16 bg-[#1d1d1d] rounded-md flex items-center justify-center p-2 lg:cursor-pointer">
