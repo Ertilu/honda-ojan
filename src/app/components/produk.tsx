@@ -78,7 +78,7 @@ export default function Produk() {
       <div className="w-full h-auto flex justify-center mt-8">
         <div className="bg-abu1 h-[63px] w-[418px] rounded-md grid grid-cols-3 m-auto justify-center items-center">
           <div
-            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
               isActiveMatic ? `bg-white` : `bg-abu1`
             }`}
             onClick={handleMatic}
@@ -86,7 +86,7 @@ export default function Produk() {
             <p className="font-semibold">Matic</p>
           </div>
           <div
-            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
               isActiveSport ? `bg-white` : `bg-abu1`
             }`}
             onClick={handleSport}
@@ -94,7 +94,7 @@ export default function Produk() {
             <p className="font-semibold">Sport</p>
           </div>
           <div
-            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center cursor-pointer hover:brightness-95 ${
+            className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
               isActiveCub ? `bg-white` : `bg-abu1`
             }`}
             onClick={handleCub}
@@ -156,7 +156,7 @@ export default function Produk() {
                     <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
                       <img
                         src={item?.images?.[0]}
-                        className="h-full w-auto"
+                        className="h-full w-auto border-2 border-red-500 object-contain"
                         alt=""
                       />
                     </div>
