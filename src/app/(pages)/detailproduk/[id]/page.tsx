@@ -34,7 +34,7 @@ export default function Detail() {
   } = useDetailProductUtil({ data });
 
   return (
-    <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
+    <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
       <div className="w-full sticky top-0 z-50 bg-white ">
         <Navbar />
       </div>
@@ -100,7 +100,7 @@ export default function Detail() {
           </div>
 
           <div className="w-full flex justify-center mt-4">
-            <p className="text-abu2 text-xl font-poppins font-semibold">
+            <p className="text-abu2 lg:text-xl text-sm font-poppins font-semibold">
               {selectedColor?.name}
             </p>
           </div>
@@ -151,19 +151,44 @@ export default function Detail() {
         <div className="w-full flex justify-center">
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
-        <div className="grid grid-cols-2 gap-4 mt-8">
-          <div className="border-2 border-abu1 rounded-md w-full h-40 flex justify-center">
-            {data?.featureImages?.map((fi: any) => (
-              <img
-                src={fi}
-                className="h-full w-80"
-                alt=""
-                style={{ objectFit: "contain" }}
-                key={fi}
-              />
-            ))}
-          </div>
-        </div>
+        {data?.features?.map((data: any, index: any) =>
+          index % 2 === 0 ? (
+            <div
+              className="grid grid-cols-2 mt-8 w-full h-full gap-4"
+              key={index}
+            >
+              <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
+                <p className="lg:text-lg text-base text-white">{data.texts}</p>
+              </div>
+              <div className="col-span-1 rounded-md w-full h-40 flex justify-center bg-gray-800">
+                <img
+                  src={data.images}
+                  className="h-full w-auto object-cover rounded-md"
+                  alt=""
+                />
+              </div>
+            </div>
+          ) : (
+            <div
+              className="grid grid-cols-2 mt-8 w-full h-full gap-4"
+              key={index}
+            >
+              <div className="col-span-1 rounded-md w-full h-40 flex justify-center bg-gray-800">
+                <img
+                  src={data.images}
+                  className="h-full w-auto object-cover rounded-md"
+                  alt=""
+                />
+              </div>
+              <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
+                <p className="lg:text-lg text-base text-white">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Nostrum, eum.
+                </p>
+              </div>
+            </div>
+          )
+        )}
       </div>
 
       <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-4 mt-6">
@@ -212,7 +237,7 @@ export default function Detail() {
         <Footer />
       </div>
 
-      <div className="w-full lg:px-16 p-6">
+      <div className="w-full lg:px-16 p-6 absolute z-40">
         <Kontakwa />
       </div>
     </div>

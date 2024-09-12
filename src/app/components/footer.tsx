@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="lg:container w-full lg:min-h-[250px] min-h-[600px] lg:grid lg:grid-cols-3">
+    <div className="lg:container w-full lg:min-h-[250px] min-h-[600px] h-auto lg:grid lg:grid-cols-3">
       <div className="col-span-1 p-6 hidden lg:block">
         <Image src={Honda} alt="" className="h-20 w-auto pb-8" />
         <p className="font-poppins">

@@ -70,7 +70,7 @@ export default function Produk() {
   }, []);
 
   return (
-    <div className="text-black font-poppins w-full min-h-screen px-6">
+    <div className="text-black font-poppins w-full min-h-screen lg:px-6 px-4">
       <div className="w-full h-auto flex justify-center">
         <p className="font-extrabold text-4xl">Motor HONDA</p>
       </div>
@@ -153,23 +153,23 @@ export default function Produk() {
                   key={item?.id}
                 >
                   <div className="col-span-1 lg:w-[400px] lg:h-[479px] w-[150px] h-[230px] bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
-                    <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end mb-2">
+                    <div className="lg:w-[344px] lg:h-[245px] w-[132px] h-[111px] justify-self-center mx-auto flex justify-center items-end my-2">
                       <img
                         src={item?.images?.[0]}
-                        className="h-full w-auto border-2 border-red-500 object-contain"
+                        className="h-auto w-full object-contain"
                         alt=""
                       />
                     </div>
                     <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
-                      <p className="font-semibold lg:text-2xl text-md">
+                      <p className="font-semibold lg:text-2xl text-sm">
                         {item?.name ?? "-"}
                       </p>
                     </div>
                     <div className="mb-2 lg:px-0 px-4">
-                      <p className="font-normal lg:text-md text-sm text-abu2">
+                      <p className="font-normal lg:text-md text-xs text-abu2">
                         Mulai dari <br />
-                        <span className="lg:text-2xl text-md font-semibold text-black">
-                          Rp{" "}
+                        <span className="lg:text-2xl text-sm font-semibold text-black">
+                          Rp.{" "}
                           {new Intl.NumberFormat("en-US").format(item?.price)}
                         </span>
                       </p>
@@ -177,7 +177,7 @@ export default function Produk() {
 
                     <div className="flex flex-grow lg:mb-0 mb-2">
                       <div className="flex justify-center items-end flex-grow">
-                        <p className="font-normal lg:text-md text-sm text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-4 group-hover:-translate-y-2 lg:group-hover:text-lg group-hover:text-md group-hover:font-medium">
+                        <p className="font-normal lg:text-md text-xs text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-4 group-hover:-translate-y-2 lg:group-hover:text-lg group-hover:text-md group-hover:font-medium">
                           Selengkapnya
                         </p>
                       </div>
