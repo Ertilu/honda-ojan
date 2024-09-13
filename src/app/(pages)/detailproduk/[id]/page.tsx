@@ -34,6 +34,14 @@ export default function Detail() {
     state: { selectedColor },
     event: { setSelectedColorId },
   } = useDetailProductUtil({ data });
+  const hoverFitur = {
+    initial: { height: "50px" },
+    hover: { height: "200px" },
+  };
+
+  const hoverParent = {
+    initial: { opacity: "1" },
+  };
 
   useEffect(() => {
     console.log(isInScreen);
@@ -158,11 +166,35 @@ export default function Detail() {
       </div>
 
       <div className="w-full h-auto bg-[#1d1d1d] lg:px-16 p-6 flex flex-col items-center">
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center ">
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
-        <div className="w-[600px] h-full" ref={ref}>
-          {data?.features?.map((data: any, index: any) =>
+        <div
+          className="w-[1000px] h-full grid grid-cols-2 gap-4 my-6"
+          ref={ref}
+        >
+          {data?.features?.map((data: any, index: any) => (
+            <motion.div
+              whileHover="hover"
+              key={index}
+              className="col-span-1 relative bg-white w-full lg:h-[250px] flex justify-center items-end lg:cursor-pointer"
+            >
+              <img
+                src={data.images}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+              <motion.div
+                variants={hoverFitur}
+                className="absolute flex justify-center items-center w-full bg-black "
+              >
+                <p className="text-lg font-medium font-bebas tracking-widest text-white ">
+                  {data.texts}
+                </p>
+              </motion.div>
+            </motion.div>
+          ))}
+          {/* {data?.features?.map((data: any, index: any) =>
             index % 2 === 0 ? (
               <div className="grid grid-cols-2 mt-8 gap-4" key={index}>
                 <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
@@ -226,7 +258,7 @@ export default function Detail() {
                 </div>
               </div>
             )
-          )}
+          )} */}
         </div>
       </div>
 

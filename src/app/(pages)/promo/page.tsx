@@ -17,7 +17,7 @@ export default function Promo() {
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[280px] w-full h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[280px] w-full h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center cursor-pointer group hover:brightness-95 transition ease-in-out"
       >
         <div className="lg:w-[344px] lg:h-[750px] w-full h-[111px] mb-2 flex justify-center items-center">
           <svg
@@ -50,7 +50,7 @@ export default function Promo() {
         <p className="font-medium font-poppins text-3xl">Promo</p>
       </div>
 
-      <div>
+      <div className="w-full">
         {getPromoList?.isFetching ? (
           <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container px-6 my-6">
             {LoadingComponent}
@@ -59,35 +59,38 @@ export default function Promo() {
           <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container px-6 my-6">
             {getPromoList?.data?.results?.map((item: any, idx: string) => {
               return (
-                <div key={idx} onClick={() => setPromo(item)}>
-                  <Link href={`/detailpromo`}>
-                    <div className="col-span-1 lg:w-full shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-auto pb-4 bg-white cursor-pointer group hover:brightness-95 transition">
-                      <img
-                        src={item?.images?.[0]}
-                        alt=""
-                        className="w-full h-auto"
-                      />
-                      <div className="px-4 py-2">
-                        <p className="font-poppins font-semibold text-xl text-black">
-                          {item?.name}
+                <Link
+                  href={`/detailpromo`}
+                  key={idx}
+                  className="col-span-1 w-full shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-auto pb-4 bg-white cursor-pointer group hover:brightness-95 transition"
+                  onClick={() => setPromo(item)}
+                >
+                  <div>
+                    <img
+                      src={item?.images?.[0]}
+                      alt=""
+                      className="w-full h-auto"
+                    />
+                    <div className="px-4 py-2">
+                      <p className="font-poppins font-semibold text-xl text-black">
+                        {item?.name}
+                      </p>
+                      <p className="font-poppins font-medium text-md text-black">
+                        Periode :{" "}
+                        <span className="text-[#cc0000]">
+                          {moment(item?.startDate).format("MMMM YYYY")}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="flex flex-grow lg:mb-0 mb-2">
+                      <div className="flex justify-center items-end flex-grow">
+                        <p className="font-normal lg:text-md text-sm text-abu2 text-center group-hover:text-black">
+                          Selengkapnya
                         </p>
-                        <p className="font-poppins font-medium text-md text-black">
-                          Periode :{" "}
-                          <span className="text-[#cc0000]">
-                            {moment(item?.startDate).format("MMMM YYYY")}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex flex-grow lg:mb-0 mb-2">
-                        <div className="flex justify-center items-end flex-grow">
-                          <p className="font-normal lg:text-md text-sm text-abu2 text-center group-hover:text-black">
-                            Selengkapnya
-                          </p>
-                        </div>
                       </div>
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               );
             })}
           </div>

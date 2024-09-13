@@ -44,9 +44,9 @@ export default function Produk() {
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
-        <div className="lg:w-[244px] lg:h-[245px] w-[132px] h-[111px] flex justify-center items-center">
+        <div className="lg:w-[244px] lg:h-[245px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -58,11 +58,11 @@ export default function Produk() {
           </svg>
         </div>
 
-        <div className="lg:w-[250px] lg:h-[379px] w-[150px] h-[230px] lg:mt-4 lg:mb-2 lg:px-6 px-4">
-          <div className="lg:h-6 h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
-          <div className="lg:h-6 h-2 w-full bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-          <div className="lg:h-6 h-2 w-full 2-10 bg-gray-200 rounded-full dark:bg-gray-700 mb-5"></div>
-          <div className="lg:h-6 h-2 w-full bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5 mx-auto"></div>
+        <div className="lg:w-[250px] lg:h-[379px] w-[150px] h-[230px] lg:mt-4 lg:mb-2 lg:px-6 px-4 mt-8">
+          <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+          <div className="h-3 w-full bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+          <div className=" h-3 w-full 2-10 bg-gray-200 rounded-full dark:bg-gray-700 mb-5"></div>
+          <div className="h-3 w-full bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5 mx-auto"></div>
         </div>
         <span className="sr-only">Loading...</span>
       </div>
@@ -104,7 +104,7 @@ export default function Produk() {
         </div>
       </div>
 
-      <div className="w-full h-[150px]">
+      <div className="w-full h-[100px]">
         <div
           className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
           onClick={handleSort}
