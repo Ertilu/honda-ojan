@@ -26,8 +26,7 @@ import { useDetailProductUtil } from "./page.util";
 
 export default function Detail() {
   const { data } = useContext(GlobalContext);
-  const ref = useRef(null);
-  const isInScreen = useInView(ref, { once: true });
+
   const inScreenControl = useAnimation();
   const slideControl = useAnimation();
   const {
@@ -35,21 +34,9 @@ export default function Detail() {
     event: { setSelectedColorId },
   } = useDetailProductUtil({ data });
   const hoverFitur = {
-    initial: { height: "50px" },
-    hover: { height: "200px" },
+    initial: { height: "50px", opacity: "1" },
+    hover: { height: "200px", opacity: "0.9" },
   };
-
-  const hoverParent = {
-    initial: { opacity: "1" },
-  };
-
-  useEffect(() => {
-    console.log(isInScreen);
-    if (isInScreen) {
-      inScreenControl.start("visible");
-      slideControl.start("visible");
-    }
-  }, [isInScreen]);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
@@ -169,10 +156,7 @@ export default function Detail() {
         <div className="w-full flex justify-center ">
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
-        <div
-          className="w-[1000px] h-full grid grid-cols-2 gap-4 my-6"
-          ref={ref}
-        >
+        <div className="w-[1000px] h-full grid grid-cols-2 gap-4 my-6">
           {data?.features?.map((data: any, index: any) => (
             <motion.div
               whileHover="hover"
@@ -194,71 +178,6 @@ export default function Detail() {
               </motion.div>
             </motion.div>
           ))}
-          {/* {data?.features?.map((data: any, index: any) =>
-            index % 2 === 0 ? (
-              <div className="grid grid-cols-2 mt-8 gap-4" key={index}>
-                <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
-                  <motion.p
-                    variants={{
-                      hidden: { opacity: 0, x: 80 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    initial="hidden"
-                    animate={slideControl}
-                    transition={{ duration: 0.3, delay: index - 0.7 }}
-                    className="lg:text-lg text-base text-white"
-                  >
-                    {data.texts}
-                  </motion.p>
-                </div>
-                <div className="col-span-1 rounded-md w-full h-40 flex justify-center">
-                  <motion.img
-                    variants={{
-                      hidden: { opacity: 0, x: -80 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    initial="hidden"
-                    animate={slideControl}
-                    transition={{ duration: 0.3, delay: index - 0.7 }}
-                    src={data.images}
-                    className="h-full w-auto object-cover rounded-md"
-                    alt=""
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 mt-8 gap-4" key={index}>
-                <div className="col-span-1 rounded-md w-full h-40 flex justify-center">
-                  <motion.img
-                    variants={{
-                      hidden: { opacity: 0, x: 80 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    initial="hidden"
-                    animate={slideControl}
-                    transition={{ duration: 0.3, delay: index - 0.7 }}
-                    src={data.images}
-                    className="h-full w-auto object-cover rounded-md"
-                    alt=""
-                  />
-                </div>
-                <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
-                  <motion.p
-                    className="lg:text-lg text-base text-white"
-                    variants={{
-                      hidden: { opacity: 0, x: -80 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    initial="hidden"
-                    animate={slideControl}
-                    transition={{ duration: 0.3, delay: index - 0.7 }}
-                  >
-                    {data.texts}
-                  </motion.p>
-                </div>
-              </div>
-            )
-          )} */}
         </div>
       </div>
 
