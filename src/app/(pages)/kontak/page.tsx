@@ -113,7 +113,7 @@ export default function Kontak() {
           <div className="w-full flex justify-center font-poppins font-medium text-md text-black ">
             <div className="border-2 border-abu2 px-6 py-4 rounded-md w-[420px] h-auto">
               <div className="my-2">
-                <p>Nama Bapak kamu</p>
+                <p>Nama</p>
                 <input
                   type="text"
                   className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4"

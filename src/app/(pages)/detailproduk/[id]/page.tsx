@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Navbar from "../../../components/navbar";
 import Footer from "../../../components/footer";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import Lingkaran2 from "@/image/svg-lingkaran2.png";
 import Bulet1 from "@/image/svg-bulet1.png";
 import Cross from "@/image/svg-cross.png";
 import Kotak1 from "@/image/svg-kotak1.png";
-import { motion } from "framer-motion";
+import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
 import Kontakwa from "@/app/components/kontakwa";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,16 +26,26 @@ import { useDetailProductUtil } from "./page.util";
 
 export default function Detail() {
   const { data } = useContext(GlobalContext);
-  console.log("data", data);
-
+  const ref = useRef(null);
+  const isInScreen = useInView(ref, { once: true });
+  const inScreenControl = useAnimation();
+  const slideControl = useAnimation();
   const {
     state: { selectedColor },
     event: { setSelectedColorId },
   } = useDetailProductUtil({ data });
 
+  useEffect(() => {
+    console.log(isInScreen);
+    if (isInScreen) {
+      inScreenControl.start("visible");
+      slideControl.start("visible");
+    }
+  }, [isInScreen]);
+
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
-      <div className="w-full sticky top-0 z-50 bg-white ">
+      <div className="w-full h-full sticky top-0 z-50 bg-white ">
         <Navbar />
       </div>
 
@@ -147,48 +157,77 @@ export default function Detail() {
         </motion.div>
       </div>
 
-      <div className="w-full h-[500px] bg-[#1d1d1d] lg:px-16 p-6">
+      <div className="w-full h-auto bg-[#1d1d1d] lg:px-16 p-6 flex flex-col items-center">
         <div className="w-full flex justify-center">
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
-        {data?.features?.map((data: any, index: any) =>
-          index % 2 === 0 ? (
-            <div
-              className="grid grid-cols-2 mt-8 w-full h-full gap-4"
-              key={index}
-            >
-              <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
-                <p className="lg:text-lg text-base text-white">{data.texts}</p>
+        <div className="w-[600px] h-full" ref={ref}>
+          {data?.features?.map((data: any, index: any) =>
+            index % 2 === 0 ? (
+              <div className="grid grid-cols-2 mt-8 gap-4" key={index}>
+                <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
+                  <motion.p
+                    variants={{
+                      hidden: { opacity: 0, x: 80 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    initial="hidden"
+                    animate={slideControl}
+                    transition={{ duration: 0.3, delay: index - 0.7 }}
+                    className="lg:text-lg text-base text-white"
+                  >
+                    {data.texts}
+                  </motion.p>
+                </div>
+                <div className="col-span-1 rounded-md w-full h-40 flex justify-center">
+                  <motion.img
+                    variants={{
+                      hidden: { opacity: 0, x: -80 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    initial="hidden"
+                    animate={slideControl}
+                    transition={{ duration: 0.3, delay: index - 0.7 }}
+                    src={data.images}
+                    className="h-full w-auto object-cover rounded-md"
+                    alt=""
+                  />
+                </div>
               </div>
-              <div className="col-span-1 rounded-md w-full h-40 flex justify-center bg-gray-800">
-                <img
-                  src={data.images}
-                  className="h-full w-auto object-cover rounded-md"
-                  alt=""
-                />
+            ) : (
+              <div className="grid grid-cols-2 mt-8 gap-4" key={index}>
+                <div className="col-span-1 rounded-md w-full h-40 flex justify-center">
+                  <motion.img
+                    variants={{
+                      hidden: { opacity: 0, x: 80 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    initial="hidden"
+                    animate={slideControl}
+                    transition={{ duration: 0.3, delay: index - 0.7 }}
+                    src={data.images}
+                    className="h-full w-auto object-cover rounded-md"
+                    alt=""
+                  />
+                </div>
+                <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
+                  <motion.p
+                    className="lg:text-lg text-base text-white"
+                    variants={{
+                      hidden: { opacity: 0, x: -80 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    initial="hidden"
+                    animate={slideControl}
+                    transition={{ duration: 0.3, delay: index - 0.7 }}
+                  >
+                    {data.texts}
+                  </motion.p>
+                </div>
               </div>
-            </div>
-          ) : (
-            <div
-              className="grid grid-cols-2 mt-8 w-full h-full gap-4"
-              key={index}
-            >
-              <div className="col-span-1 rounded-md w-full h-40 flex justify-center bg-gray-800">
-                <img
-                  src={data.images}
-                  className="h-full w-auto object-cover rounded-md"
-                  alt=""
-                />
-              </div>
-              <div className="col-span-1 rounded-md w-full h-40 flex justify-center items-center">
-                <p className="lg:text-lg text-base text-white">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nostrum, eum.
-                </p>
-              </div>
-            </div>
-          )
-        )}
+            )
+          )}
+        </div>
       </div>
 
       <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-4 mt-6">
