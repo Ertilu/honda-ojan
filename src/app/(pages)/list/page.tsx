@@ -52,11 +52,12 @@ export default function List() {
         />
 
         <a
-          href="image/brosur.jpeg"
+          target="_blank"
+          href="http://honda-bam.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrosur.56ec84de.jpeg&w=1920&q=75"
           download="brosur-BAM.jpeg"
           className="z-30 w-5/6"
         >
-          <div className="bg-[#cc0000] rounded-md hover:brightness-95 cursor-pointer flex justify-center items-center h-8">
+          <div className="bg-[#cc0000] rounded-md hover:brightness-95 lg:cursor-pointer flex justify-center items-center h-8">
             <p className="font-semibold font-poppins text-md text-white ">
               Unduh Brosur
             </p>
