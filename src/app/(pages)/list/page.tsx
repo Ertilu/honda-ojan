@@ -431,14 +431,18 @@ export default function List() {
         </table>
       </div> */}
 
-      <div className="w-full min-h-[400px] h-auto lg:px-16 lg:p-6 lg:mt-0 mt-20">
+      <div className="lg:w-full lg:h-auto w-auto h-[420px] lg:px-16 lg:p-6 flex flex-col justify-center items-center">
         <Image
           src={Brosur}
           alt=""
           className="lg:w-full lg:h-auto w-auto h-full lg:rotate-0 rotate-90"
         />
 
-        <a href="image/brosur.jpeg" download="brosur-BAM.jpeg">
+        <a
+          href="image/brosur.jpeg"
+          download="brosur-BAM.jpeg"
+          className="z-30 w-full"
+        >
           <div className="bg-[#cc0000] rounded-md hover:brightness-95 cursor-pointer flex justify-center items-center h-8">
             <p className="font-semibold font-poppins text-md text-white ">
               Unduh Brosur

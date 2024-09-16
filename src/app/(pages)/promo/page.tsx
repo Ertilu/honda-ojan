@@ -17,9 +17,9 @@ export default function Promo() {
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[280px] w-full h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center cursor-pointer group hover:brightness-95 transition ease-in-out"
+        className="animate-pulse col-span-1 lg:w-[400px] lg:h-[250px] w-full h-[213px] lg:my-0 my-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center cursor-pointer group hover:brightness-95 transition ease-in-out"
       >
-        <div className="lg:w-[344px] lg:h-[750px] w-full h-[111px] mb-2 flex justify-center items-center">
+        <div className="lg:w-[344px] lg:h-[750px] w-full h-[111px] my-2 flex justify-center items-center">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -32,7 +32,7 @@ export default function Promo() {
         </div>
 
         <div className="lg:w-[350px] lg:h-[479px] w-[150px] h-[230px] mt-6 lg:mb-2 lg:px-6 px-4">
-          <div className="lg:h-4 h-2 w-40 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2"></div>
+          <div className="lg:h-4 h-2 w-40 bg-gray-200 rounded-full dark:bg-gray-700 mb-2"></div>
           <div className="lg:h-4 h-2 w-60 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
           <div className="lg:h-4 h-2 w-20 2-10 bg-gray-200 rounded-full dark:bg-gray-700 mb-5 mx-auto mt-6"></div>
         </div>
@@ -56,38 +56,38 @@ export default function Promo() {
             {LoadingComponent}
           </div>
         ) : (
-          <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container px-6 my-6">
+          <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container gap-4 px-6 my-6">
             {getPromoList?.data?.results?.map((item: any, idx: string) => {
               return (
                 <Link
                   href={`/detailpromo`}
                   key={idx}
-                  className="col-span-1 w-full shadow-[0_1px_4px_rgba(0,0,0,0.16)] h-auto pb-4 bg-white cursor-pointer group hover:brightness-95 transition"
+                  className="col-span-1 lg:h-[250px] w-full h-[220px] shadow-[0_1px_4px_rgba(0,0,0,0.16)] pb-4 bg-white lg:cursor-pointer group hover:brightness-95 transition"
                   onClick={() => setPromo(item)}
                 >
-                  <div>
+                  <div className="w-full h-auto max-h-[123px]">
                     <img
                       src={item?.images?.[0]}
                       alt=""
-                      className="w-full h-auto"
+                      className="w-full h-full object-cover max-h-[123px]"
                     />
-                    <div className="px-4 py-2">
-                      <p className="font-poppins font-semibold text-xl text-black">
-                        {item?.name}
+                  </div>
+                  <div className="px-4 py-2">
+                    <p className="font-poppins font-semibold text-xl text-black">
+                      {item?.name}
+                    </p>
+                    <p className="font-poppins font-medium text-md text-black">
+                      Periode :{" "}
+                      <span className="text-[#cc0000]">
+                        {moment(item?.startDate).format("MMMM YYYY")}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex lg:mb-0 mb-2">
+                    <div className="flex justify-center items-end flex-1">
+                      <p className="font-normal lg:text-md text-sm text-abu2 text-center group-hover:text-primaryRed">
+                        Selengkapnya
                       </p>
-                      <p className="font-poppins font-medium text-md text-black">
-                        Periode :{" "}
-                        <span className="text-[#cc0000]">
-                          {moment(item?.startDate).format("MMMM YYYY")}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="flex flex-grow lg:mb-0 mb-2">
-                      <div className="flex justify-center items-end flex-grow">
-                        <p className="font-normal lg:text-md text-sm text-abu2 text-center group-hover:text-black">
-                          Selengkapnya
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </Link>

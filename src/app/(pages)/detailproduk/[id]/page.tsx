@@ -33,10 +33,18 @@ export default function Detail() {
     state: { selectedColor },
     event: { setSelectedColorId },
   } = useDetailProductUtil({ data });
+
   const hoverFitur = {
-    initial: { height: "50px", opacity: "1" },
-    hover: { height: "200px", opacity: "0.9" },
+    initial: { height: "50px" },
+    hover: { height: "200px", opacity: "0.8" },
   };
+
+  const hoverIsiFitur = {
+    // initial: { opacity: "0" },
+    hover: { opacity: "1", marginTop: "30px" },
+  };
+
+  console.log("dataada", data);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
@@ -170,11 +178,17 @@ export default function Detail() {
               />
               <motion.div
                 variants={hoverFitur}
-                className="absolute flex justify-center items-center w-full bg-black "
+                className="absolute flex flex-col justify-start items-center w-full bg-black "
               >
                 <p className="text-lg font-medium font-bebas tracking-widest text-white ">
-                  {data.texts}
+                  {data.title}
                 </p>
+                <motion.div
+                  variants={hoverIsiFitur}
+                  initial={{ opacity: 0, height: "0px" }}
+                >
+                  <p>{data.text}</p>
+                </motion.div>
               </motion.div>
             </motion.div>
           ))}

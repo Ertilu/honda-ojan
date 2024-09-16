@@ -12,6 +12,7 @@ export default function Produk() {
   });
 
   const { setData } = useContext(GlobalContext);
+  const [sortData, setSortData] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isActiveMatic, setIsActiveMatic] = useState(true);
   const [isActiveSport, setIsActiveSport] = useState(false);
@@ -39,6 +40,8 @@ export default function Produk() {
     setIsActiveSport(false);
     setIsActiveCub(true);
   };
+
+  console.log("getdataadwa", getCatalogueList);
 
   const LoadingComponent = useMemo(() => {
     return (
