@@ -19,6 +19,29 @@ export default function Produk() {
   const [isActiveCub, setIsActiveCub] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
 
+  const [dataTest, setDataTest] = useState<any[]>([
+    {
+      id: "1",
+      name: "Es Kelapa",
+      price: "7.000",
+    },
+    {
+      id: "2",
+      name: "Bakso kumis",
+      price: "15.000",
+    },
+    {
+      id: "3",
+      name: "Rujak bebek",
+      price: "10.000",
+    },
+    {
+      id: "4",
+      name: "Helm BMX",
+      price: "25.000",
+    },
+  ]);
+
   const handleSort = () => {
     setIsOpen(!isOpen);
   };
@@ -41,7 +64,11 @@ export default function Produk() {
     setIsActiveCub(true);
   };
 
-  console.log("getdataadwa", getCatalogueList);
+  console.log(
+    "sortw ",
+    dataTest.sort((a: any, b: any) => a.price - b.price)
+  );
+  // console.log("getdataadwa", getCatalogueList);
 
   const LoadingComponent = useMemo(() => {
     return (
