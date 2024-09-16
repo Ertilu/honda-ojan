@@ -64,12 +64,6 @@ export default function Produk() {
     setIsActiveCub(true);
   };
 
-  console.log(
-    "sortw ",
-    dataTest.sort((a: any, b: any) => a.price - b.price)
-  );
-  // console.log("getdataadwa", getCatalogueList);
-
   const LoadingComponent = useMemo(() => {
     return (
       <div

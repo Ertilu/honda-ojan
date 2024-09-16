@@ -8,11 +8,19 @@ export const useProductService = ({
   getCatalogueListParams: any;
 }) => {
   const getCatalogueList = useQuery({
-    queryKey: ["getCatalogues"],
+    queryKey: ["getCatalogues", getCatalogueListParams.params],
     queryFn: async ({ signal }) => {
-      let req = new Request("https://honda-bam-api.vercel.app/v1/catalogues", {
-        signal,
-      });
+      const params = new URLSearchParams();
+      if (getCatalogueListParams.params.search) {
+        params.append("search", getCatalogueListParams.params.search);
+      }
+      const queryString = params.toString();
+      let req = new Request(
+        `https://honda-bam-api.vercel.app/v1/catalogues?${queryString}`,
+        {
+          signal,
+        }
+      );
       const response = await fetch(req);
 
       if (!response.ok) {

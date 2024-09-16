@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Logo from "@/image/Honda-logo.png";
 import Image from "next/image";
 import IconSearch from "@/image/icon-search.svg";
@@ -14,6 +14,8 @@ import Link from "next/link";
 import LogoBeat from "@/image/logo-beat.png";
 import Beat from "@/image/beat.png";
 import { usePathname, useRouter } from "next/navigation";
+import { useProductService } from "../queries/product.query";
+import { GlobalContext } from "../context/globalContext";
 
 export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
@@ -21,6 +23,16 @@ export default function Navbar() {
   const router = useRouter();
   const [cariProduk, setCariProduk] = useState("");
   const [cariProdukMobile, setCariProdukMobile] = useState("");
+  const [debouncedValue, setDebouncedValue] = React.useState("");
+  const { setData } = useContext(GlobalContext);
+
+  const { getCatalogueList } = useProductService({
+    getCatalogueListParams: {
+      params: {
+        search: debouncedValue,
+      },
+    },
+  });
 
   const handleKeyInput = (e: any) => {
     e.preventDefault();
@@ -31,17 +43,27 @@ export default function Navbar() {
 
   const handleInput = (e: any) => {
     // e.preventDefault();
-    console.log("eee", `${e.target.value}`);
     setCariProduk(e.target.value);
   };
 
   const handleInputMobile = (e: any) => {
     // e.preventDefault();
-    console.log("eee", `${e.target.value}`);
     setCariProdukMobile(e.target.value);
   };
 
-  console.log("cari", cariProduk);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedValue(
+        cariProduk.length
+          ? cariProduk
+          : cariProdukMobile.length
+          ? cariProdukMobile
+          : ""
+      );
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [cariProduk, cariProdukMobile]);
+
   return (
     <div className="w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div className="w-full h-16 bg-white px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
@@ -166,15 +188,37 @@ export default function Navbar() {
         <div>
           <div className="w-full h-screen bg-black opacity-70 absolute top-16"></div>
           <div className="absolute top-16 w-full h-screen lg:container">
-            <div className="bg-white h-80 w-full py-4 flex justify-center items-center">
-              <div className="bg-abu1 rounded-md h-full w-[300px] p-4 cursor-pointer hover:brightness-95">
-                <div className="w-full flex justify-center items-center">
-                  <Image src={LogoBeat} alt="" className="w-36 h-auto mb-6" />
-                </div>
-                <div className="w-full flex justify-center items-center">
-                  <Image src={Beat} alt="" />
-                </div>
-              </div>
+            <div className="bg-white h-80 w-full py-4 flex justify-center items-center gap-6">
+              {getCatalogueList?.data?.results?.map((item: any) => {
+                return (
+                  <Link
+                    href={{
+                      pathname: `/detailproduk/${item?.id}`,
+                    }}
+                    onClick={() => {
+                      setData(item);
+                    }}
+                    key={item?.id}
+                  >
+                    <div className="bg-abu1 rounded-md h-full w-[300px] p-4 cursor-pointer hover:brightness-95">
+                      <div className="w-full flex justify-center items-center">
+                        <img
+                          src={item?.logo}
+                          alt={"honda"}
+                          className="w-36 h-auto mb-6"
+                        />
+                      </div>
+                      <div className="w-full flex justify-center items-center">
+                        <img
+                          src={item?.images[0]}
+                          alt={"honda"}
+                          className="w-36 h-auto mb-6"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
