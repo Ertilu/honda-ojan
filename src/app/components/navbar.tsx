@@ -64,6 +64,8 @@ export default function Navbar() {
     return () => clearTimeout(timeoutId);
   }, [cariProduk, cariProdukMobile]);
 
+  console.log("navab", getCatalogueList);
+
   return (
     <div className="w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div className="w-full h-16 bg-white px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
@@ -188,7 +190,7 @@ export default function Navbar() {
         <div>
           <div className="w-full h-screen bg-black opacity-70 absolute top-16"></div>
           <div className="absolute top-16 w-full h-screen lg:container">
-            <div className="bg-white h-80 w-full py-4 flex justify-center items-center gap-6">
+            <div className="bg-abu1 h-80 w-full py-4 flex justify-center items-center gap-6">
               {getCatalogueList?.data?.results?.map((item: any) => {
                 return (
                   <Link
@@ -200,19 +202,19 @@ export default function Navbar() {
                     }}
                     key={item?.id}
                   >
-                    <div className="bg-abu1 rounded-md h-full w-[300px] p-4 cursor-pointer hover:brightness-95">
-                      <div className="w-full flex justify-center items-center">
+                    <div className="bg-white rounded-md h-[270px] w-[300px] p-4 cursor-pointer hover:brightness-90 flex flex-col">
+                      <div className="w-full h-[30px] flex justify-center items-start">
                         <img
                           src={item?.logo}
                           alt={"honda"}
-                          className="w-36 h-auto mb-6"
+                          className="w-full h-auto mb-6"
                         />
                       </div>
-                      <div className="w-full flex justify-center items-center">
+                      <div className="w-full h-auto p-6 flex-1 flex justify-center items-start">
                         <img
                           src={item?.images[0]}
                           alt={"honda"}
-                          className="w-36 h-auto mb-6"
+                          className="w-auto h-44"
                         />
                       </div>
                     </div>

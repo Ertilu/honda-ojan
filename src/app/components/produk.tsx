@@ -19,29 +19,6 @@ export default function Produk() {
   const [isActiveCub, setIsActiveCub] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
 
-  const [dataTest, setDataTest] = useState<any[]>([
-    {
-      id: "1",
-      name: "Es Kelapa",
-      price: "7.000",
-    },
-    {
-      id: "2",
-      name: "Bakso kumis",
-      price: "15.000",
-    },
-    {
-      id: "3",
-      name: "Rujak bebek",
-      price: "10.000",
-    },
-    {
-      id: "4",
-      name: "Helm BMX",
-      price: "25.000",
-    },
-  ]);
-
   const handleSort = () => {
     setIsOpen(!isOpen);
   };
@@ -63,6 +40,8 @@ export default function Produk() {
     setIsActiveSport(false);
     setIsActiveCub(true);
   };
+
+  console.log("wdada", getCatalogueList.isLoading);
 
   const LoadingComponent = useMemo(() => {
     return (
