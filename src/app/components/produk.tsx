@@ -23,16 +23,21 @@ export default function Produk() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const sortTerbaru = getCatalogueList?.data?.results;
+    setSortData(sortTerbaru);
+
+    setIsLoading(getCatalogueList?.isPending);
+  }, [getCatalogueList?.data?.results.length]);
+
+  useEffect(() => {
     const sortData = () => {
       if (isTerbaru === true) {
         // const sortTerbaru = getCatalogueList?.data?.results;
-        setIsLoading(true);
         setSortData(getCatalogueList?.data?.results);
       } else {
         const sortTermurah = getCatalogueList?.data?.results?.sort(
           (a: any, b: any) => a.price - b.price
         );
-        setIsLoading(true);
         setSortData(sortTermurah);
       }
     };
@@ -44,17 +49,10 @@ export default function Produk() {
     }, 3000);
   }, [isTerbaru]);
 
-  useEffect(() => {
-    const sortTerbaru = getCatalogueList?.data?.results;
-    setSortData(sortTerbaru);
-
-    setIsLoading(getCatalogueList?.isPending);
-  }, [getCatalogueList]);
-
   const handleSort = (e: any) => {
     e.preventDefault();
     setIsOpen(false);
-
+    setIsLoading(true);
     setIsTerbaru(!isTerbaru);
     // if (isTerbaru) {
     //   const sortTerbaru = getCatalogueList?.data?.results;
@@ -181,7 +179,7 @@ export default function Produk() {
       </div>
 
       <div className=" w-full h-auto flex justify-center">
-        {isLoading ? (
+        {isLoading === true ? (
           <div className="grid lg:grid-cols-4 grid-cols-2 justify-center">
             {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
           </div>
@@ -199,7 +197,7 @@ export default function Produk() {
                   }}
                   key={item?.id}
                 >
-                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
+                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
                     {/* {index === baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
