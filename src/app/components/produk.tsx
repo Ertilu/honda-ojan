@@ -8,7 +8,9 @@ import { useProductService } from "../queries/product.query";
 
 export default function Produk() {
   const { getCatalogueList } = useProductService({
-    getCatalogueListParams: {},
+    getCatalogueListParams: {
+      params: {},
+    },
   });
 
   const { setData } = useContext(GlobalContext);
