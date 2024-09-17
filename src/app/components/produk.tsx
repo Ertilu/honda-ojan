@@ -25,21 +25,23 @@ export default function Produk() {
   useEffect(() => {
     const sortData = () => {
       if (isTerbaru === true) {
-        const sortTerbaru = getCatalogueList?.data?.results;
-        setSortData(sortTerbaru);
+        // const sortTerbaru = getCatalogueList?.data?.results;
+        setIsLoading(true);
+        setSortData(getCatalogueList?.data?.results);
       } else {
         const sortTermurah = getCatalogueList?.data?.results?.sort(
           (a: any, b: any) => a.price - b.price
         );
-
+        setIsLoading(true);
         setSortData(sortTermurah);
       }
     };
 
     sortData();
+
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 3000);
   }, [isTerbaru]);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function Produk() {
   const handleSort = (e: any) => {
     e.preventDefault();
     setIsOpen(false);
-    setIsLoading(true);
+
     setIsTerbaru(!isTerbaru);
     // if (isTerbaru) {
     //   const sortTerbaru = getCatalogueList?.data?.results;
@@ -185,8 +187,8 @@ export default function Produk() {
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
-            {/* {getCatalogueList?.data?.results?.map((item: any) => { */}
-            {sortData?.map((item: any) => {
+            {sortData?.map((item: any, index) => {
+              // let baru = sortData.length - 1;
               return (
                 <Link
                   href={{
@@ -197,7 +199,12 @@ export default function Produk() {
                   }}
                   key={item?.id}
                 >
-                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
+                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
+                    {/* {index === baru ? (
+                      <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
+                        <p className="text-white text-base">Baru!</p>
+                      </div>
+                    ) : null} */}
                     <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
                       <img
                         src={item?.images?.[0]}

@@ -24,7 +24,7 @@ export default function Banner({
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 w-full lg:h-[550px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 w-full lg:h-[500px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
         <div className="lg:w-[244px] lg:h-[245px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
