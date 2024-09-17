@@ -22,7 +22,6 @@ export const useProductService = ({
         }
       );
       const response = await fetch(req);
-      console.log("awdad", req);
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { GlobalContext } from "../context/globalContext";
 import { MdSort } from "react-icons/md";
@@ -20,9 +20,49 @@ export default function Produk() {
   const [isActiveSport, setIsActiveSport] = useState(false);
   const [isActiveCub, setIsActiveCub] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSort = () => {
-    setIsOpen(!isOpen);
+  useEffect(() => {
+    const sortData = () => {
+      if (isTerbaru === true) {
+        const sortTerbaru = getCatalogueList?.data?.results;
+        setSortData(sortTerbaru);
+      } else {
+        const sortTermurah = getCatalogueList?.data?.results?.sort(
+          (a: any, b: any) => a.price - b.price
+        );
+
+        setSortData(sortTermurah);
+      }
+    };
+
+    sortData();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, [isTerbaru]);
+
+  useEffect(() => {
+    const sortTerbaru = getCatalogueList?.data?.results;
+    setSortData(sortTerbaru);
+
+    setIsLoading(getCatalogueList?.isPending);
+  }, [getCatalogueList]);
+
+  const handleSort = (e: any) => {
+    e.preventDefault();
+    setIsOpen(false);
+    setIsLoading(true);
+    setIsTerbaru(!isTerbaru);
+    // if (isTerbaru) {
+    //   const sortTerbaru = getCatalogueList?.data?.results;
+    //   setSortData(sortTerbaru);
+    // } else {
+    //   const sortTermurah = getCatalogueList?.data?.results?.sort(
+    //     (a: any, b: any) => b.price - a.price
+    //   );
+    //   setSortData(sortTermurah);
+    // }
   };
 
   const handleMatic = () => {
@@ -43,7 +83,8 @@ export default function Produk() {
     setIsActiveCub(true);
   };
 
-  console.log("wdada", getCatalogueList.isLoading);
+  console.log("terbary", isTerbaru);
+  console.log("dara", sortData);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -51,7 +92,7 @@ export default function Produk() {
         role="status"
         className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
-        <div className="lg:w-[244px] lg:h-[245px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
+        <div className="lg:w-[244px] lg:h-[240px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -112,7 +153,7 @@ export default function Produk() {
       <div className="w-full h-[100px]">
         <div
           className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
-          onClick={handleSort}
+          onClick={() => setIsOpen(true)}
         >
           <div className="col-span-1 justify-self-center">
             <MdSort />
@@ -129,9 +170,7 @@ export default function Produk() {
           <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 top-2 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
             <div
               className="cursor-pointer hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
-              onClick={() => {
-                setIsTerbaru(!isTerbaru), setIsOpen(!isOpen);
-              }}
+              onClick={handleSort}
             >
               {isTerbaru ? <p>Termurah</p> : <p>Terbaru</p>}
             </div>
@@ -140,13 +179,14 @@ export default function Produk() {
       </div>
 
       <div className=" w-full h-auto flex justify-center">
-        {getCatalogueList?.isPending ? (
+        {isLoading ? (
           <div className="grid lg:grid-cols-4 grid-cols-2 justify-center">
             {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
-            {getCatalogueList?.data?.results?.map((item: any) => {
+            {/* {getCatalogueList?.data?.results?.map((item: any) => { */}
+            {sortData?.map((item: any) => {
               return (
                 <Link
                   href={{
@@ -158,10 +198,10 @@ export default function Produk() {
                   key={item?.id}
                 >
                   <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] bg-abu1 rounded-md lg:p-6 flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
-                    <div className="lg:w-[244px] lg:h-auto w-[132px] p-2 justify-self-center mx-auto flex justify-center items-center">
+                    <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
                       <img
                         src={item?.images?.[0]}
-                        className="h-auto w-full object-contain"
+                        className="h-auto w-full object-cover"
                         alt=""
                       />
                     </div>
