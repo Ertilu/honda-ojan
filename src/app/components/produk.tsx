@@ -16,6 +16,7 @@ export default function Produk() {
   const { setData } = useContext(GlobalContext);
   const [sortData, setSortData] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [categoryProduk, setCategoryProduk] = useState("matic");
   const [isActiveMatic, setIsActiveMatic] = useState(true);
   const [isActiveSport, setIsActiveSport] = useState(false);
   const [isActiveCub, setIsActiveCub] = useState(false);
@@ -25,6 +26,11 @@ export default function Produk() {
   useEffect(() => {
     const sortTerbaru = getCatalogueList?.data?.results;
     setSortData(sortTerbaru);
+    // getCatalogueList?.data?.results?.map((data: any) => {
+    //   if (data.category === "matic") {
+    //     setSortData(data);
+    //   }
+    // });
 
     setIsLoading(getCatalogueList?.isPending);
   }, [getCatalogueList?.data?.results.length]);
@@ -46,45 +52,41 @@ export default function Produk() {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
-  }, [isTerbaru]);
+    }, 2000);
+  }, [isTerbaru, categoryProduk]);
 
   const handleSort = (e: any) => {
     e.preventDefault();
     setIsOpen(false);
     setIsLoading(true);
     setIsTerbaru(!isTerbaru);
-    // if (isTerbaru) {
-    //   const sortTerbaru = getCatalogueList?.data?.results;
-    //   setSortData(sortTerbaru);
-    // } else {
-    //   const sortTermurah = getCatalogueList?.data?.results?.sort(
-    //     (a: any, b: any) => b.price - a.price
-    //   );
-    //   setSortData(sortTermurah);
-    // }
   };
 
   const handleMatic = () => {
     setIsActiveMatic(true);
     setIsActiveSport(false);
     setIsActiveCub(false);
+    setCategoryProduk("matic");
+    setIsLoading(true);
   };
 
   const handleSport = () => {
     setIsActiveMatic(false);
     setIsActiveSport(true);
     setIsActiveCub(false);
+    setCategoryProduk("sport");
+    setIsLoading(true);
   };
 
   const handleCub = () => {
     setIsActiveMatic(false);
     setIsActiveSport(false);
     setIsActiveCub(true);
+    setCategoryProduk("cub");
+    setIsLoading(true);
   };
 
-  console.log("terbary", isTerbaru);
-  console.log("dara", sortData);
+  console.log("sadta", sortData);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -153,7 +155,7 @@ export default function Produk() {
       <div className="w-full h-[100px]">
         <div
           className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <div className="col-span-1 justify-self-center">
             <MdSort />
@@ -185,57 +187,59 @@ export default function Produk() {
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
-            {sortData?.map((item: any, index) => {
-              // let baru = sortData.length - 1;
-              return (
-                <Link
-                  href={{
-                    pathname: `/detailproduk/${item?.id}`,
-                  }}
-                  onClick={() => {
-                    setData(item);
-                  }}
-                  key={item?.id}
-                >
-                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
-                    {/* {index === baru ? (
+            {sortData
+              ?.filter((data) => data.category === categoryProduk)
+              .map((item: any, index) => {
+                // let baru = sortData.length - 1;
+                return (
+                  <Link
+                    href={{
+                      pathname: `/detailproduk/${item?.id}`,
+                    }}
+                    onClick={() => {
+                      setData(item);
+                    }}
+                    key={item?.id}
+                  >
+                    <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
+                      {/* {index === baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
                       </div>
                     ) : null} */}
-                    <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
-                      <img
-                        src={item?.images?.[0]}
-                        className="h-auto w-full object-cover"
-                        alt=""
-                      />
-                    </div>
-                    <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
-                      <p className="font-semibold lg:text-xl text-sm">
-                        {item?.name ?? "-"}
-                      </p>
-                    </div>
-                    <div className="mb-2 lg:px-0 px-4">
-                      <p className="font-normal lg:text-md text-xs text-abu2">
-                        Mulai dari <br />
-                        <span className="lg:text-xl text-sm font-semibold text-black">
-                          Rp.{" "}
-                          {new Intl.NumberFormat("en-US").format(item?.price)}
-                        </span>
-                      </p>
-                    </div>
-
-                    <div className="flex flex-grow lg:mb-0 mb-2">
-                      <div className="flex justify-center items-end flex-grow">
-                        <p className="font-normal lg:text-md text-xs text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-2 group-hover:-translate-y-2 group-hover:text-md group-hover:font-medium">
-                          Selengkapnya
+                      <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
+                        <img
+                          src={item?.images?.[0]}
+                          className="h-auto w-full object-cover"
+                          alt=""
+                        />
+                      </div>
+                      <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
+                        <p className="font-semibold lg:text-xl text-sm">
+                          {item?.name ?? "-"}
                         </p>
                       </div>
+                      <div className="mb-2 lg:px-0 px-4">
+                        <p className="font-normal lg:text-md text-xs text-abu2">
+                          Mulai dari <br />
+                          <span className="lg:text-xl text-sm font-semibold text-black">
+                            Rp.{" "}
+                            {new Intl.NumberFormat("en-US").format(item?.price)}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div className="flex flex-grow lg:mb-0 mb-2">
+                        <div className="flex justify-center items-end flex-grow">
+                          <p className="font-normal lg:text-md text-xs text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-2 group-hover:-translate-y-2 group-hover:text-md group-hover:font-medium">
+                            Selengkapnya
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
           </div>
         )}
       </div>
