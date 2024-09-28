@@ -118,7 +118,7 @@ export default function Produk() {
   }, []);
 
   return (
-    <div className="text-black font-poppins w-full min-h-screen lg:px-6 px-4">
+    <div className="text-black font-poppins w-full min-h-screen">
       <div className="w-full h-auto flex justify-center">
         <p className="font-extrabold text-4xl">Motor HONDA</p>
       </div>
@@ -180,7 +180,7 @@ export default function Produk() {
         ) : null}
       </div>
 
-      <div className=" w-full h-auto flex justify-center">
+      <div className=" w-full h-auto flex justify-center py-4 lg:px-0 px-4 rounded-md bg-abu1 ">
         {isLoading === true ? (
           <div className="grid lg:grid-cols-4 grid-cols-2 justify-center">
             {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
@@ -201,7 +201,7 @@ export default function Produk() {
                     }}
                     key={item?.id}
                   >
-                    <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-abu1 rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group hover:brightness-95 transition ease-in-out">
+                    <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
                       {/* {index === baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
@@ -214,8 +214,9 @@ export default function Produk() {
                           alt=""
                         />
                       </div>
-                      <div className="lg:mt-4 lg:mb-2 lg:px-0 px-4">
-                        <p className="font-semibold lg:text-xl text-sm">
+                      <div className="border-b-2 border-abu1 w-auto mx-4"></div>
+                      <div className="lg:mt-4 mt-2 lg:mb-2 lg:px-0 px-4">
+                        <p className="font-semibold lg:text-xl text-sm ">
                           {item?.name ?? "-"}
                         </p>
                       </div>
