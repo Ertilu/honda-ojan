@@ -6,7 +6,11 @@ import { MdSort } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useProductService } from "../queries/product.query";
 
-export default function Produk() {
+export default function Produk({
+  initialCategory,
+}: {
+  initialCategory?: string;
+}) {
   const { getCatalogueList } = useProductService({
     getCatalogueListParams: {
       params: {},
@@ -16,7 +20,7 @@ export default function Produk() {
   const { setData } = useContext(GlobalContext);
   const [sortData, setSortData] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [categoryProduk, setCategoryProduk] = useState("matic");
+  const [categoryProduk, setCategoryProduk] = useState(initialCategory);
   const [isActiveMatic, setIsActiveMatic] = useState(true);
   const [isActiveSport, setIsActiveSport] = useState(false);
   const [isActiveCub, setIsActiveCub] = useState(false);
@@ -86,7 +90,13 @@ export default function Produk() {
     setIsLoading(true);
   };
 
-  console.log("sadta", sortData);
+  const showData = useMemo(() => {
+    if (categoryProduk) {
+      return sortData?.filter((data) => data.category === categoryProduk);
+    }
+
+    return sortData;
+  }, [sortData, categoryProduk]);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -187,60 +197,58 @@ export default function Produk() {
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
-            {sortData
-              ?.filter((data) => data.category === categoryProduk)
-              .map((item: any, index) => {
-                // let baru = sortData.length - 1;
-                return (
-                  <Link
-                    href={{
-                      pathname: `/detailproduk/${item?.id}`,
-                    }}
-                    onClick={() => {
-                      setData(item);
-                    }}
-                    key={item?.id}
-                  >
-                    <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
-                      {/* {index === baru ? (
+            {showData?.map((item: any, index) => {
+              // let baru = sortData.length - 1;
+              return (
+                <Link
+                  href={{
+                    pathname: `/detailproduk/${item?.id}`,
+                  }}
+                  onClick={() => {
+                    setData(item);
+                  }}
+                  key={item?.id}
+                >
+                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
+                    {/* {index === baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
                       </div>
                     ) : null} */}
-                      <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
-                        <img
-                          src={item?.images?.[0]}
-                          className="h-auto w-full object-cover"
-                          alt=""
-                        />
-                      </div>
-                      <div className="border-b-2 border-abu1 w-auto mx-4"></div>
-                      <div className="lg:mt-4 mt-2 lg:mb-2 lg:px-0 px-4">
-                        <p className="font-semibold lg:text-xl text-sm ">
-                          {item?.name ?? "-"}
-                        </p>
-                      </div>
-                      <div className="mb-2 lg:px-0 px-4">
-                        <p className="font-normal lg:text-md text-xs text-abu2">
-                          Mulai dari <br />
-                          <span className="lg:text-xl text-sm font-semibold text-black">
-                            Rp.{" "}
-                            {new Intl.NumberFormat("en-US").format(item?.price)}
-                          </span>
-                        </p>
-                      </div>
+                    <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
+                      <img
+                        src={item?.images?.[0]}
+                        className="h-auto w-full object-cover"
+                        alt=""
+                      />
+                    </div>
+                    <div className="border-b-2 border-abu1 w-auto mx-4"></div>
+                    <div className="lg:mt-4 mt-2 lg:mb-2 lg:px-0 px-4">
+                      <p className="font-semibold lg:text-xl text-sm ">
+                        {item?.name ?? "-"}
+                      </p>
+                    </div>
+                    <div className="mb-2 lg:px-0 px-4">
+                      <p className="font-normal lg:text-md text-xs text-abu2">
+                        Mulai dari <br />
+                        <span className="lg:text-xl text-sm font-semibold text-black">
+                          Rp.{" "}
+                          {new Intl.NumberFormat("en-US").format(item?.price)}
+                        </span>
+                      </p>
+                    </div>
 
-                      <div className="flex flex-grow lg:mb-0 mb-2">
-                        <div className="flex justify-center items-end flex-grow">
-                          <p className="font-normal lg:text-md text-xs text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-2 group-hover:-translate-y-2 group-hover:text-md group-hover:font-medium">
-                            Selengkapnya
-                          </p>
-                        </div>
+                    <div className="flex flex-grow lg:mb-0 mb-2">
+                      <div className="flex justify-center items-end flex-grow">
+                        <p className="font-normal lg:text-md text-xs text-abu2 text-center transition group-hover:text-[#cc0000] ease-in-out delay-75 lg:group-hover:-translate-y-2 group-hover:-translate-y-2 group-hover:text-md group-hover:font-medium">
+                          Selengkapnya
+                        </p>
                       </div>
                     </div>
-                  </Link>
-                );
-              })}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

@@ -63,10 +63,10 @@ export default function Navbar() {
     }, 500);
     return () => clearTimeout(timeoutId);
   }, [cariProduk, cariProdukMobile]);
-
+  // shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
   return (
-    <div className="w-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-      <div className="w-full h-16 bg-white px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
+    <div className="w-full ">
+      <div className="w-full h-16 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
         <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
           <Image src={Logo} alt="" className="h-12 w-auto" />
           <p className="text-3xl lg:text-4xl font-thin mx-8">|</p>
@@ -133,7 +133,7 @@ export default function Navbar() {
               />
               <input
                 type="text"
-                className="flex-grow mx-2 focus:outline-none w-10 text-black"
+                className="flex-grow mx-2 focus:outline-none w-10 text-black bg-transparent"
                 onChange={handleInput}
                 value={cariProduk}
               />

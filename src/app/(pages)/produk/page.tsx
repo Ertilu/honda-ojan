@@ -24,7 +24,7 @@ export default function Produk() {
         </Link>
       </div>
       <div id="produk" className="w-full my-2 lg:container">
-        <ProdukM />
+        <ProdukM initialCategory="matic" />
       </div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />

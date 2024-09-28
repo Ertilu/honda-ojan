@@ -7,15 +7,26 @@ import Produk from "../components/produk";
 import Footer from "../components/footer";
 import Kontakwa from "@/app/components/kontakwa";
 import { usePromoService } from "../queries/promo.query";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 export default function Home() {
   const { getPromoList } = usePromoService({ getPromoListParams: {} });
+  const { scrollY } = useScroll();
+  const background = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]
+  );
+  const height = useTransform(scrollY, [0, 100], [120, 60]);
 
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
-      <div className="w-full sticky top-0 z-50 bg-white">
+      <motion.div
+        className="w-full fixed top-0 right-0 left-0 height-60 z-50 flex justify-center items-center"
+        style={{ background, height }}
+      >
         <Navbar />
-      </div>
+      </motion.div>
 
       <div className="w-full lg:container">
         <Banner getPromoList={getPromoList} />
