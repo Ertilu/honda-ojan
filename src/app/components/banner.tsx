@@ -73,7 +73,7 @@ export default function Banner({
                   <img
                     src={img}
                     alt={`banner-${idx}`}
-                    className="w-full h-full object-contain "
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </SwiperSlide>
