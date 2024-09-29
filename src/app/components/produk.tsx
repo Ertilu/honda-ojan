@@ -219,7 +219,7 @@ export default function Produk({
                     <div className="absolute lg:px-0 px-2 z-30 grid grid-cols-2 top-4 lg:w-[260px] w-[160px]">
                       <div className="col-span-1">
                         <div className="lg:h-[30px] w-fit lg:px-4 px-1 h-[20px] bg-[#9BCF53] rounded-md flex justify-center items-center">
-                          <p className="text-white lg:text-base text-sm lg:font-medium">
+                          <p className="text-white lg:text-base text-xs font-medium">
                             DP 500
                           </p>
                         </div>
