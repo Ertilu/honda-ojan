@@ -227,7 +227,7 @@ export default function Produk({
                       {baru ? (
                         <div className="col-span-1 justify-end flex">
                           <div className="lg:w-[70px] lg:h-[30px] w-[50px] h-[20px] bg-primaryRed rounded-full flex justify-center items-center">
-                            <p className="text-white lg:text-base text-sm">
+                            <p className="text-white lg:text-base text-xs font-medium">
                               Baru!
                             </p>
                           </div>
