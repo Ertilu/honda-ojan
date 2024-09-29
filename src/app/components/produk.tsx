@@ -109,7 +109,7 @@ export default function Produk({
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-white rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
         <div className="lg:w-[244px] lg:h-[240px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
@@ -186,7 +186,7 @@ export default function Produk({
         </div>
 
         {isOpen ? (
-          <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 top-2 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
+          <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
             <div
               className="cursor-pointer hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
               onClick={handleSort}
@@ -197,13 +197,13 @@ export default function Produk({
         ) : null}
       </div>
 
-      <div className=" w-full h-auto flex justify-center py-4 lg:px-0 px-4 rounded-md bg-abu1 ">
+      <div className=" w-full min-h-[401px] flex justify-center py-4 lg:px-0 px-4 rounded-md bg-abu1 mt-2">
         {isLoading === true ? (
           <div className="grid lg:grid-cols-4 grid-cols-2 justify-center">
             {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
           </div>
         ) : (
-          <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
+          <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 justify-center items-center gap-4">
             {sortData?.map((item: any, index) => {
               const baru = true;
               return (
