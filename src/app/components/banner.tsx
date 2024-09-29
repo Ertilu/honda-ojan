@@ -44,7 +44,7 @@ export default function Banner({
   }, []);
 
   return (
-    <div className=" lg:container w-full p-6">
+    <div className=" lg:container w-full">
       {getPromoList?.isPending ? (
         <div className="lg:w-full lg:h-auto w-auto h-full flex justify-center items-start">
           {LoadingComponent}
@@ -56,7 +56,7 @@ export default function Banner({
             clickable: true,
           }}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper  rounded-md"
+          className="mySwiper"
           slidesPerView={1}
           spaceBetween={30}
           loop={true}
@@ -69,11 +69,11 @@ export default function Banner({
           {getPromoImages?.map((img: string, idx: string) => {
             return (
               <SwiperSlide key={idx}>
-                <div className="flex justify-center items-center lg:h-[500px] lg:w-auto w-full h-auto">
+                <div className="flex justify-center items-center w-full h-auto">
                   <img
                     src={img}
                     alt={`banner-${idx}`}
-                    className="w-full h-full object-contain rounded-md"
+                    className="w-full h-full object-contain "
                   />
                 </div>
               </SwiperSlide>

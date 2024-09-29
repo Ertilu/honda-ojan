@@ -16,8 +16,9 @@ import Beat from "@/image/beat.png";
 import { usePathname, useRouter } from "next/navigation";
 import { useProductService } from "../queries/product.query";
 import { GlobalContext } from "../context/globalContext";
+import { useScroll, useTransform, motion } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbar({ textColor }: { textColor?: any }) {
   const [visibleRight, setVisibleRight] = useState(false);
   const currentPath = usePathname();
   const router = useRouter();
@@ -70,7 +71,12 @@ export default function Navbar() {
         <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
           <Image src={Logo} alt="" className="h-12 w-auto" />
           <p className="text-3xl lg:text-4xl font-thin mx-8">|</p>
-          <p className="text-5xl lg:text-5xl font-bebas">BAM</p>
+          <motion.p
+            className="text-5xl lg:text-5xl font-bebas"
+            style={{ color: textColor }}
+          >
+            BAM
+          </motion.p>
         </div>
 
         <div className="lg:col-span-3 h-full w-full lg:grid lg:grid-cols-6 items-center font-poppins hidden">
@@ -126,7 +132,7 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="col-span-2 flex flex-col px-8 h-10">
-            <div className="flex items-center px-2 border-2 border-abu2 w-full h-10 rounded-full">
+            <div className="flex items-center px-2 border-b-2 border-abu2 w-full h-10 ">
               <FaSearch
                 size={20}
                 className="hover:text-[#cc0000] cursor-pointer"
