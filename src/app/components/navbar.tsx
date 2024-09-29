@@ -67,12 +67,12 @@ export default function Navbar({ textColor }: { textColor?: any }) {
   // shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
   return (
     <div className="w-full ">
-      <div className="w-full h-16 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center mx-auto ">
+      <div className="w-full h-14 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center">
         <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
-          <Image src={Logo} alt="" className="h-12 w-auto" />
+          <Image src={Logo} alt="" className="h-10 w-auto" />
           <p className="text-3xl lg:text-4xl font-thin mx-8">|</p>
           <motion.p
-            className="text-5xl lg:text-5xl font-bebas"
+            className="text-4xl pt-2 lg:text-4xl font-bebas"
             style={{ color: textColor }}
           >
             BAM

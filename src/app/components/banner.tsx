@@ -44,7 +44,7 @@ export default function Banner({
   }, []);
 
   return (
-    <div className=" lg:container w-full lg:mt-0 mt-[80px]">
+    <div className=" lg:container w-full">
       {getPromoList?.isPending ? (
         <div className="lg:w-full lg:h-auto w-auto h-full flex justify-center items-start">
           {LoadingComponent}

@@ -91,10 +91,10 @@ export default function Produk({
   };
 
   const getLatestData = useMemo(() => {
-    let latestDate;
+    let latestDate: any;
     if (sortData) {
       latestDate = new Date(
-        Math.max(...sortData.map((e) => new Date(e.createdAt)))
+        Math.max(...sortData.map((e) => Number(new Date(e.createdAt))))
       );
     }
     return sortData?.find((d) => {
@@ -216,11 +216,24 @@ export default function Produk({
                   key={item?.id}
                 >
                   <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
-                    {baru ? (
-                      <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
-                        <p className="text-white text-base">Baru!</p>
+                    <div className="absolute lg:px-0 px-2 z-30 grid grid-cols-2 top-4 lg:w-[260px] w-[160px]">
+                      <div className="col-span-1">
+                        <div className="lg:h-[30px] w-fit lg:px-4 px-1 h-[20px] bg-[#9BCF53] rounded-md flex justify-center items-center">
+                          <p className="text-white lg:text-base text-sm lg:font-medium">
+                            DP 500
+                          </p>
+                        </div>
                       </div>
-                    ) : null}
+                      {baru ? (
+                        <div className="col-span-1 justify-end flex">
+                          <div className="lg:w-[70px] lg:h-[30px] w-[50px] h-[20px] bg-primaryRed rounded-full flex justify-center items-center">
+                            <p className="text-white lg:text-base text-sm">
+                              Baru!
+                            </p>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                     <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
                       <img
                         src={item?.images?.[0]}
