@@ -24,7 +24,7 @@ export default function Banner({
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 w-full lg:h-[500px] h-[230px] m-4 bg-abu1 rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 w-full lg:h-[500px] h-[230px] m-4 bg-abu1  flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
       >
         <div className="lg:w-[244px] lg:h-[245px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
@@ -44,7 +44,7 @@ export default function Banner({
   }, []);
 
   return (
-    <div className=" lg:container w-full">
+    <div className=" lg:container w-full lg:mt-0 mt-[80px]">
       {getPromoList?.isPending ? (
         <div className="lg:w-full lg:h-auto w-auto h-full flex justify-center items-start">
           {LoadingComponent}

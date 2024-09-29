@@ -90,13 +90,20 @@ export default function Produk({
     setIsLoading(true);
   };
 
-  const showData = useMemo(() => {
-    if (categoryProduk) {
-      return sortData?.filter((data) => data.category === categoryProduk);
+  const getLatestDate = useMemo(() => {
+    console.log("sortdata", sortData);
+    let latestData;
+    if (sortData) {
+      latestData = new Date(
+        Math.max(sortData.map((e) => new Date(e.createdAt)))
+      );
     }
-
-    return sortData;
-  }, [sortData, categoryProduk]);
+    console.log("latestData", latestData);
+    return sortData?.find(
+      (d) => new Date(d?.createdAt) === new Date(latestData)
+    );
+  }, [sortData]);
+  console.log("getLatestDate", getLatestDate);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -197,8 +204,8 @@ export default function Produk({
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
-            {showData?.map((item: any, index) => {
-              // let baru = sortData.length - 1;
+            {sortData?.map((item: any, index) => {
+              const baru = true;
               return (
                 <Link
                   href={{
@@ -210,11 +217,11 @@ export default function Produk({
                   key={item?.id}
                 >
                   <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
-                    {/* {index === baru ? (
+                    {index === baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
                       </div>
-                    ) : null} */}
+                    ) : null}
                     <div className="lg:w-[244px] lg:h-[240px] w-[132px] h-[130px] p-2 justify-self-center mx-auto flex justify-center items-center">
                       <img
                         src={item?.images?.[0]}

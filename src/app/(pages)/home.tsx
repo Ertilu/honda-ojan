@@ -17,7 +17,8 @@ export default function Home() {
     [0, 100],
     ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]
   );
-  const height = useTransform(scrollY, [0, 100], [120, 60]);
+  const height = useTransform(scrollY, [0, 100], [80, 60]);
+  const width = useTransform(scrollY, [0, 100], [120, 500]);
   const textColor = useTransform(
     scrollY,
     [0, 100],
@@ -26,14 +27,16 @@ export default function Home() {
 
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
-      <motion.div
-        className="w-full fixed top-0 right-0 left-0 height-60 z-50 flex justify-center items-center"
-        style={{ background, height }}
-      >
-        <Navbar textColor={textColor} />
+      <motion.div style={{ width }}>
+        <motion.div
+          className="fixed top-0 right-0 left-0 height-60 z-50 flex justify-center items-center backdrop-blur-sm"
+          style={{ background, height }}
+        >
+          <Navbar textColor={textColor} />
+        </motion.div>
       </motion.div>
 
-      <div className="w-full" style={{ backgroundColor: "red" }}>
+      <div className="w-full">
         <Banner getPromoList={getPromoList} />
       </div>
 

@@ -10,10 +10,7 @@ export default function Footer() {
       <div className="col-span-1 p-6 hidden lg:block">
         <Image src={Honda} alt="" className="h-20 w-auto pb-8" />
         <p className="font-poppins">
-          Nanti aLamat Lorem ipsum dolor sit amet consectetur. Sed nulla
-          facilisis volutpat lorem justo id placerat augue rhoncus. Vulputate
-          nec gravida id diam velit bibendum. Tortor sodales turpis imperdiet
-          nunc bibendum amet.
+          Honda Bam &#169; {new Date().getFullYear()}
         </p>
       </div>
 
@@ -22,7 +19,7 @@ export default function Footer() {
         <p className="font-poppins text-lg">Bumen Abadi Motor</p>
         <div className="bg-abu2 h-auto w-full mt-2 flex justify-center items-center">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0400536322336!2d106.83096277474974!3d-6.1253123938614085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1e1a80420c57%3A0x275b93253d2232e3!2sDunia%20Fantasi!5e0!3m2!1sid!2sid!4v1725955230762!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d247.89124537872334!2d107.02653507950122!3d-6.229423265210275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sJl.%20Delima%20III%20Blok%20E.%202%20No.17!5e0!3m2!1sid!2sid!4v1727601780262!5m2!1sid!2sid"
             // width="400"
             // height="300"
             // style="border:0;"
