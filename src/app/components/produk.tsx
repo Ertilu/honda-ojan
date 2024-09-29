@@ -90,20 +90,19 @@ export default function Produk({
     setIsLoading(true);
   };
 
-  const getLatestDate = useMemo(() => {
-    console.log("sortdata", sortData);
-    let latestData;
+  const getLatestData = useMemo(() => {
+    let latestDate;
     if (sortData) {
-      latestData = new Date(
-        Math.max(sortData.map((e) => new Date(e.createdAt)))
+      latestDate = new Date(
+        Math.max(...sortData.map((e) => new Date(e.createdAt)))
       );
     }
-    console.log("latestData", latestData);
-    return sortData?.find(
-      (d) => new Date(d?.createdAt) === new Date(latestData)
-    );
+    return sortData?.find((d) => {
+      return (
+        new Date(d?.createdAt).getTime() === new Date(latestDate).getTime()
+      );
+    });
   }, [sortData]);
-  console.log("getLatestDate", getLatestDate);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -205,7 +204,7 @@ export default function Produk({
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 grid-cols-2 justify-center items-center gap-4">
             {sortData?.map((item: any, index) => {
-              const baru = true;
+              const baru = getLatestData?.id === item?.id;
               return (
                 <Link
                   href={{
@@ -217,7 +216,7 @@ export default function Produk({
                   key={item?.id}
                 >
                   <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
-                    {index === baru ? (
+                    {baru ? (
                       <div className="absolute z-10 w-[70px] h-[30px] bg-primaryRed rounded-full top-4 right-4 flex justify-center items-center">
                         <p className="text-white text-base">Baru!</p>
                       </div>
