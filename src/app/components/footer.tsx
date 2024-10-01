@@ -5,6 +5,7 @@ import WA from "@/image/icon-wa-putih.png";
 import Link from "next/link";
 
 export default function Footer() {
+  ("");
   return (
     <div className="lg:container w-full lg:min-h-[250px] min-h-[600px] h-auto lg:grid lg:grid-cols-3">
       <div className="col-span-1 p-6 hidden lg:block">
@@ -19,7 +20,7 @@ export default function Footer() {
         <p className="font-poppins text-lg">Bumen Abadi Motor</p>
         <div className="bg-abu2 h-auto w-full mt-2 flex justify-center items-center">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d247.89124537872334!2d107.02653507950122!3d-6.229423265210275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sJl.%20Delima%20III%20Blok%20E.%202%20No.17!5e0!3m2!1sid!2sid!4v1727601780262!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3107218369064!2d107.05830807475056!3d-6.2226971937653435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698f24313d041d%3A0x535e9238337eb79c!2sJl.%20Graha%20Prima%20Raya%20Blok%20Fa%20No.8%2C%20Mangunjaya%2C%20Kec.%20Tambun%20Sel.%2C%20Kabupaten%20Bekasi%2C%20Jawa%20Barat%2017510!5e0!3m2!1sid!2sid!4v1727710158067!5m2!1sid!2sid"
             // width="400"
             // height="300"
             // style="border:0;"
@@ -99,14 +100,11 @@ export default function Footer() {
 
       <div className="lg:hidden p-4 ">
         <p className="font-poppins">
-          Nanti aLamat Lorem ipsum dolor sit amet consectetur. Sed nulla
-          facilisis volutpat lorem justo id placerat augue rhoncus. Vulputate
-          nec gravida id diam velit bibendum. Tortor sodales turpis imperdiet
-          nunc bibendum amet.
+          Honda Bam &#169; {new Date().getFullYear()}
         </p>
         <div className="bg-abu2 h-auto w-full mt-2 flex justify-center items-center justify-self-center mx-auto my-6">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0400536322336!2d106.83096277474974!3d-6.1253123938614085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1e1a80420c57%3A0x275b93253d2232e3!2sDunia%20Fantasi!5e0!3m2!1sid!2sid!4v1725955230762!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3107218369064!2d107.05830807475056!3d-6.2226971937653435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698f24313d041d%3A0x535e9238337eb79c!2sJl.%20Graha%20Prima%20Raya%20Blok%20Fa%20No.8%2C%20Mangunjaya%2C%20Kec.%20Tambun%20Sel.%2C%20Kabupaten%20Bekasi%2C%20Jawa%20Barat%2017510!5e0!3m2!1sid!2sid!4v1727710158067!5m2!1sid!2sid"
             // width="400"
             // height="300"
             // style="border:0;"
