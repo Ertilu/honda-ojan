@@ -69,7 +69,7 @@ export default function Banner({
           {getPromoImages?.map((img: string, idx: string) => {
             return (
               <SwiperSlide key={idx}>
-                <div className="flex justify-center items-center w-full h-auto">
+                <div className="flex justify-center items-center w-full h-[90vh]">
                   <img
                     src={img}
                     alt={`banner-${idx}`}
