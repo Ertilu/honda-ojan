@@ -11,12 +11,6 @@ export default function Produk({
 }: {
   initialCategory?: string;
 }) {
-  const { getCatalogueList } = useProductService({
-    getCatalogueListParams: {
-      params: {},
-    },
-  });
-
   const { setData } = useContext(GlobalContext);
   const [sortData, setSortData] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +20,14 @@ export default function Produk({
   const [isActiveCub, setIsActiveCub] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { getCatalogueList } = useProductService({
+    getCatalogueListParams: {
+      params: {},
+    },
+  });
+
+  console.log("getcata", getCatalogueList);
 
   useEffect(() => {
     const sortTerbaru = getCatalogueList?.data?.results;
@@ -229,7 +231,8 @@ export default function Produk({
               return (
                 <Link
                   href={{
-                    pathname: `/detailproduk/${item?.id}`,
+                    pathname: `/detailproduk/${item?.name}`,
+                    // query: { slug: item?.id },
                   }}
                   onClick={() => {
                     setData(item);

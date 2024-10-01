@@ -4,8 +4,6 @@ import React, { useContext, useEffect, useRef } from "react";
 import Navbar from "../../../components/navbar";
 import Footer from "../../../components/footer";
 import Image from "next/image";
-import Banner1 from "@/image/banner1.jpg";
-import Beat from "@/image/beat.png";
 import Lingkaran1 from "@/image/svg-lingkaran1.svg";
 import Lingkaran2 from "@/image/svg-lingkaran2.png";
 import Bulet1 from "@/image/svg-bulet1.png";
