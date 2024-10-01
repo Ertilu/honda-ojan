@@ -27,8 +27,6 @@ export default function Produk({
     },
   });
 
-  console.log("getcata", getCatalogueList);
-
   useEffect(() => {
     const sortTerbaru = getCatalogueList?.data?.results;
     setSortData(sortTerbaru);
