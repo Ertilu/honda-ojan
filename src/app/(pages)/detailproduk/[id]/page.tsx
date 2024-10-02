@@ -50,13 +50,7 @@ export default function Detail() {
         <Navbar />
       </div>
 
-      <div className="w-full h-auto lg:px-16">
-        <div className="w-full flex justify-center">
-          <img src={data?.logo} className="h-full w-80" alt="" />
-        </div>
-      </div>
-
-      <div className="w-full h-auto flex justify-center mt-5">
+      <div className="w-full h-auto flex justify-center">
         <Swiper
           pagination={{
             dynamicBullets: true,
@@ -89,19 +83,24 @@ export default function Detail() {
         </Swiper>
       </div>
 
-      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 p-6 relative mt-6">
+      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 relative">
+        <div className="w-full h-auto lg:px-16 flex justify-center items-center ">
+          <div className="w-full lg:h-20 h-12 flex justify-center ">
+            <img src={data?.logo} className="h-full w-auto" alt="" />
+          </div>
+        </div>
         <img
           src={selectedColor?.image}
           alt=""
-          className="lg:h-80 h-44 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
+          className="lg:h-80 h-56 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
         />
 
-        <div className="lg:w-[350px] w-[200px] lg:h-[35px] h-[25px] absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="lg:w-[350px] w-[200px] lg:h-[35px] h-[20px] absolute lg:top-[80%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="bg-abu1 w-full h-auto rounded-full">
             <div className="py-2 flex items-center justify-center flex-wrap gap-6">
               {data?.colors?.map((c: any, idx: any) => (
                 <div
-                  className="rounded-full w-[25px] h-[25px] col-span-1 cursor-pointer"
+                  className="rounded-full lg:w-[25px] lg:h-[25px] w-[18px] h-[18px] col-span-1 lg:cursor-pointer"
                   style={{ backgroundColor: c?.code }}
                   onClick={() => setSelectedColorId(c._id)}
                   key={idx}
@@ -110,7 +109,7 @@ export default function Detail() {
             </div>
           </div>
 
-          <div className="w-full flex justify-center mt-4">
+          <div className="w-full flex justify-center my-4">
             <p className="text-abu2 lg:text-xl text-sm font-poppins font-semibold">
               {selectedColor?.name}
             </p>
@@ -162,7 +161,7 @@ export default function Detail() {
         <div className="w-full flex justify-center ">
           <p className="font-semibold font-poppins text-4xl ">FITUR</p>
         </div>
-        <div className="w-[1000px] h-full grid grid-cols-2 gap-4 my-6">
+        <div className="lg:w-[1000px] w-full h-full lg:grid grid-cols-2 gap-4 my-6 hidden">
           {data?.features?.map((data: any, index: any) => (
             <motion.div
               whileHover="hover"
@@ -170,13 +169,13 @@ export default function Detail() {
               className="col-span-1 relative bg-white w-full lg:h-[250px] flex justify-center items-end lg:cursor-pointer"
             >
               <img
-                src={data.images}
+                src={data.image}
                 alt=""
                 className="w-full h-full object-cover"
               />
               <motion.div
                 variants={hoverFitur}
-                className="absolute flex flex-col justify-start items-center w-full bg-black "
+                className="absolute flex flex-col justify-start items-center w-full bg-black lg:h-auto"
               >
                 <p className="text-lg font-medium font-bebas tracking-widest text-white ">
                   {data.title}
@@ -189,6 +188,54 @@ export default function Detail() {
                 </motion.div>
               </motion.div>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="lg:hidden w-full h-full flex flex-col gap-4 my-6">
+          {data?.features?.map((data: any, index: any) => (
+            <div key={index}>
+              {index % 2 === 0 ? (
+                <div className="grid grid-cols-2 bg-white w-full">
+                  <img
+                    src={data.image}
+                    alt=""
+                    className="col-span-1 w-full h-full object-cover"
+                  />
+                  <div className="col-span-1 w-full bg-black">
+                    <div className="flex justify-center items-center w-full p-4">
+                      <p className="text-lg font-medium font-bebas tracking-widest text-white ">
+                        {data.title}
+                      </p>
+                    </div>
+                    <div className="flex justify-center items-center w-full px-4">
+                      <p className="text-center font-medium font-poppins text-white ">
+                        {data.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 bg-white w-full">
+                  <div className="col-span-1 w-full bg-black">
+                    <div className="flex justify-center items-center w-full p-4">
+                      <p className="text-lg font-medium font-bebas tracking-widest text-white ">
+                        {data.title}
+                      </p>
+                    </div>
+                    <div className="flex justify-center items-center w-full px-4">
+                      <p className="text-center font-medium font-poppins text-white ">
+                        {data.text}
+                      </p>
+                    </div>
+                  </div>
+                  <img
+                    src={data.image}
+                    alt=""
+                    className="col-span-1 w-full h-full object-cover"
+                  />
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
