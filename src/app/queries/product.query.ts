@@ -10,9 +10,16 @@ export const useProductService = ({
   const getCatalogueList = useQuery({
     queryKey: ["getCatalogues", getCatalogueListParams.params],
     queryFn: async ({ signal }) => {
+      console.log(
+        "getCatalogueListParams.params",
+        getCatalogueListParams.params
+      );
       const params = new URLSearchParams();
       if (getCatalogueListParams.params.search) {
         params.append("search", getCatalogueListParams.params.search);
+      }
+      if (getCatalogueListParams.params.category) {
+        params.append("category", getCatalogueListParams.params.category);
       }
       const queryString = params.toString();
       let req = new Request(

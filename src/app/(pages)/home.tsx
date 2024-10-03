@@ -41,7 +41,7 @@ export default function Home() {
       </div>
 
       <div id="produk" className="w-full my-8 lg:container">
-        <Produk />
+        <Produk initialCategory="matic" />
       </div>
 
       <div id="kontak"></div>

@@ -23,7 +23,7 @@ export default function Produk({
 
   const { getCatalogueList } = useProductService({
     getCatalogueListParams: {
-      params: {},
+      params: { category: categoryProduk },
     },
   });
 
