@@ -108,7 +108,7 @@ export default function Produk({
     return (
       <div
         role="status"
-        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-white rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group hover:brightness-95 transition ease-in-out delay-50"
+        className="animate-pulse col-span-1 lg:w-[300px] lg:h-[379px] w-[150px] h-[230px] m-4 bg-white rounded-md lg:p-6 flex flex-col justify-center items-center justify-self-center cursor-pointer group lg:hover:brightness-95 transition ease-in-out delay-50"
       >
         <div className="lg:w-[244px] lg:h-[240px] w-[102px] h-[91px] lg:mt-0 mt-6 flex justify-center items-center">
           <svg
@@ -142,14 +142,14 @@ export default function Produk({
       <div className="w-full h-auto flex justify-center mt-8">
         <div className="bg-abu1 h-[63px] w-[418px] rounded-md grid grid-cols-3 m-auto justify-center items-center">
           <div
-            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveMatic ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveMatic
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleMatic}
@@ -157,14 +157,14 @@ export default function Produk({
             <p className="font-semibold">Matic</p>
           </div>
           <div
-            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveSport ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveSport
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleSport}
@@ -172,14 +172,14 @@ export default function Produk({
             <p className="font-semibold">Sport</p>
           </div>
           <div
-            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 ${
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveCub ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveCub
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleCub}
@@ -191,7 +191,7 @@ export default function Produk({
 
       <div className="w-full h-[100px]">
         <div
-          className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer hover:brightness-95 "
+          className="bg-abu1 w-[276px] h-[43px] rounded-md grid grid-cols-6 items-center justify-center my-6 lg:mx-12 mx-auto cursor-pointer lg:hover:brightness-95 "
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="col-span-1 justify-self-center">
@@ -208,7 +208,7 @@ export default function Produk({
         {isOpen ? (
           <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
             <div
-              className="cursor-pointer hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
+              className="cursor-pointer lg:hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
               onClick={handleSort}
             >
               {isTerbaru ? <p>Termurah</p> : <p>Terbaru</p>}
