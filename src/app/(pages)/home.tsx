@@ -49,7 +49,7 @@ export default function Home() {
         <Footer />
       </div>
 
-      <div className="w-full z-10">
+      <div className="w-full z-40">
         <Kontakwa />
       </div>
     </main>
