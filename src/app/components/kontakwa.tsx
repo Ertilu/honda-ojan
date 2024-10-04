@@ -17,7 +17,7 @@ export default function Kontakwa() {
   return (
     <div>
       {isOpen ? (
-        <div className="fixed bottom-4 right-4 bg-abu1 w-96 h-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg grid grid-rows-9">
+        <div className="fixed bottom-4 right-4 bg-abu1 lg:w-96 w-80 h-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg grid grid-rows-9">
           <div className="row-span-1 bg-primaryRed rounded-t-lg grid grid-cols-5">
             <div className="col-span-4 flex items-center justify-start px-4">
               <p className="text-white font-poppins font-medium text-xl">
