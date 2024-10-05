@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import WA from "@/image/icon-wa-putih.png";
 import LA from "@/image/icon-live-chat.png";
 import Image from "next/image";
@@ -7,13 +7,37 @@ import Link from "next/link";
 import { IoSend } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { FaPersonPraying } from "react-icons/fa6";
+import usePartySocket from "partysocket/react";
+import { PARTYKIT_HOST, PARTYKIT_URL } from "../env";
 
 export default function Kontakwa() {
+  // open a websocket connection to the server
+  const socket = usePartySocket({
+    host: PARTYKIT_HOST,
+    party: "messages",
+    room: "all-message",
+    onMessage(event: MessageEvent<string>) {
+      // setRooms(JSON.parse(event.data) as RoomInfo[]);
+      console.log("event partysocket", event);
+    },
+  });
+  console.log("socket", socket);
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
     username: "Mas Hengki",
     pesan: "",
   });
+
+  const sendMessage = useCallback(async () => {
+    const res = await fetch(`${PARTYKIT_URL}/parties/messages/all-message`, {
+      method: "POST",
+      body: JSON.stringify({ test: "halo" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("res", res);
+  }, []);
   return (
     <div>
       {isOpen ? (
@@ -85,7 +109,11 @@ export default function Kontakwa() {
                 className="col-span-9 focus:outline-none text-black px-4 rounded-lg"
                 placeholder="Ketik pesan...."
               />
-              <IoSend color="black" className="col-span-1 lg:cursor-pointer" />
+              <IoSend
+                color="black"
+                className="col-span-1 lg:cursor-pointer"
+                onClick={sendMessage}
+              />
             </div>
           </div>
         </div>
