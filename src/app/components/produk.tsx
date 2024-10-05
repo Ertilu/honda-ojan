@@ -220,7 +220,9 @@ export default function Produk({
       <div className=" w-full min-h-[401px] flex justify-center py-4 lg:px-0 px-4 rounded-md bg-abu1 mt-2">
         {isLoading === true ? (
           <div className="grid lg:grid-cols-4 grid-cols-2 justify-center">
-            {[1, 2, 3, 4]?.map((item) => LoadingComponent)}
+            {[1, 2, 3, 4]?.map((item) => (
+              <div key={item}>{LoadingComponent}</div>
+            ))}
           </div>
         ) : (
           <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 justify-center items-center gap-4">

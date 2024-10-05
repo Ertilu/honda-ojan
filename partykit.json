@@ -1,0 +1,12 @@
+{
+  "$schema": "https://www.partykit.io/schema.json",
+  "name": "honda-ojan-party",
+  "main": "party/index.ts",
+  "compatibilityDate": "2024-10-05",
+  "parties": {
+    "messages": "party/messages.ts"
+  },
+  "serve": {
+    "path": "party/public"
+  }
+}
