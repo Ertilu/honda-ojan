@@ -4,16 +4,27 @@ import WA from "@/image/icon-wa-putih.png";
 import LA from "@/image/icon-live-chat.png";
 import Image from "next/image";
 import Link from "next/link";
+import Chatperson from "./chatperson";
 import { IoSend } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import { FaPersonPraying } from "react-icons/fa6";
 
 export default function Kontakwa() {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({
-    username: "Mas Hengki",
+  const [isKirim, setIsKirim] = useState(false);
+  const [dataUser, setDataUser] = useState({
+    username: "",
     pesan: "",
   });
+
+  const handleKirim = () => {
+    setIsKirim(true);
+  };
+
+  const handleInput = (e: any) => {
+    e.preventDefault();
+    setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
+  };
+
   return (
     <div>
       {isOpen ? (
@@ -33,61 +44,68 @@ export default function Kontakwa() {
               />
             </div>
           </div>
-          <div className="row-span-7 bg-abu1 px-2">
-            <div className="w-full flex justify-center p-1">
-              <div className="bg-white px-2 rounded-lg">
-                <p className="text-black text-xs font-light">
-                  Anda terhubung dengan Fauzan
-                </p>
-              </div>
-            </div>
-            <div className="h-auto w-full flex py-1">
-              <Image
-                src={LA}
-                alt=""
-                className="w-[35px] h-[35px] rounded-full"
-              />
-              <div className="col-span-6 px-1">
-                <p className="text-black font-poppins font-medium text-xs pb-1">
-                  Fauzan
-                </p>
-                <div className="bg-white rounded-lg p-2">
-                  <p className="text-black font-poppins font-normal text-sm">
-                    Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu
-                    hari ini?
-                  </p>
+          {isKirim === false ? (
+            <div className="row-span-7 bg-white px-2 flex justify-center items-center">
+              <div>
+                <div>
+                  <p className="text-black">Nama:</p>
+                  <input
+                    type="text"
+                    className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4 text-black"
+                    id="username"
+                    value={dataUser.username}
+                    onChange={handleInput}
+                  />
+                </div>
+                <div>
+                  <p className="text-black">Pesan:</p>
+                  <textarea
+                    className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4 text-black"
+                    id="pesan"
+                    value={dataUser.pesan}
+                    onChange={handleInput}
+                  />
                 </div>
               </div>
             </div>
-
-            <div className="h-auto w-full flex py-1 justify-end">
-              <div className="col-span-6 px-1">
-                <p className="text-black font-poppins font-medium text-xs pb-1 text-end">
-                  Mas Hengki
-                </p>
-                <div className="bg-abu2 rounded-lg p-2">
-                  <p className="text-white font-poppins font-normal text-sm">
-                    Engga min iseng aja
+          ) : (
+            <div className="row-span-7 bg-abu1 px-2">
+              <div className="w-full flex justify-center p-1">
+                <div className="bg-white px-2 rounded-lg">
+                  <p className="text-black text-xs font-light">
+                    Anda terhubung dengan Fauzan
                   </p>
                 </div>
               </div>
-              <FaPersonPraying
-                size={30}
-                color="black"
-                className="scale-x-[-1] bg-white rounded-full p-1"
-              />
+              <Chatperson dataUser={dataUser} />
             </div>
-          </div>
-          <div className="row-span-1 bg-abu1 rounded-b-lg p-2">
-            <div className="w-full h-full bg-white rounded-lg grid grid-cols-10 items-center">
-              <input
-                type="text"
-                className="col-span-9 focus:outline-none text-black px-4 rounded-lg"
-                placeholder="Ketik pesan...."
-              />
-              <IoSend color="black" className="col-span-1 lg:cursor-pointer" />
+          )}
+          {isKirim === false ? (
+            <div className="row-span-1 bg-white p-2 flex justify-center items-center rounded-b-lg">
+              <div
+                className="bg-primaryRed rounded-lg w-full h-full flex justify-center items-center lg:cursor-pointer"
+                onClick={handleKirim}
+              >
+                <p className="font-semibold font-poppins text-md text-white ">
+                  Kirim
+                </p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="row-span-1 bg-abu1 rounded-b-lg p-2">
+              <div className="w-full h-full bg-white rounded-lg grid grid-cols-10 items-center">
+                <input
+                  type="text"
+                  className="col-span-9 focus:outline-none text-black px-4 rounded-lg"
+                  placeholder="Ketik pesan...."
+                />
+                <IoSend
+                  color="black"
+                  className="col-span-1 lg:cursor-pointer"
+                />
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div>
