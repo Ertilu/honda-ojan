@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import WA from "@/image/icon-wa-putih.png";
 import LA from "@/image/icon-live-chat.png";
 import Image from "next/image";
@@ -7,8 +7,21 @@ import Link from "next/link";
 import Chatperson from "./chatperson";
 import { IoSend } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import usePartySocket from "partysocket/react";
+import { PARTYKIT_HOST, PARTYKIT_URL } from "../env";
 
 export default function Kontakwa() {
+  // open a websocket connection to the server
+  const socket = usePartySocket({
+    host: PARTYKIT_HOST,
+    party: "messages",
+    room: "all-message",
+    onMessage(event: MessageEvent<string>) {
+      // setRooms(JSON.parse(event.data) as RoomInfo[]);
+      console.log("event partysocket", event);
+    },
+  });
+  console.log("socket", socket);
   const [isOpen, setIsOpen] = useState(false);
   const [isKirim, setIsKirim] = useState(false);
   const [dataUser, setDataUser] = useState({
@@ -16,8 +29,20 @@ export default function Kontakwa() {
     pesan: "",
   });
 
+  const sendMessage = useCallback(async () => {
+    const res = await fetch(`${PARTYKIT_URL}/parties/messages/all-message`, {
+      method: "POST",
+      body: JSON.stringify({ test: "halo" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("res", res);
+  }, []);
+
   const handleKirim = () => {
     setIsKirim(true);
+    sendMessage();
   };
 
   const handleInput = (e: any) => {
@@ -92,7 +117,10 @@ export default function Kontakwa() {
               </div>
             </div>
           ) : (
-            <div className="row-span-1 bg-abu1 rounded-b-lg p-2">
+            <div
+              className="row-span-1 bg-abu1 rounded-b-lg p-2"
+              onClick={sendMessage}
+            >
               <div className="w-full h-full bg-white rounded-lg grid grid-cols-10 items-center">
                 <input
                   type="text"
