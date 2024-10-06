@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import WA from "@/image/icon-wa-putih.png";
 import LA from "@/image/icon-live-chat.png";
 import Image from "next/image";
@@ -16,12 +16,8 @@ export default function Kontakwa() {
     host: PARTYKIT_HOST,
     party: "messages",
     room: "all-message",
-    onMessage(event: MessageEvent<string>) {
-      // setRooms(JSON.parse(event.data) as RoomInfo[]);
-      console.log("event partysocket", event);
-    },
   });
-  console.log("socket", socket);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isKirim, setIsKirim] = useState(false);
   const [dataUser, setDataUser] = useState({
@@ -30,15 +26,9 @@ export default function Kontakwa() {
   });
 
   const sendMessage = useCallback(async () => {
-    const res = await fetch(`${PARTYKIT_URL}/parties/messages/all-message`, {
-      method: "POST",
-      body: JSON.stringify({ test: "halo" }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log("res", res);
-  }, []);
+    const body = JSON.stringify({ data: "test" });
+    socket.send(JSON.stringify(body));
+  }, [socket]);
 
   const handleKirim = () => {
     setIsKirim(true);
@@ -49,6 +39,20 @@ export default function Kontakwa() {
     e.preventDefault();
     setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
   };
+
+  useEffect(() => {
+    if (socket) {
+      const onMessage = (evt: WebSocketEventMap["message"]) => {
+        console.log("evt onmessage", evt);
+      };
+      socket.addEventListener("message", onMessage);
+
+      return () => {
+        // @ts-ignore
+        socket.removeEventListener("message", onMessage);
+      };
+    }
+  }, [socket]);
 
   return (
     <div>
