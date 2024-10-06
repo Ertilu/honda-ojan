@@ -69,7 +69,7 @@ export default function Kontakwa() {
               </div>
             </div>
           ) : (
-            <div className="row-span-7 bg-abu1 px-2">
+            <div className="row-span-7 bg-abu1 px-2 h-auto">
               <div className="w-full flex justify-center p-1">
                 <div className="bg-white px-2 rounded-lg">
                   <p className="text-black text-xs font-light">
