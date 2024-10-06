@@ -18,7 +18,13 @@ import { useProductService } from "../queries/product.query";
 import { GlobalContext } from "../context/globalContext";
 import { useScroll, useTransform, motion } from "framer-motion";
 
-export default function Navbar({ textColor }: { textColor?: any }) {
+interface Props {
+  textColor?: any;
+  background?: any;
+  height?: any;
+}
+
+export default function Navbar({ textColor, background, height }: Props) {
   const [visibleRight, setVisibleRight] = useState(false);
   const currentPath = usePathname();
   const router = useRouter();
@@ -66,8 +72,11 @@ export default function Navbar({ textColor }: { textColor?: any }) {
   }, [cariProduk, cariProdukMobile]);
   // shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
   return (
-    <div className="w-full ">
-      <div className="w-full h-14 px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center">
+    <motion.div className="w-full" style={{ height, background }}>
+      <motion.div
+        className="w-full px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center"
+        style={{ height, background }}
+      >
         <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
           <Image src={Logo} alt="" className="h-10 w-auto" />
           <p className="text-3xl lg:text-4xl font-thin mx-8">|</p>
@@ -189,7 +198,7 @@ export default function Navbar({ textColor }: { textColor?: any }) {
             </div>
           </Sidebar>
         </div>
-      </div>
+      </motion.div>
       {cariProduk === "" ? null : (
         <div>
           <div className="w-full h-screen bg-black opacity-70 absolute top-16"></div>
@@ -229,6 +238,6 @@ export default function Navbar({ textColor }: { textColor?: any }) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

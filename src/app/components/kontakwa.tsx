@@ -137,7 +137,7 @@ export default function Kontakwa() {
         </div>
       ) : (
         <div>
-          <div className="fixed bottom-20 right-4">
+          <div className="fixed lg:bottom-20 bottom-[86px] right-4">
             <div
               className="flex flex-col hover:brightness-95 rounded-b-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:w-[70px] w-[60px] lg:h-[120px] h-[110px] lg:cursor-pointer"
               onClick={() => setIsOpen(true)}

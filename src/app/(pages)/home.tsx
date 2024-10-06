@@ -28,15 +28,15 @@ export default function Home() {
   return (
     <main className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       {/* <motion.div style={{ width }}> */}
-      <motion.div
+      <div
         className="sticky top-0 z-50 backdrop-blur-sm w-full"
-        style={{ background, height }}
+        // style={{ background, height }}
       >
-        <Navbar textColor={textColor} />
-      </motion.div>
+        <Navbar textColor={textColor} background={background} height={height} />
+      </div>
       {/* </motion.div> */}
 
-      <div className="w-full">
+      <div className="w-full flex justify-center">
         <Banner getPromoList={getPromoList} />
       </div>
 
