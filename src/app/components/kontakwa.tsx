@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { use, useCallback, useEffect, useState } from "react";
 import WA from "@/image/icon-wa-putih.png";
 import LA from "@/image/icon-live-chat.png";
 import Image from "next/image";
@@ -9,13 +9,17 @@ import { IoSend } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import usePartySocket from "partysocket/react";
 import { PARTYKIT_HOST, PARTYKIT_URL } from "../env";
+import { SINGLETON_ROOM_ID } from "../../../party/chatRooms";
+import crypto from "crypto";
+import { USER } from "@/constant/localStorage.const";
 
 export default function Kontakwa() {
+  const [roomId, setRoomId] = useState<string>();
   // open a websocket connection to the server
   const socket = usePartySocket({
     host: PARTYKIT_HOST,
-    party: "messages",
-    room: "all-message",
+    party: "chatroom",
+    room: "initial-room",
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -26,33 +30,96 @@ export default function Kontakwa() {
   });
 
   const sendMessage = useCallback(async () => {
-    const body = JSON.stringify({ data: "test" });
-    socket.send(JSON.stringify(body));
-  }, [socket]);
+    const userFromStorage = localStorage.getItem(USER);
+    const user = userFromStorage ? JSON.parse(userFromStorage) : null;
+    const body = {
+      type: "new",
+      text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
+    };
 
-  const handleKirim = () => {
+    socket.updateProperties({
+      party: "chatroom",
+      room: user?.id,
+    });
+    socket.reconnect();
+    socket.send(JSON.stringify(body));
+  }, [socket, localStorage]);
+
+  const handleKirim = useCallback(async () => {
+    const id = crypto.randomBytes(20).toString("hex");
+    const user = {
+      id,
+      username: dataUser?.username,
+      joinedAt: new Date().toISOString(),
+      image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
+    };
+
+    localStorage.setItem(USER, JSON.stringify(user));
+    const res = fetch(`${PARTYKIT_URL}/parties/chatroom/${id}`, {
+      method: "POST",
+    });
     setIsKirim(true);
+    socket.updateProperties({
+      party: "chatroom",
+      room: id,
+    });
+    socket.reconnect();
+    socket.send(
+      JSON.stringify({
+        type: "new",
+        text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
+      })
+    );
     sendMessage();
-  };
+  }, [dataUser]);
 
   const handleInput = (e: any) => {
     e.preventDefault();
     setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
   };
 
-  useEffect(() => {
-    if (socket) {
-      const onMessage = (evt: WebSocketEventMap["message"]) => {
-        console.log("evt onmessage", evt);
-      };
-      socket.addEventListener("message", onMessage);
+  // useEffect(() => {
+  //   if (socket) {
+  //     const onMessage = (evt: WebSocketEventMap["message"]) => {
+  //       console.log("new message", evt);
+  //     };
+  //     socket.addEventListener("message", onMessage);
 
-      return () => {
-        // @ts-ignore
-        socket.removeEventListener("message", onMessage);
+  //     return () => {
+  //       // @ts-ignore
+  //       socket.removeEventListener("message", onMessage);
+  //     };
+  //   }
+  // }, [socket]);
+
+  useEffect(() => {
+    const userFromStorage = localStorage.getItem(USER);
+    const user = userFromStorage ? JSON.parse(userFromStorage) : null;
+
+    if (user) {
+      setIsKirim(true);
+      setRoomId(user?.id);
+
+      socket.updateProperties({
+        party: "chatroom",
+        room: user?.id,
+      });
+      socket.reconnect();
+
+      const fetchRooms = async () => {
+        const rooms = await fetch(
+          `${PARTYKIT_URL}/parties/chatroom/${user?.id}`,
+          {
+            method: "GET",
+          }
+        );
       };
+
+      fetchRooms()
+        // make sure to catch any error
+        .catch(console.error);
     }
-  }, [socket]);
+  }, [localStorage]);
 
   return (
     <div>
