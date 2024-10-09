@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "../../../components/navbar";
 import Footer from "../../../components/footer";
 import Image from "next/image";
@@ -13,6 +13,7 @@ import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
 import Kontakwa from "@/app/components/kontakwa";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Cardfiturmobile from "@/app/components/cardfiturmobile";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,6 +25,12 @@ import { useDetailProductUtil } from "./page.util";
 
 export default function Detail() {
   const { data } = useContext(GlobalContext);
+  const [isOpenFiturMobile, setIsOpenFiturMobile] = useState(false);
+  const [dataOpenFiturMobile, setDataOpenFiturMobile] = useState({
+    image: "",
+    title: "",
+    text: "",
+  });
 
   const inScreenControl = useAnimation();
   const slideControl = useAnimation();
@@ -42,7 +49,7 @@ export default function Detail() {
     hover: { opacity: "1", marginTop: "30px" },
   };
 
-  console.log("dataada", data);
+  console.log("dataada", dataOpenFiturMobile);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
@@ -83,7 +90,7 @@ export default function Detail() {
         </Swiper>
       </div>
 
-      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 relative">
+      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 relative mt-6">
         <div className="w-full h-auto lg:px-16 flex justify-center items-center ">
           <div className="w-full lg:h-20 h-12 flex justify-center ">
             <img src={data?.logo} className="h-full w-auto" alt="" />
@@ -95,12 +102,16 @@ export default function Detail() {
           className="lg:h-80 h-56 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
         />
 
-        <div className="lg:w-[350px] w-[200px] lg:h-[35px] h-[20px] absolute lg:top-[80%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="bg-abu1 w-full h-auto rounded-full">
-            <div className="py-2 flex items-center justify-center flex-wrap gap-6">
+        <div className="w-full lg:h-[35px] h-[20px] absolute lg:top-[80%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="bg-abu1 w-fit px-4 h-auto rounded-full justify-items-center mx-auto">
+            <div className="py-2 flex items-center justify-center flex-wrap gap-4">
               {data?.colors?.map((c: any, idx: any) => (
                 <div
-                  className="rounded-full lg:w-[25px] lg:h-[25px] w-[18px] h-[18px] col-span-1 lg:cursor-pointer"
+                  className={`rounded-full lg:w-[25px] lg:h-[25px] w-[18px] h-[18px] col-span-1 lg:cursor-pointer ${
+                    selectedColor?.code === c?.code
+                      ? "outline outline-4 outline-abu2"
+                      : null
+                  }`}
                   style={{ backgroundColor: c?.code }}
                   onClick={() => setSelectedColorId(c._id)}
                   key={idx}
@@ -110,7 +121,10 @@ export default function Detail() {
           </div>
 
           <div className="w-full flex justify-center my-4">
-            <p className="text-abu2 lg:text-xl text-sm font-poppins font-semibold">
+            <p
+              className=" lg:text-3xl text-lg font-bebas tracking-widest font-semibold"
+              style={{ color: selectedColor?.code }}
+            >
               {selectedColor?.name}
             </p>
           </div>
@@ -191,54 +205,44 @@ export default function Detail() {
           ))}
         </div>
 
-        <div className="lg:hidden w-full h-full flex flex-col gap-4 my-6">
+        <div className="lg:hidden w-full h-full flex flex-col gap-4 my-6 ">
           {data?.features?.map((data: any, index: any) => (
-            <div key={index}>
-              {index % 2 === 0 ? (
-                <div className="grid grid-cols-2 bg-white w-full">
-                  <img
-                    src={data.image}
-                    alt=""
-                    className="col-span-1 w-full h-full object-cover"
-                  />
-                  <div className="col-span-1 w-full bg-black">
-                    <div className="flex justify-center items-center w-full p-4">
-                      <p className="text-lg font-medium font-bebas tracking-widest text-white ">
-                        {data.title}
-                      </p>
-                    </div>
-                    <div className="flex justify-center items-center w-full px-4">
-                      <p className="text-center font-medium font-poppins text-white ">
-                        {data.text}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 bg-white w-full">
-                  <div className="col-span-1 w-full bg-black">
-                    <div className="flex justify-center items-center w-full p-4">
-                      <p className="text-lg font-medium font-bebas tracking-widest text-white ">
-                        {data.title}
-                      </p>
-                    </div>
-                    <div className="flex justify-center items-center w-full px-4">
-                      <p className="text-center font-medium font-poppins text-white ">
-                        {data.text}
-                      </p>
-                    </div>
-                  </div>
-                  <img
-                    src={data.image}
-                    alt=""
-                    className="col-span-1 w-full h-full object-cover"
-                  />
-                </div>
-              )}
-            </div>
+            <Cardfiturmobile
+              key={index}
+              index={index}
+              data={data}
+              isOpenFiturMobile={isOpenFiturMobile}
+              setIsOpenFiturMobile={setIsOpenFiturMobile}
+              setDataOpenFiturMobile={setDataOpenFiturMobile}
+            />
           ))}
         </div>
       </div>
+
+      {isOpenFiturMobile ? (
+        <div
+          className="fixed z-40 w-full h-screen bg-black/[.60] flex justify-center items-center"
+          onClick={() => setIsOpenFiturMobile(false)}
+        >
+          <div className="bg-black w-4/5 h-auto">
+            <img
+              src={dataOpenFiturMobile?.image}
+              alt=""
+              className="w-full h-auto"
+            />
+            <div className="flex justify-center items-center w-full h-fit py-2">
+              <p className="text-lg font-medium font-bebas tracking-widest text-white">
+                {dataOpenFiturMobile?.title}
+              </p>
+            </div>
+            <div className="flex justify-center px-4 pb-4">
+              <p className="font-thin text-sm font-poppins text-white">
+                {dataOpenFiturMobile?.text}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       <div className="w-full bg-white min-h-[400px] lg:px-16 p-6 lg:grid lg:grid-cols-2 lg:gap-4 mt-6">
         <div className=" font-poppins">
@@ -263,7 +267,7 @@ export default function Detail() {
             <tbody>
               {data?.types?.map((t: any, idx: any) => {
                 return (
-                  <tr className="text-abu2" key={idx}>
+                  <tr className="text-abu2 border" key={idx}>
                     <td className="h-8 w-1/2 px-2">{t?.name}</td>
                     <td className="h-8 w-1/2 px-2">
                       Rp. {new Intl.NumberFormat("en-US").format(t?.price)}
