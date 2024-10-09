@@ -133,6 +133,8 @@ export default function Produk({
     );
   }, []);
 
+  // console.log("datape", getCatalogueList?.data?.results);
+
   return (
     <div className="text-black font-poppins w-full min-h-screen">
       <div className="w-full h-auto flex justify-center">
@@ -244,7 +246,7 @@ export default function Produk({
                       <div className="col-span-1">
                         <div className="lg:h-[30px] w-fit lg:px-4 px-1 h-[20px] bg-[#9BCF53] rounded-md flex justify-center items-center">
                           <p className="text-white lg:text-base text-xs font-medium">
-                            DP 500
+                            DP {item?.downPayment}
                           </p>
                         </div>
                       </div>
