@@ -4,7 +4,7 @@
   "main": "party/index.ts",
   "compatibilityDate": "2024-10-05",
   "parties": {
-    "chatroom": "party/chatroom.ts",
+    "chatroom": "party/chatRoom.ts",
     "chatrooms": "party/chatRooms.ts"
   },
   "serve": {
