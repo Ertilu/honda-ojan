@@ -120,7 +120,7 @@ export default class ChatRoomServer implements Party.Server {
       if (partyId !== this.party.id) {
         await this.party.storage.put("id", this.party.id);
       }
-      const users = (await this.party.storage.get("users")) ?? [];
+      const users: any[] = (await this.party.storage.get("users")) ?? [];
       const existingUser = users?.find((u) => u?.id === partyId);
       const newUsers = [...users];
       newUsers.push(body);
