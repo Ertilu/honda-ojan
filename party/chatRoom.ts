@@ -86,14 +86,16 @@ export default class ChatRoomServer implements Party.Server {
     });
   }
 
-  async authenticateUser(proxiedRequest: Party.Request) {
+  async authenticateUser(proxiedRequest: Party.Request, user: User) {
     // find the connection
     const id = new URL(proxiedRequest.url).searchParams.get("_pk");
     const connection = id && this.party.getConnection(id);
+
     if (!connection) {
       return error(`No connection with id ${id}`);
     }
 
+    connection.setState({ user });
     this.updateRoomList("enter", connection);
 
     if (!this.party.env.OPENAI_API_KEY) {
@@ -111,14 +113,21 @@ export default class ChatRoomServer implements Party.Server {
 
     // mark room as created by storing its id in object storage
     if (request.method === "POST") {
-      // respond to authentication requests proxied through the app's
-      // rewrite rules. See next.config.js in project root.
-      if (new URL(request.url).pathname.endsWith("/auth")) {
-        await this.authenticateUser(request);
-        return ok();
+      const body: User = await request.json();
+
+      const partyId = await this.party.storage.get("id");
+      if (partyId !== this.party.id) {
+        await this.party.storage.put("id", this.party.id);
+      }
+      const users = (await this.party.storage.get("users")) ?? [];
+      const existingUser = users?.find((u) => u?.id === partyId);
+      const newUsers = [...users];
+      newUsers.push(body);
+      if (!existingUser) {
+        await this.party.storage.put("users", newUsers);
       }
 
-      await this.party.storage.put("id", this.party.id);
+      await this.authenticateUser(request, body);
       return ok();
     }
 

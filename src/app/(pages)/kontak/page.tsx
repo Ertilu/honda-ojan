@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import Kontakwa from "@/app/components/kontakwa";
 import Image from "next/image";
 import WA from "@/image/icon-wa-putih.png";
 import Link from "next/link";

@@ -5,6 +5,6 @@ export type User = {
   username: string;
   joinedAt: string;
   leftAt?: string;
-  present: boolean;
+  present?: boolean;
   image?: string;
 };

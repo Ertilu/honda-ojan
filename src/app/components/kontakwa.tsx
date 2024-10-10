@@ -12,14 +12,30 @@ import { PARTYKIT_HOST, PARTYKIT_URL } from "../env";
 import { SINGLETON_ROOM_ID } from "../../../party/chatRooms";
 import crypto from "crypto";
 import { USER } from "@/constant/localStorage.const";
+import { UserMessage } from "../../../party/utils/message";
+import PartySocket from "partysocket";
+import { User } from "../../../party/utils/auth";
+
+const identify = async (socket: PartySocket, user: User) => {
+  const splitUrl = socket.url.split("?_pk=");
+  const pk = splitUrl[splitUrl.length - 1];
+  // the ./auth route will authenticate the connection to the partykit room
+  const url = `${PARTYKIT_URL}/parties/chatroom/${user?.id}/auth?_pk=${pk}`;
+  const req = await fetch(url, { method: "POST", body: JSON.stringify(user) });
+
+  if (!req.ok) {
+    const res = await req.text();
+    console.error("Failed to authenticate connection to PartyKit room", res);
+  }
+};
 
 export default function Kontakwa() {
   const [roomId, setRoomId] = useState<string>();
   // open a websocket connection to the server
   const socket = usePartySocket({
     host: PARTYKIT_HOST,
-    party: "chatroom",
-    room: "initial-room",
+    party: "chatrooms",
+    room: SINGLETON_ROOM_ID,
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -29,68 +45,66 @@ export default function Kontakwa() {
     pesan: "",
   });
 
-  const sendMessage = useCallback(async () => {
-    const userFromStorage = localStorage.getItem(USER);
-    const user = userFromStorage ? JSON.parse(userFromStorage) : null;
-    const body = {
-      type: "new",
-      text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
-    };
-
+  const onAuthenticateUser = useCallback((user: User) => {
     socket.updateProperties({
       party: "chatroom",
       room: user?.id,
     });
     socket.reconnect();
-    socket.send(JSON.stringify(body));
+    socket.onopen = (e) => {
+      // identify user upon connection
+      if (e.target) {
+        identify(e.target as PartySocket, user);
+      }
+    };
+  }, []);
+
+  const onSendMessage = useCallback(
+    (body: UserMessage) => {
+      const userFromStorage = localStorage.getItem(USER);
+      const user: User = userFromStorage ? JSON.parse(userFromStorage) : null;
+      socket.updateProperties({
+        party: "chatroom",
+        room: user?.id,
+      });
+      socket.reconnect();
+      socket.send(JSON.stringify(body));
+    },
+    [socket, localStorage]
+  );
+
+  const sendMessage = useCallback(async () => {
+    const body: UserMessage = {
+      type: "new",
+      text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
+    };
+    onSendMessage(body);
   }, [socket, localStorage]);
 
   const handleKirim = useCallback(async () => {
     const id = crypto.randomBytes(20).toString("hex");
-    const user = {
+    const user: User = {
       id,
       username: dataUser?.username,
       joinedAt: new Date().toISOString(),
       image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
     };
-
     localStorage.setItem(USER, JSON.stringify(user));
-    const res = fetch(`${PARTYKIT_URL}/parties/chatroom/${id}`, {
-      method: "POST",
-    });
+    onAuthenticateUser(user);
+
+    // socket.send(JSON.stringify(body));
+    // const res = fetch(`${PARTYKIT_URL}/parties/chatroom/${id}`, {
+    //   method: "POST",
+    //   body: JSON.stringify(user),
+    // });
+
     setIsKirim(true);
-    socket.updateProperties({
-      party: "chatroom",
-      room: id,
-    });
-    socket.reconnect();
-    socket.send(
-      JSON.stringify({
-        type: "new",
-        text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
-      })
-    );
-    sendMessage();
   }, [dataUser]);
 
   const handleInput = (e: any) => {
     e.preventDefault();
     setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
   };
-
-  // useEffect(() => {
-  //   if (socket) {
-  //     const onMessage = (evt: WebSocketEventMap["message"]) => {
-  //       console.log("new message", evt);
-  //     };
-  //     socket.addEventListener("message", onMessage);
-
-  //     return () => {
-  //       // @ts-ignore
-  //       socket.removeEventListener("message", onMessage);
-  //     };
-  //   }
-  // }, [socket]);
 
   useEffect(() => {
     const userFromStorage = localStorage.getItem(USER);
@@ -99,12 +113,7 @@ export default function Kontakwa() {
     if (user) {
       setIsKirim(true);
       setRoomId(user?.id);
-
-      socket.updateProperties({
-        party: "chatroom",
-        room: user?.id,
-      });
-      socket.reconnect();
+      onAuthenticateUser(user);
 
       const fetchRooms = async () => {
         const rooms = await fetch(

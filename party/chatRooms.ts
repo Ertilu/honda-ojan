@@ -25,6 +25,7 @@ export type RoomDeleteRequest = {
 /** Chat rooms sends us information about connections and users */
 export type RoomInfo = {
   id: string;
+  roomName: string;
   connections: number;
   users: {
     id: string;
