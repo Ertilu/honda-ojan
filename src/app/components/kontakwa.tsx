@@ -61,16 +61,18 @@ export default function Kontakwa() {
 
   const onSendMessage = useCallback(
     (body: UserMessage) => {
-      const userFromStorage = localStorage.getItem(USER);
-      const user: User = userFromStorage ? JSON.parse(userFromStorage) : null;
-      socket.updateProperties({
-        party: "chatroom",
-        room: user?.id,
-      });
-      socket.reconnect();
-      socket.send(JSON.stringify(body));
+      if (typeof window !== "undefined") {
+        const userFromStorage = localStorage.getItem(USER);
+        const user: User = userFromStorage ? JSON.parse(userFromStorage) : null;
+        socket.updateProperties({
+          party: "chatroom",
+          room: user?.id,
+        });
+        socket.reconnect();
+        socket.send(JSON.stringify(body));
+      }
     },
-    [socket, localStorage]
+    [socket]
   );
 
   const sendMessage = useCallback(async () => {
@@ -79,24 +81,20 @@ export default function Kontakwa() {
       text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
     };
     onSendMessage(body);
-  }, [socket, localStorage]);
+  }, [socket]);
 
   const handleKirim = useCallback(async () => {
-    const id = crypto.randomBytes(20).toString("hex");
-    const user: User = {
-      id,
-      username: dataUser?.username,
-      joinedAt: new Date().toISOString(),
-      image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
-    };
-    localStorage.setItem(USER, JSON.stringify(user));
-    onAuthenticateUser(user);
-
-    // socket.send(JSON.stringify(body));
-    // const res = fetch(`${PARTYKIT_URL}/parties/chatroom/${id}`, {
-    //   method: "POST",
-    //   body: JSON.stringify(user),
-    // });
+    if (typeof window !== "undefined") {
+      const id = crypto.randomBytes(20).toString("hex");
+      const user: User = {
+        id,
+        username: dataUser?.username,
+        joinedAt: new Date().toISOString(),
+        image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
+      };
+      window.localStorage.setItem(USER, JSON.stringify(user));
+      onAuthenticateUser(user);
+    }
 
     setIsKirim(true);
   }, [dataUser]);
@@ -107,28 +105,30 @@ export default function Kontakwa() {
   };
 
   useEffect(() => {
-    const userFromStorage = localStorage.getItem(USER);
-    const user = userFromStorage ? JSON.parse(userFromStorage) : null;
+    if (typeof window !== "undefined") {
+      const userFromStorage = window.localStorage.getItem(USER);
+      const user = userFromStorage ? JSON.parse(userFromStorage) : null;
 
-    if (user) {
-      setIsKirim(true);
-      setRoomId(user?.id);
-      onAuthenticateUser(user);
+      if (user) {
+        setIsKirim(true);
+        setRoomId(user?.id);
+        onAuthenticateUser(user);
 
-      const fetchRooms = async () => {
-        const rooms = await fetch(
-          `${PARTYKIT_URL}/parties/chatroom/${user?.id}`,
-          {
-            method: "GET",
-          }
-        );
-      };
+        const fetchRooms = async () => {
+          const rooms = await fetch(
+            `${PARTYKIT_URL}/parties/chatroom/${user?.id}`,
+            {
+              method: "GET",
+            }
+          );
+        };
 
-      fetchRooms()
-        // make sure to catch any error
-        .catch(console.error);
+        fetchRooms()
+          // make sure to catch any error
+          .catch(console.error);
+      }
     }
-  }, [localStorage]);
+  }, []);
 
   return (
     <div>
