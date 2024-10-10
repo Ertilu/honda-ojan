@@ -79,6 +79,7 @@ export default class ChatRoomServer implements Party.Server {
       method: "POST",
       body: JSON.stringify({
         id: this.party.id,
+        roomName: connection.state?.user?.username,
         connections: [...this.party.getConnections()].length,
         user: connection.state?.user,
         action,

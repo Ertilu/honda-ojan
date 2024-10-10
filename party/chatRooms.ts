@@ -12,6 +12,7 @@ export const SINGLETON_ROOM_ID = "list";
 export type RoomInfoUpdateRequest = {
   id: string;
   connections: number;
+  roomName: string;
   action: "enter" | "leave";
   user?: User;
 };
@@ -100,6 +101,7 @@ export default class ChatRoomsServer implements Party.Server {
 
     const info = persistedInfo ?? {
       id: update.id,
+      roomName: update.roomName,
       connections: 0,
       users: [],
     };
