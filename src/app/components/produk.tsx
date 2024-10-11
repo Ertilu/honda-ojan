@@ -241,7 +241,7 @@ export default function Produk({
                   }}
                   key={item?.id}
                 >
-                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[160px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
+                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[180px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
                     <div className="absolute lg:px-0 px-2 z-30 grid grid-cols-2 top-4 lg:w-[260px] w-[160px]">
                       <div className="col-span-1">
                         <div className="lg:h-[30px] w-fit lg:px-4 px-1 h-[20px] bg-[#9BCF53] rounded-md flex justify-center items-center">

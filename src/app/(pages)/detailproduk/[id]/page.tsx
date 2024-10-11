@@ -52,8 +52,8 @@ export default function Detail() {
   console.log("dataada", dataOpenFiturMobile);
 
   return (
-    <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white overflow-x-hidden">
-      <div className="w-full h-full sticky top-0 z-50 bg-white ">
+    <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
+      <div className="w-full sticky top-0 z-50 bg-white">
         <Navbar />
       </div>
 
