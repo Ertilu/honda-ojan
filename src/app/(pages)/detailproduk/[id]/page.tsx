@@ -9,7 +9,14 @@ import Lingkaran2 from "@/image/svg-lingkaran2.png";
 import Bulet1 from "@/image/svg-bulet1.png";
 import Cross from "@/image/svg-cross.png";
 import Kotak1 from "@/image/svg-kotak1.png";
-import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
+import {
+  AnimatePresence,
+  frame,
+  motion,
+  useAnimate,
+  useAnimation,
+  useInView,
+} from "framer-motion";
 import Kontakwa from "@/app/components/kontakwa";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -49,7 +56,15 @@ export default function Detail() {
     hover: { opacity: "1", marginTop: "30px" },
   };
 
-  console.log("dataada", dataOpenFiturMobile);
+  // const variantImage = {
+  //   // initial: { opacity: 0 },
+  //   // animate: { opacity: 1 },
+  //   // exit: { opacity: 0 },
+  //   rotate: { rotate: [0, -30, 0], transition: { duration: 0.5 } },
+  //   stop: { y: [0, -10, 0], transition: { repeat: Infinity, repeatDelay: 3 } },
+  // };
+
+  // console.log("dataada", dataOpenFiturMobile);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
@@ -57,7 +72,7 @@ export default function Detail() {
         <Navbar />
       </div>
 
-      <div className="w-full h-auto flex justify-center">
+      <div className="w-full h-auto flex justify-center items-center p-4">
         <Swiper
           pagination={{
             dynamicBullets: true,
@@ -77,10 +92,11 @@ export default function Detail() {
           {data?.banners?.map((b: any, idx: any) => {
             return (
               <SwiperSlide key={idx}>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center ">
                   <img
                     src={b}
                     alt={`banner-${idx}`}
+                    className="rounded-lg"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
@@ -96,10 +112,13 @@ export default function Detail() {
             <img src={data?.logo} className="h-full w-auto" alt="" />
           </div>
         </div>
-        <img
+
+        <motion.img
           src={selectedColor?.image}
           alt=""
           className="lg:h-80 h-56 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
+          // animate={rotate ? "rotate" : "stop"}
+          // variants={variantImage}
         />
 
         <div className="w-full lg:h-[35px] h-[20px] absolute lg:top-[80%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -130,7 +149,7 @@ export default function Detail() {
           </div>
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           // viewport={{ once: true }}
@@ -168,7 +187,7 @@ export default function Detail() {
             alt=""
             className="absolute lg:top-[37%] top-[30%] left-[80%] lg:h-[100px] h-[25px] w-auto"
           />
-        </motion.div>
+        </motion.div> */}
       </div>
 
       <div className="w-full h-auto bg-[#1d1d1d] lg:px-16 p-6 flex flex-col items-center">
