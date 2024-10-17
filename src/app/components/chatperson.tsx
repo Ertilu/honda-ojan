@@ -16,7 +16,7 @@ export default function Chatperson({
       {messages?.map((msg, idx) => {
         if (msg?.from?.id === user?.id) {
           return (
-            <div className="h-auto w-full flex py-1 justify-end">
+            <div className="h-auto w-full flex py-1 justify-end" key={idx}>
               <div className="col-span-6 px-1">
                 <p className="text-black font-poppins font-medium text-xs pb-1 text-end">
                   {msg?.from?.name}
