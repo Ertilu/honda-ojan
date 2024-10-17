@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 export type Sender = {
   id: string;
   image?: string;
+  name?: string;
 };
 
 export type Message = {
@@ -30,7 +31,7 @@ export type ClearRoomMessage = {
 // Inbound message types
 
 export type NewMessage = {
-  type: "new";
+  type: "new" | "firstMessage";
   text: string;
   id?: string; // optional, server will set if not provided
 };

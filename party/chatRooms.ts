@@ -108,6 +108,10 @@ export default class ChatRoomsServer implements Party.Server {
 
     info.connections = update.connections;
 
+    if (!info.roomName) {
+      info.roomName = update.roomName;
+    }
+
     const user = update.user;
 
     if (user) {

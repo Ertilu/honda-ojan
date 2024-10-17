@@ -12,212 +12,139 @@ import { PARTYKIT_HOST, PARTYKIT_URL } from "../env";
 import { SINGLETON_ROOM_ID } from "../../../party/chatRooms";
 import crypto from "crypto";
 import { USER } from "@/constant/localStorage.const";
-import { UserMessage } from "../../../party/utils/message";
+import {
+  ChatMessage,
+  Message,
+  UserMessage,
+} from "../../../party/utils/message";
 import PartySocket from "partysocket";
 import { User } from "../../../party/utils/auth";
+import "./css/kontakwa.css";
 
-const identify = async (socket: PartySocket, user: User) => {
-  const splitUrl = socket.url.split("?_pk=");
-  const pk = splitUrl[splitUrl.length - 1];
-  // the ./auth route will authenticate the connection to the partykit room
-  const url = `${PARTYKIT_URL}/parties/chatroom/${user?.id}/auth?_pk=${pk}`;
-  const req = await fetch(url, { method: "POST", body: JSON.stringify(user) });
-
-  if (!req.ok) {
-    const res = await req.text();
-    console.error("Failed to authenticate connection to PartyKit room", res);
-  }
-};
-
-export default function Kontakwa() {
-  const [roomId, setRoomId] = useState<string>();
-  // open a websocket connection to the server
-  const socket = usePartySocket({
-    host: PARTYKIT_HOST,
-    party: "chatrooms",
-    room: SINGLETON_ROOM_ID,
-  });
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isKirim, setIsKirim] = useState(false);
-  const [dataUser, setDataUser] = useState({
-    username: "",
-    pesan: "",
-  });
-
-  const onAuthenticateUser = useCallback((user: User) => {
-    socket.updateProperties({
-      party: "chatroom",
-      room: user?.id,
-    });
-    socket.reconnect();
-    socket.onopen = (e) => {
-      // identify user upon connection
-      if (e.target) {
-        identify(e.target as PartySocket, user);
-      }
-    };
-  }, []);
-
-  const onSendMessage = useCallback(
-    (body: UserMessage) => {
-      if (typeof window !== "undefined") {
-        const userFromStorage = localStorage.getItem(USER);
-        const user: User = userFromStorage ? JSON.parse(userFromStorage) : null;
-        socket.updateProperties({
-          party: "chatroom",
-          room: user?.id,
-        });
-        socket.reconnect();
-        socket.send(JSON.stringify(body));
-      }
-    },
-    [socket]
-  );
-
-  const sendMessage = useCallback(async () => {
-    const body: UserMessage = {
-      type: "new",
-      text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
-    };
-    onSendMessage(body);
-  }, [socket]);
-
-  const handleKirim = useCallback(async () => {
-    if (typeof window !== "undefined") {
-      const id = crypto.randomBytes(20).toString("hex");
-      const user: User = {
-        id,
-        username: dataUser?.username,
-        joinedAt: new Date().toISOString(),
-        image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
-      };
-      window.localStorage.setItem(USER, JSON.stringify(user));
-      onAuthenticateUser(user);
-    }
-
-    setIsKirim(true);
-  }, [dataUser]);
-
-  const handleInput = (e: any) => {
-    e.preventDefault();
-    setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const userFromStorage = window.localStorage.getItem(USER);
-      const user = userFromStorage ? JSON.parse(userFromStorage) : null;
-
-      if (user) {
-        setIsKirim(true);
-        setRoomId(user?.id);
-        onAuthenticateUser(user);
-
-        const fetchRooms = async () => {
-          const rooms = await fetch(
-            `${PARTYKIT_URL}/parties/chatroom/${user?.id}`,
-            {
-              method: "GET",
-            }
-          );
-        };
-
-        fetchRooms()
-          // make sure to catch any error
-          .catch(console.error);
-      }
-    }
-  }, []);
-
+function ComponentUI({
+  isOpen,
+  isKirim,
+  dataUser,
+  handleInput,
+  setIsOpen,
+  handleKirim,
+  sendMessage,
+  messages = [],
+  user,
+  message,
+}: {
+  isOpen: any;
+  isKirim: any;
+  dataUser: any;
+  handleInput: any;
+  setIsOpen: any;
+  handleKirim: any;
+  sendMessage: any;
+  messages?: Message[];
+  user?: User;
+  message?: string;
+}) {
   return (
     <div>
       {isOpen ? (
-        <div className="fixed bottom-4 right-4 bg-abu1 lg:w-96 w-80 h-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg grid grid-rows-9">
-          <div className="row-span-1 bg-primaryRed rounded-t-lg grid grid-cols-5">
-            <div className="col-span-4 flex items-center justify-start px-4">
-              <p className="text-white font-poppins font-medium text-xl">
-                Live Chat Honda BAM
-              </p>
-            </div>
-            <div className="col-span-1 flex justify-center items-center">
-              <IoClose
-                color="white"
-                size={20}
-                className="lg:cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              />
-            </div>
-          </div>
-          {isKirim === false ? (
-            <div className="row-span-7 bg-white px-2 flex justify-center items-center">
-              <div>
-                <div>
-                  <p className="text-black">Nama:</p>
-                  <input
-                    type="text"
-                    className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4 text-black"
-                    id="username"
-                    value={dataUser.username}
-                    onChange={handleInput}
-                  />
-                </div>
-                <div>
-                  <p className="text-black">Pesan:</p>
-                  <textarea
-                    className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4 text-black"
-                    id="pesan"
-                    value={dataUser.pesan}
-                    onChange={handleInput}
-                  />
-                </div>
+        <div className="fixed bottom-4 right-4 ">
+          <div className="relative bg-abu1 lg:w-96 w-80 h-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg grid grid-rows-9">
+            <div className="row-span-1 bg-primaryRed rounded-t-lg grid grid-cols-5">
+              <div className="col-span-4 flex items-center justify-start px-4">
+                <p className="text-white font-poppins font-medium text-xl">
+                  Live Chat Honda BAM
+                </p>
+              </div>
+              <div className="col-span-1 flex justify-center items-center">
+                <IoClose
+                  color="white"
+                  size={20}
+                  className="lg:cursor-pointer"
+                  onClick={() => setIsOpen(false)}
+                />
               </div>
             </div>
-          ) : (
-            <div className="row-span-7 bg-abu1 px-2 h-auto">
-              <div className="w-full flex justify-center p-1">
-                <div className="bg-white px-2 rounded-lg">
-                  <p className="text-black text-xs font-light">
-                    Anda terhubung dengan Fauzan
+            {isKirim === false ? (
+              <div className="row-span-7 bg-white px-2 flex justify-center items-center">
+                <div>
+                  <div>
+                    <p className="text-black">Nama:</p>
+                    <input
+                      type="text"
+                      className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4 text-black"
+                      id="username"
+                      value={dataUser?.username}
+                      onChange={handleInput}
+                    />
+                  </div>
+                  <div>
+                    <p className="text-black">Pesan:</p>
+                    <textarea
+                      className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4 text-black"
+                      id="pesan"
+                      value={dataUser?.pesan}
+                      onChange={handleInput}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div
+                className="row-span-7 bg-abu1 px-2 h-auto overflow-y-auto pb-4"
+                id="style-13"
+              >
+                <div className="w-full flex justify-center p-1">
+                  <div className="bg-white px-2 rounded-lg">
+                    <p className="text-black text-xs font-light">
+                      Anda terhubung dengan Fauzan
+                    </p>
+                  </div>
+                </div>
+                <Chatperson messages={messages} user={user} />
+              </div>
+            )}
+            {isKirim === false ? (
+              <div className="row-span-1 bg-white p-2 flex justify-center items-center rounded-b-lg">
+                <div
+                  className="bg-primaryRed rounded-lg w-full h-full flex justify-center items-center lg:cursor-pointer"
+                  onClick={handleKirim}
+                >
+                  <p className="font-semibold font-poppins text-md text-white ">
+                    Kirim
                   </p>
                 </div>
               </div>
-              <Chatperson dataUser={dataUser} />
-            </div>
-          )}
-          {isKirim === false ? (
-            <div className="row-span-1 bg-white p-2 flex justify-center items-center rounded-b-lg">
-              <div
-                className="bg-primaryRed rounded-lg w-full h-full flex justify-center items-center lg:cursor-pointer"
-                onClick={handleKirim}
-              >
-                <p className="font-semibold font-poppins text-md text-white ">
-                  Kirim
-                </p>
+            ) : (
+              <div className="row-span-1 bg-abu1 rounded-b-lg p-2">
+                <div className="w-full h-full bg-white rounded-lg grid grid-cols-10 items-center">
+                  <input
+                    type="text"
+                    className="col-span-9 focus:outline-none text-black px-4 rounded-lg"
+                    placeholder="Ketik pesan...."
+                    onChange={handleInput}
+                    value={message}
+                    onKeyUp={(e) => {
+                      var code = e.keyCode || e.which;
+                      if (code === 13) {
+                        e.preventDefault();
+                        sendMessage();
+                      }
+                    }}
+                  />
+                  <IoSend
+                    color="black"
+                    className="col-span-1 lg:cursor-pointer"
+                    onClick={sendMessage}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
               </div>
-            </div>
-          ) : (
-            <div
-              className="row-span-1 bg-abu1 rounded-b-lg p-2"
-              onClick={sendMessage}
-            >
-              <div className="w-full h-full bg-white rounded-lg grid grid-cols-10 items-center">
-                <input
-                  type="text"
-                  className="col-span-9 focus:outline-none text-black px-4 rounded-lg"
-                  placeholder="Ketik pesan...."
-                />
-                <IoSend
-                  color="black"
-                  className="col-span-1 lg:cursor-pointer"
-                />
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       ) : (
         <div>
-          <div className="fixed lg:bottom-20 bottom-[86px] right-4">
+          <div className="fixed lg:bottom-20 bottom-[86px] right-4 cursor-pointer">
             <div
               className="flex flex-col hover:brightness-95 rounded-b-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:w-[70px] w-[60px] lg:h-[120px] h-[110px] lg:cursor-pointer"
               onClick={() => setIsOpen(true)}
@@ -269,6 +196,191 @@ export default function Kontakwa() {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+const identify = async (socket: PartySocket, user: User) => {
+  const splitUrl = socket.url.split("?_pk=");
+  const pk = splitUrl[splitUrl.length - 1];
+  // the ./auth route will authenticate the connection to the partykit room
+  const url = `${PARTYKIT_URL}/parties/chatroom/${user?.id}/auth?_pk=${pk}`;
+  const req = await fetch(url, { method: "POST", body: JSON.stringify(user) });
+
+  if (!req.ok) {
+    const res = await req.text();
+    console.error("Failed to authenticate connection to PartyKit room", res);
+  }
+
+  return req;
+};
+
+function ComponentUserAuthenticated({
+  user,
+  isOpenProps,
+  initialMessage,
+}: {
+  user: User;
+  isOpenProps: any;
+  initialMessage: string;
+}) {
+  const [isOpen, setIsOpen] = useState<boolean>(isOpenProps);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [socketConnected, setSocketConnected] = useState<boolean>(false);
+
+  // open a websocket connection to the server
+  const socket = usePartySocket({
+    host: PARTYKIT_HOST,
+    party: "chatroom",
+    room: user.id,
+    async onOpen(e) {
+      if (e.target) {
+        const resFetch = await identify(e.target as PartySocket, user);
+        const res = await resFetch.json();
+        if (res.ok) {
+          setSocketConnected(true);
+        }
+      }
+    },
+    onMessage(event: MessageEvent<string>) {
+      const message = JSON.parse(event.data) as ChatMessage;
+
+      if (message.type === "sync") setMessages(message.messages);
+
+      // after that, the server will send updates as they arrive
+      if (message.type === "new") setMessages((prev) => [...prev, message]);
+      if (message.type === "clear") setMessages([]);
+      if (message.type === "edit") {
+        setMessages((prev) =>
+          prev.map((m) => (m.id === message.id ? message : m))
+        );
+      }
+    },
+  });
+
+  const onSendMessage = useCallback(
+    (body: UserMessage) => {
+      socket.send(JSON.stringify(body));
+    },
+    [socket]
+  );
+
+  const sendMessage = useCallback(async () => {
+    const body: UserMessage = {
+      type: "new",
+      text: message,
+    };
+    onSendMessage(body);
+    setMessage("");
+  }, [socket, message]);
+
+  const handleInput = useCallback((e: any) => {
+    e.preventDefault();
+    setMessage(e.target.value);
+  }, []);
+
+  useEffect(() => {
+    if (isOpenProps && socketConnected && !messages.length) {
+      /** user first send message */
+      onSendMessage({
+        type: "firstMessage",
+        text: initialMessage,
+      });
+    }
+  }, [socketConnected]);
+
+  return (
+    <ComponentUI
+      isOpen={isOpen}
+      dataUser={null}
+      handleInput={handleInput}
+      handleKirim={null}
+      isKirim={true}
+      sendMessage={sendMessage}
+      setIsOpen={setIsOpen}
+      key={"ui-kontakwa1"}
+      messages={messages}
+      message={message}
+      user={user}
+    />
+  );
+}
+
+export default function Kontakwa() {
+  const [user, setUser] = useState<User>();
+  const [dataUser, setDataUser] = useState({
+    username: "",
+    pesan: "",
+  });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleKirim = useCallback(async () => {
+    if (typeof window !== "undefined") {
+      const id = crypto.randomBytes(20).toString("hex");
+      const user: User = {
+        id,
+        username: dataUser?.username,
+        joinedAt: new Date().toISOString(),
+        image: "https://cdn-icons-png.freepik.com/512/5045/5045878.png",
+      };
+      window.localStorage.setItem(USER, JSON.stringify(user));
+      setUser(user);
+    }
+  }, [dataUser]);
+
+  const handleInput = (e: any) => {
+    e.preventDefault();
+    setDataUser((data) => ({ ...data, [e.target.id]: e.target.value }));
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const userFromStorage = window.localStorage.getItem(USER);
+      const _user = userFromStorage ? JSON.parse(userFromStorage) : null;
+
+      if (_user && !user) {
+        setUser(_user);
+
+        // const fetchRooms = async () => {
+        //   const rooms = await fetch(
+        //     `${PARTYKIT_URL}/parties/chatroom/${user?.id}`,
+        //     {
+        //       method: "GET",
+        //     }
+        //   );
+        // };
+        // fetchRooms()
+        //   // make sure to catch any error
+        //   .catch(console.error);
+      }
+    }
+  }, []);
+
+  if (user) {
+    return (
+      <div>
+        <ComponentUserAuthenticated
+          user={user}
+          isOpenProps={isOpen}
+          initialMessage={dataUser.pesan}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <ComponentUI
+        isOpen={isOpen}
+        dataUser={dataUser}
+        handleInput={handleInput}
+        handleKirim={handleKirim}
+        isKirim={false}
+        sendMessage={null}
+        setIsOpen={setIsOpen}
+        key={"ui-kontakwa2"}
+      />
     </div>
   );
 }

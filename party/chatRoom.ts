@@ -58,21 +58,6 @@ export default class ChatRoomServer implements Party.Server {
     });
   }
 
-  /** Request the AI bot party to connect to this room, if not already connected */
-  async ensureAIParticipant() {
-    if (!this.botId) {
-      this.botId = nanoid();
-      this.party.context.parties.ai.get("this.party.id").fetch({
-        method: "POST",
-        body: JSON.stringify({
-          action: "connect",
-          roomId: this.party.id,
-          botId: this.botId,
-        }),
-      });
-    }
-  }
-
   /** Send room presence to the room listing party */
   async updateRoomList(action: "enter" | "leave", connection: ChatConnection) {
     return this.party.context.parties.chatrooms.get(SINGLETON_ROOM_ID).fetch({
@@ -98,12 +83,6 @@ export default class ChatRoomServer implements Party.Server {
 
     connection.setState({ user });
     this.updateRoomList("enter", connection);
-
-    if (!this.party.env.OPENAI_API_KEY) {
-      connection.send(
-        systemMessage("OpenAI API key not configured. AI bot is not available")
-      );
-    }
   }
 
   /**
@@ -114,26 +93,36 @@ export default class ChatRoomServer implements Party.Server {
 
     // mark room as created by storing its id in object storage
     if (request.method === "POST") {
-      const body: User = await request.json();
-
       const partyId = await this.party.storage.get("id");
       if (partyId !== this.party.id) {
         await this.party.storage.put("id", this.party.id);
       }
-      const users: any[] = (await this.party.storage.get("users")) ?? [];
-      const existingUser = users?.find((u) => u?.id === partyId);
-      const newUsers = [...users];
-      newUsers.push(body);
-      if (!existingUser) {
-        await this.party.storage.put("users", newUsers);
+
+      if (new URL(request.url).pathname.endsWith("/auth")) {
+        const body: User = await request.json();
+        const users: any[] = (await this.party.storage.get("users")) ?? [];
+        const existingUser = users?.find((u) => u?.id === body.id);
+        const newUsers = [...users];
+        newUsers.push(body);
+        if (!existingUser) {
+          await this.party.storage.put("users", newUsers);
+        }
+        await this.authenticateUser(request, body);
       }
 
-      await this.authenticateUser(request, body);
       return ok();
     }
 
     // return list of messages for server rendering pages
     if (request.method === "GET") {
+      if (new URL(request.url).pathname.endsWith("/id")) {
+        const partyId = await this.party.storage.get("id");
+        return json<any>(partyId);
+      }
+      if (new URL(request.url).pathname.endsWith("/users")) {
+        const result = await this.party.storage.get("users");
+        return json<any>(result);
+      }
       if (await this.party.storage.get("id")) {
         const result = { type: "sync", messages };
         return json<SyncMessage>(result as SyncMessage);
@@ -167,7 +156,6 @@ export default class ChatRoomServer implements Party.Server {
    */
   async onConnect(connection: ChatConnection) {
     await this.ensureLoadMessages();
-    await this.ensureAIParticipant();
 
     // send the whole list of messages to user when they connect
     connection.send(syncMessage(this.messages ?? []));
@@ -184,13 +172,14 @@ export default class ChatRoomServer implements Party.Server {
     // handle user messages
     if (message.type === "new" || message.type === "edit") {
       const user = connection.state?.user;
+
       if (message.text.length > 1000) {
         return connection.send(systemMessage("Message too long"));
       }
 
       const payload = <Message>{
         id: message.id ?? nanoid(),
-        from: { id: user?.username, image: user?.image },
+        from: { id: user?.id, name: user?.username, image: user?.image },
         text: message.text,
         at: Date.now(),
       };
@@ -216,7 +205,67 @@ export default class ChatRoomServer implements Party.Server {
       await this.party.storage.setAlarm(
         new Date().getTime() + DELETE_MESSAGES_AFTER_INACTIVITY_PERIOD
       );
+    } else if ((message.type = "firstMessage")) {
+      /** send user message */
+      const user = connection.state?.user;
+      if (message.text.length > 1000) {
+        return connection.send(systemMessage("Message too long"));
+      }
+      const payload = <Message>{
+        id: "firstMessageFromUser",
+        from: { id: user?.id, name: user?.username, image: user?.image },
+        text: message.text,
+        at: Date.now(),
+      };
+      this.party.broadcast(newMessage(payload));
+      this.messages!.push(payload);
+
+      // persist the messages to storage
+      await this.party.storage.put("messages", this.messages);
+
+      // automatically clear the room storage after period of inactivity
+      await this.party.storage.deleteAlarm();
+      await this.party.storage.setAlarm(
+        new Date().getTime() + DELETE_MESSAGES_AFTER_INACTIVITY_PERIOD
+      );
+
+      await this.handleAdminFirstMessage(message);
     }
+  }
+
+  async handleAdminFirstMessage(msg: UserMessage) {
+    /** register admin */
+    const users: any[] = (await this.party.storage.get("users")) ?? [];
+    const existingUser = users?.find((u) => u?.id === "admin");
+    const newUsers = [...users];
+    const admin = {
+      id: "admin",
+      username: "Admin Fauzan",
+      joinedAt: new Date().toISOString(),
+      image:
+        "https://cdn.pixabay.com/photo/2024/03/28/19/43/customer-service-8661577_640.png",
+    };
+    newUsers.push(admin);
+    if (!existingUser) {
+      await this.party.storage.put("users", newUsers);
+    }
+    const adminMessage = {
+      id: "firstMessageFromAdmin",
+      from: { id: admin?.id, name: admin?.username, image: admin?.image },
+      text: "Halo! Selamat datang di Honda BAM. Ada yang bisa saya bantu hari ini?",
+      at: Date.now(),
+    };
+    this.party.broadcast(newMessage(adminMessage));
+    this.messages!.push(adminMessage);
+
+    // persist the messages to storage
+    await this.party.storage.put("messages", this.messages);
+
+    // automatically clear the room storage after period of inactivity
+    await this.party.storage.deleteAlarm();
+    await this.party.storage.setAlarm(
+      new Date().getTime() + DELETE_MESSAGES_AFTER_INACTIVITY_PERIOD
+    );
   }
 
   async onClose(connection: Party.Connection) {
