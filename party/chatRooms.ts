@@ -1,6 +1,7 @@
 import type * as Party from "partykit/server";
 import { json, notFound } from "./utils/response";
 import { User } from "./utils/auth";
+import { Message } from "./utils/message";
 
 /**
  * The chatRooms party's purpose is to keep track of all chat rooms, so we want
@@ -13,7 +14,8 @@ export type RoomInfoUpdateRequest = {
   id: string;
   connections: number;
   roomName: string;
-  action: "enter" | "leave";
+  action: "enter" | "leave" | "lastMessage";
+  lastMessage: Message;
   user?: User;
 };
 
@@ -28,6 +30,7 @@ export type RoomInfo = {
   id: string;
   roomName: string;
   connections: number;
+  lastMessage: Message;
   users: {
     id: string;
     username: string;
@@ -104,17 +107,20 @@ export default class ChatRoomsServer implements Party.Server {
       roomName: update.roomName,
       connections: 0,
       users: [],
+      lastMessage: null,
     };
 
-    info.connections = update.connections;
+    if (update.connections) {
+      info.connections = update.connections;
+    }
 
     if (!info.roomName) {
       info.roomName = update.roomName;
     }
 
-    const user = update.user;
+    if (update.user) {
+      const user = update.user;
 
-    if (user) {
       if (update.action === "enter") {
         // bump user to the top of the list on entry
         info.users = info.users.filter((u) => u.username !== user.username);
@@ -131,6 +137,12 @@ export default class ChatRoomsServer implements Party.Server {
             ? { ...u, present: false, leftAt: new Date().toISOString() }
             : u
         );
+      }
+    }
+
+    if (update.action === "lastMessage") {
+      if (update.lastMessage) {
+        info.lastMessage = update.lastMessage;
       }
     }
 

@@ -358,6 +358,7 @@ export default function Kontakwa() {
   }, []);
 
   if (user) {
+    /** ketika user sudah pernah chat admin / baru pertama chat dan langsung set local storage user */
     return (
       <div>
         <ComponentUserAuthenticated
@@ -369,6 +370,7 @@ export default function Kontakwa() {
     );
   }
 
+  /** ketika user blm pernah chat admin */
   return (
     <div>
       <ComponentUI

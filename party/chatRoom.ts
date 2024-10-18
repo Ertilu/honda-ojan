@@ -231,6 +231,26 @@ export default class ChatRoomServer implements Party.Server {
 
       await this.handleAdminFirstMessage(message);
     }
+
+    this.updateRoomLastMessage();
+  }
+
+  async updateRoomLastMessage() {
+    let lastMessage;
+    if (this.messages?.length) {
+      const getLastMessage = this.messages?.slice(-1);
+      if (getLastMessage.length) {
+        lastMessage = getLastMessage?.[0];
+      }
+    }
+    return this.party.context.parties.chatrooms.get(SINGLETON_ROOM_ID).fetch({
+      method: "POST",
+      body: JSON.stringify({
+        id: this.party.id,
+        action: "lastMessage",
+        lastMessage,
+      }),
+    });
   }
 
   async handleAdminFirstMessage(msg: UserMessage) {
