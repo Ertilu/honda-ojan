@@ -290,6 +290,21 @@ function ComponentUserAuthenticated({
     }
   }, [socketConnected]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const container = document.getElementById("style-13");
+
+      if (container) {
+        // container.scrollTop = container?.scrollHeight;
+        container?.scrollTo({
+          top: container.scrollHeight,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [isOpen, messages]);
+
   return (
     <ComponentUI
       isOpen={isOpen}
