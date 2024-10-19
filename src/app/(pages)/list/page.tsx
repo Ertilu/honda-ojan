@@ -3,9 +3,11 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Image from "next/image";
 import Adira from "@/image/adira.png";
-import Adiraku from "@/image/adiraku.png";
-import AHM from "@/image/ahm.png";
-import One from "@/image/one-heart.png";
+import FIF from "@/image/icon-fif.png";
+import MCF from "@/image/icon-mcf.png";
+import BCA from "@/image/icon-bca.png";
+import Mandiri from "@/image/icon-mandiri.png";
+import OTO from "@/image/icon-oto.png";
 import Brosur from "@/image/brosur.jpeg";
 import Link from "next/link";
 
@@ -17,29 +19,32 @@ export default function List() {
       </div>
 
       <div className="w-full h-auto lg:px-16 pt-6 px-6">
-        <div className="w-full lg:h-20 h-10 grid grid-cols-4">
+        <div className="w-full lg:h-20 h-10 grid lg:grid-cols-6 grid-cols-3 lg:gap-0 gap-3 lg:mb-0 mb-6">
           <div className="col-span-1 flex justify-center items-center">
             <Image
               src={Adira}
               alt=""
-              className="lg:h-20 lg:w-auto h-8 w-auto"
+              className="lg:h-12 lg:w-auto h-6 w-auto"
             />
+          </div>
+
+          <div className="col-span-1 flex justify-center items-center">
+            <Image src={FIF} alt="" className="lg:h-12 lg:w-auto h-6 w-auto" />
+          </div>
+          <div className="col-span-1 flex justify-center items-center">
+            <Image src={OTO} alt="" className="lg:h-20 lg:w-auto h-9 w-auto" />
+          </div>
+          <div className="col-span-1 flex justify-center items-center">
+            <Image src={MCF} alt="" className="lg:h-12 lg:w-auto h-6 w-auto" />
+          </div>
+          <div className="col-span-1 flex justify-center items-center">
+            <Image src={BCA} alt="" className="lg:h-12 lg:w-auto h-6 w-auto" />
           </div>
           <div className="col-span-1 flex justify-center items-center">
             <Image
-              src={Adiraku}
+              src={Mandiri}
               alt=""
-              className="lg:h-20 lg:w-auto h-8 w-auto"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center items-center">
-            <Image src={AHM} alt="" className="lg:h-20 lg:w-auto h-6 w-auto" />
-          </div>
-          <div className="col-span-1 flex justify-center items-center">
-            <Image
-              src={One}
-              alt=""
-              className="lg:h-20 lg:w-auto h-10 w-auto "
+              className="lg:h-12 lg:w-auto h-6 w-auto"
             />
           </div>
         </div>

@@ -210,7 +210,7 @@ export default function Produk({
         {isOpen ? (
           <div className="bg-abu1 w-[276px] h-auto relative lg:mx-12 left-0 right-0 mx-auto transform -translate-y-1/2 rounded-md z-30 p-2">
             <div
-              className="cursor-pointer lg:hover:brightness-95 rounded-md bg-abu1 h-[40px] flex items-center px-2"
+              className="cursor-pointer lg:hover:brightness-95 rounded-md bg-white h-[40px] flex items-center px-2"
               onClick={handleSort}
             >
               {isTerbaru ? <p>Termurah</p> : <p>Terbaru</p>}
@@ -227,7 +227,7 @@ export default function Produk({
             ))}
           </div>
         ) : (
-          <div className="lg:w-[1250px] w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 justify-center items-center gap-4">
+          <div className="lg:w-[1250px] w-fit grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 justify-center items-center gap-4">
             {sortData?.map((item: any, index) => {
               const baru = getLatestData?.id === item?.id;
               return (
@@ -241,7 +241,7 @@ export default function Produk({
                   }}
                   key={item?.id}
                 >
-                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[180px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center justify-self-center mx-auto cursor-pointer group transition ease-in-out">
+                  <div className="col-span-1 lg:w-[300px] lg:h-[379px] w-[165px] h-[230px] bg-white rounded-md lg:p-6 relative flex flex-col justify-center lg:cursor-pointer group transition ease-in-out">
                     <div className="absolute lg:px-0 px-2 z-30 grid grid-cols-2 top-4 lg:w-[260px] w-[160px]">
                       <div className="col-span-1">
                         <div className="lg:h-[30px] w-fit lg:px-4 px-1 h-[20px] bg-[#9BCF53] rounded-md flex justify-center items-center">

@@ -56,7 +56,7 @@ export default function Promo() {
             {LoadingComponent}
           </div>
         ) : (
-          <div className="w-full grid lg:grid-cols-4 grid-cols-1 lg:min-h-screen min-h-80 lg:container gap-4 px-6 my-6">
+          <div className="w-full grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:min-h-screen min-h-80 lg:container gap-4 px-6 my-6">
             {getPromoList?.data?.results?.map((item: any, idx: string) => {
               return (
                 <Link

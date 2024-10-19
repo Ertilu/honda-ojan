@@ -62,14 +62,14 @@ export default function Banner({
           loop={true}
           navigation={true}
           autoplay={{
-            delay: 2500,
+            delay: 4500,
             disableOnInteraction: false,
           }}
         >
           {getPromoImages?.map((img: string, idx: string) => {
             return (
               <SwiperSlide key={idx}>
-                <div className="flex justify-center items-start w-full lg:max-h-[700px] max-h-[180px] h-auto">
+                <div className="flex justify-center items-start w-full h-auto">
                   <img
                     src={img}
                     alt={`banner-${idx}`}

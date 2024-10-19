@@ -65,6 +65,7 @@ export default function Detail() {
   // };
 
   // console.log("dataada", dataOpenFiturMobile);
+  // console.log("dataini", data);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
@@ -131,7 +132,9 @@ export default function Detail() {
                       ? "outline outline-4 outline-abu2"
                       : null
                   }`}
-                  style={{ backgroundColor: c?.code }}
+                  style={{
+                    background: `linear-gradient(315deg, ${c?.code} 33%, ${c?.code2} 33%, ${c?.code3} 34%)`,
+                  }}
                   onClick={() => setSelectedColorId(c._id)}
                   key={idx}
                 />
@@ -141,9 +144,15 @@ export default function Detail() {
 
           <div className="w-full flex justify-center my-4">
             <p
-              className=" lg:text-3xl text-lg font-bebas tracking-widest font-semibold"
-              style={{ color: selectedColor?.code }}
+              className="lg:text-3xl text-lg font-bebas tracking-widest font-semibold"
+              // style={{
+              //   background: `linear-gradient(315deg, ${selectedColor?.code}, ${selectedColor?.code2}, ${selectedColor?.code3})`,
+              //   WebkitBackgroundClip: "text",
+              //   WebkitTextFillColor: "transparent",
+              // }}
+              style={{ color: `${selectedColor?.code2}` }}
             >
+              {/* {console.log("etlete", selectedColor)} */}
               {selectedColor?.name}
             </p>
           </div>
@@ -224,7 +233,7 @@ export default function Detail() {
           ))}
         </div>
 
-        <div className="lg:hidden w-full h-full flex flex-col gap-4 my-6 ">
+        <div className="lg:hidden w-full h-full flex flex-col gap-4 my-6 justify-center items-center">
           {data?.features?.map((data: any, index: any) => (
             <Cardfiturmobile
               key={index}
@@ -243,7 +252,7 @@ export default function Detail() {
           className="fixed z-40 w-full h-screen bg-black/[.60] flex justify-center items-center"
           onClick={() => setIsOpenFiturMobile(false)}
         >
-          <div className="bg-black w-4/5 h-auto">
+          <div className="bg-black w-4/5 md:w-[550px] h-auto">
             <img
               src={dataOpenFiturMobile?.image}
               alt=""

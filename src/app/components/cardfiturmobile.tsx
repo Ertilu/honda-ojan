@@ -28,7 +28,7 @@ export default function Cardfiturmobile({
   return (
     <div onClick={handleOpen}>
       {index % 2 === 0 ? (
-        <div className="grid grid-cols-2 bg-white w-full">
+        <div className="grid grid-cols-2 bg-white w-full md:w-[550px]">
           <img
             src={data.image}
             alt=""
@@ -49,7 +49,7 @@ export default function Cardfiturmobile({
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-2 bg-white w-full">
+        <div className="grid grid-cols-2 bg-white w-full md:w-[550px]">
           <div className="col-span-1 w-full bg-black h-full">
             <div className="flex justify-center items-center w-full h-4/5 p-4">
               <p className="text-lg font-medium font-bebas tracking-widest text-white ">
