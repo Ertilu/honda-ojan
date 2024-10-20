@@ -72,7 +72,10 @@ export default function Navbar({ textColor, background, height }: Props) {
   }, [cariProduk, cariProdukMobile]);
   // shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
   return (
-    <motion.div className="w-full" style={{ height, background }}>
+    <motion.div
+      className="w-full py-1 shadow-[0px_1px_1px_0px_#00000024]"
+      style={{ height, background }}
+    >
       <motion.div
         className="w-full px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center"
         style={{ height, background }}
@@ -98,7 +101,7 @@ export default function Navbar({ textColor, background, height }: Props) {
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
             >
-              <p className="font-semibold text-xl ">Home</p>
+              <p className="font-semibold text-lg">Home</p>
             </Link>
           </div>
           <div className="text-end col-span-1">
@@ -111,7 +114,7 @@ export default function Navbar({ textColor, background, height }: Props) {
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
             >
-              <p className="font-semibold text-xl ">Produk</p>
+              <p className="font-semibold text-lg ">Produk</p>
             </Link>
           </div>
           <div className="text-end col-span-1">
@@ -123,7 +126,7 @@ export default function Navbar({ textColor, background, height }: Props) {
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
             >
-              <p className="font-semibold text-xl ">Promo</p>
+              <p className="font-semibold text-lg ">Promo</p>
             </Link>
           </div>
           <div className="text-end col-span-1">
@@ -135,7 +138,7 @@ export default function Navbar({ textColor, background, height }: Props) {
                   : "cursor-pointer hover:underline hover:text-[#cc0000] hover:underline-offset-8"
               }
             >
-              <p className="cursor-pointer font-semibold text-xl hover:underline hover:text-[#cc0000] hover:underline-offset-8">
+              <p className="cursor-pointer font-semibold text-lg hover:underline hover:text-[#cc0000] hover:underline-offset-8">
                 Kontak
               </p>
             </Link>

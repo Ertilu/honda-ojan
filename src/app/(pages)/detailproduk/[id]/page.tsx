@@ -69,7 +69,7 @@ export default function Detail() {
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
-      <div className="w-full sticky top-0 z-50 bg-white">
+      <div className="w-full sticky top-0 z-50 bg-white ">
         <Navbar />
       </div>
 
@@ -117,23 +117,28 @@ export default function Detail() {
         <motion.img
           src={selectedColor?.image}
           alt=""
-          className="lg:h-80 h-56 w-auto z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
+          className="lg:h-80 h-56 w-auto z-40 absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
           // animate={rotate ? "rotate" : "stop"}
           // variants={variantImage}
         />
 
-        <div className="w-full lg:h-[35px] h-[20px] absolute lg:top-[80%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="w-full lg:h-[35px] h-[20px] absolute lg:top-[70%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="bg-primaryRed w-fit px-4 py-1 rounded-md justify-items-center mx-auto mb-6">
+            <p className="text-white text-2xl font-bebas font-normal italic">
+              {selectedColor?.type}
+            </p>
+          </div>
           <div className="bg-abu1 w-fit px-4 h-auto rounded-full justify-items-center mx-auto">
             <div className="py-2 flex items-center justify-center flex-wrap gap-4">
               {data?.colors?.map((c: any, idx: any) => (
                 <div
                   className={`rounded-full lg:w-[25px] lg:h-[25px] w-[18px] h-[18px] col-span-1 lg:cursor-pointer ${
-                    selectedColor?.code === c?.code
+                    selectedColor?.code2 === c?.code2
                       ? "outline outline-4 outline-abu2"
                       : null
                   }`}
                   style={{
-                    background: `linear-gradient(315deg, ${c?.code} 33%, ${c?.code2} 33%, ${c?.code3} 34%)`,
+                    background: `linear-gradient(315deg, ${c?.code} , ${c?.code2} , ${c?.code3})`,
                   }}
                   onClick={() => setSelectedColorId(c._id)}
                   key={idx}
