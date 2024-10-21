@@ -107,7 +107,7 @@ export default function Detail() {
         </Swiper>
       </div>
 
-      <div className="w-full lg:h-[700px] h-[400px] lg:px-16 relative mt-6">
+      <div className="w-full lg:h-[700px] h-[550px] lg:px-16 relative mt-6">
         <div className="w-full h-auto lg:px-16 flex justify-center items-center ">
           <div className="w-full lg:h-20 h-12 flex justify-center ">
             <img src={data?.logo} className="h-full w-auto" alt="" />
@@ -122,7 +122,7 @@ export default function Detail() {
           // variants={variantImage}
         />
 
-        <div className="w-full lg:h-[35px] h-[20px] absolute lg:top-[70%] top-[82%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="w-full lg:h-[35px] h-[30px] absolute lg:top-[70%] top-[67%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="bg-primaryRed w-fit px-4 py-1 rounded-md justify-items-center mx-auto mb-6">
             <p className="text-white text-2xl font-bebas font-normal italic">
               {selectedColor?.type}
