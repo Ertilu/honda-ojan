@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "../components/navbar";
 import Banner from "@/app/components/banner";
 import Produk from "../components/produk";
+import Promo from "../components/promo";
 import Footer from "../components/footer";
 import Kontakwa from "@/app/components/kontakwa";
 import { usePromoService } from "../queries/promo.query";
@@ -36,12 +37,21 @@ export default function Home() {
       </div>
       {/* </motion.div> */}
 
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center mb-6">
         <Banner getPromoList={getPromoList} />
       </div>
 
-      <div id="produk" className="w-full my-8 lg:container">
+      <div id="produk" className="w-full lg:container">
         <Produk initialCategory="matic" />
+      </div>
+
+      <div id="promo" className="w-full my-8 lg:container">
+        <div className="w-full flex justify-center items-center h-fit">
+          <p className="font-extrabold text-4xl text-black font-poppins">
+            Promo
+          </p>
+        </div>
+        <Promo />
       </div>
 
       <div id="kontak"></div>

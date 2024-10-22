@@ -138,7 +138,7 @@ export default function Produk({
   return (
     <div className="text-black font-poppins w-full min-h-screen">
       <div className="w-full h-auto flex justify-center">
-        <p className="font-extrabold text-4xl">Motor HONDA</p>
+        <p className="font-extrabold text-4xl text-black">Motor HONDA</p>
       </div>
 
       <div className="w-full h-auto flex justify-center mt-8">
