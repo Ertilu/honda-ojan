@@ -65,7 +65,7 @@ export default function Detail() {
   // };
 
   // console.log("dataada", dataOpenFiturMobile);
-  // console.log("dataini", data);
+  console.log("dataini", data);
 
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
@@ -284,9 +284,12 @@ export default function Detail() {
           <p className="font-bold text-[#dd2020] lg:text-4xl text-xl">
             Rp. {new Intl.NumberFormat("en-US").format(data?.price)}
           </p>
-          <div className="w-full h-12 bg-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer mt-6 hover:bg-[#cc0000]">
+          <Link
+            href="/kontak"
+            className="w-full h-12 bg-[#1d1d1d] rounded-full flex justify-center items-center lg:cursor-pointer mt-6 hover:bg-[#cc0000]"
+          >
             <p className="font-medium">Hubungi Kami</p>
-          </div>
+          </Link>
         </div>
 
         <div className="lg:mt-0 mt-6">

@@ -48,14 +48,14 @@ export default function Promo() {
               <Link
                 href={`/detailpromo`}
                 key={idx}
-                className="col-span-1 lg:h-[250px] w-full h-[220px] shadow-[0_1px_4px_rgba(0,0,0,0.16)] pb-4 bg-white lg:cursor-pointer group hover:brightness-95 transition"
+                className="col-span-1 lg:h-[250px] w-full h-[220px] rounded-md shadow-[0_1px_4px_rgba(0,0,0,0.16)] pb-4 bg-white lg:cursor-pointer group hover:brightness-95 transition"
                 onClick={() => setPromo(item)}
               >
                 <div className="w-full h-auto max-h-[123px]">
                   <img
                     src={item?.images?.[0]}
                     alt=""
-                    className="w-full h-full object-cover max-h-[123px]"
+                    className="w-full h-full object-cover max-h-[123px] rounded-t-md"
                   />
                 </div>
                 <div className="px-4 py-2">

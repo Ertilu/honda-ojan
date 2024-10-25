@@ -18,6 +18,7 @@ export default function Produk({
   const [isActiveMatic, setIsActiveMatic] = useState(true);
   const [isActiveSport, setIsActiveSport] = useState(false);
   const [isActiveCub, setIsActiveCub] = useState(false);
+  const [isActiveEV, setIsActiveEV] = useState(false);
   const [isTerbaru, setIsTerbaru] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -70,6 +71,7 @@ export default function Produk({
     setIsActiveMatic(true);
     setIsActiveSport(false);
     setIsActiveCub(false);
+    setIsActiveEV(false);
     setCategoryProduk("matic");
     setIsLoading(true);
   };
@@ -78,6 +80,7 @@ export default function Produk({
     setIsActiveMatic(false);
     setIsActiveSport(true);
     setIsActiveCub(false);
+    setIsActiveEV(false);
     setCategoryProduk("sport");
     setIsLoading(true);
   };
@@ -86,7 +89,17 @@ export default function Produk({
     setIsActiveMatic(false);
     setIsActiveSport(false);
     setIsActiveCub(true);
+    setIsActiveEV(false);
     setCategoryProduk("cub");
+    setIsLoading(true);
+  };
+
+  const handleEV = () => {
+    setIsActiveMatic(false);
+    setIsActiveSport(false);
+    setIsActiveCub(false);
+    setIsActiveEV(true);
+    setCategoryProduk("ev");
     setIsLoading(true);
   };
 
@@ -142,16 +155,16 @@ export default function Produk({
       </div>
 
       <div className="w-full h-auto flex justify-center mt-8">
-        <div className="bg-abu1 h-[63px] w-[418px] rounded-md grid grid-cols-3 m-auto justify-center items-center">
+        <div className="bg-abu1 h-[63px] lg:w-[518px] w-[418px] rounded-md grid grid-cols-4 m-auto justify-center items-center">
           <div
             // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveMatic ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveMatic
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleMatic}
@@ -159,14 +172,14 @@ export default function Produk({
             <p className="font-semibold">Matic</p>
           </div>
           <div
-            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveSport ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveSport
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleSport}
@@ -174,19 +187,34 @@ export default function Produk({
             <p className="font-semibold">Sport</p>
           </div>
           <div
-            // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveCub ? `bg-white` : `bg-abu1`
             // }`}
             className={
               isActiveCub
-                ? `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
               `
-                : `col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
+                : `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
               `
             }
             onClick={handleCub}
           >
             <p className="font-semibold">Cub</p>
+          </div>
+          <div
+            // className={`col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
+            //   isActiveCub ? `bg-white` : `bg-abu1`
+            // }`}
+            className={
+              isActiveEV
+                ? `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-white
+              `
+                : `col-span-1 h-[43px] lg:w-[113px] w-[83px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 bg-abu1
+              `
+            }
+            onClick={handleEV}
+          >
+            <p className="font-semibold">EV</p>
           </div>
         </div>
       </div>
