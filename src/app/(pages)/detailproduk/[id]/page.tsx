@@ -149,7 +149,7 @@ export default function Detail() {
 
           <div className="w-full flex justify-center my-4">
             <p
-              className="lg:text-3xl text-lg font-bebas tracking-widest font-semibold"
+              className="lg:text-4xl text-2xl font-bebas tracking-widest font-semibold"
               // style={{
               //   background: `linear-gradient(315deg, ${selectedColor?.code}, ${selectedColor?.code2}, ${selectedColor?.code3})`,
               //   WebkitBackgroundClip: "text",
@@ -314,11 +314,13 @@ export default function Detail() {
             </tbody>
           </table>
 
-          <Link href="/list">
-            <div className="w-[200px] h-[40px] bg-abu1 border-2 border-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer hover:brightness-90 mt-6 lg:cursor-pointer">
-              <p className="text-[#1d1d1d] font-semibold">Detail Angsuran</p>
-            </div>
-          </Link>
+          <div className="lg:w-[200px] w-full h-[40px]">
+            <Link href="/list">
+              <div className="lg:w-[200px] w-full h-[40px] bg-abu1 border-2 border-[#1d1d1d] rounded-full flex justify-center items-center cursor-pointer hover:brightness-90 mt-6 lg:cursor-pointer">
+                <p className="text-[#1d1d1d] font-semibold">Detail Angsuran</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
 

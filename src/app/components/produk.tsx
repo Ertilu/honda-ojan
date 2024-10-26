@@ -155,7 +155,7 @@ export default function Produk({
       </div>
 
       <div className="w-full h-auto flex justify-center mt-8">
-        <div className="bg-abu1 h-[63px] lg:w-[518px] w-[418px] rounded-md grid grid-cols-4 m-auto justify-center items-center">
+        <div className="bg-abu1 lg:h-[63px] h-[53px] lg:w-[518px] w-[410px] rounded-md grid grid-cols-4 m-auto justify-center items-center">
           <div
             // className={`col-span-1 h-[43px] lg:w-[113px] w-[90px] rounded-md justify-self-center mx-auto flex justify-center items-center lg:cursor-pointer lg:hover:brightness-95 ${
             //   isActiveMatic ? `bg-white` : `bg-abu1`
