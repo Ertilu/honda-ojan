@@ -10,8 +10,12 @@ import Mandiri from "@/image/icon-mandiri.png";
 import OTO from "@/image/icon-oto.png";
 import Brosur from "@/image/brosur.jpeg";
 import Link from "next/link";
+import { saveAs } from "file-saver";
 
 export default function List() {
+  // const downloadImage = () => {
+  //   saveAs(Brosur, "image.jpg"); // Put your image URL here.
+  // };
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
@@ -49,12 +53,8 @@ export default function List() {
           </div>
         </div>
       </div>
-      <div className="lg:w-full lg:h-auto w-auto h-[420px] lg:px-16 lg:p-6 flex flex-col justify-center items-center gap-4 my-4">
-        <Image
-          src={Brosur}
-          alt=""
-          className="lg:w-full lg:h-auto w-auto h-full lg:rotate-0 rotate-90"
-        />
+      <div className="w-full h-auto lg:px-16 lg:p-6 flex flex-col justify-center items-center gap-4 my-6">
+        <Image src={Brosur} alt="" className="w-full h-auto " />
 
         <a
           target="_blank"
@@ -62,7 +62,10 @@ export default function List() {
           download="brosur-BAM.jpeg"
           className="z-30 w-5/6"
         >
-          <div className="bg-[#cc0000] rounded-md hover:brightness-95 lg:cursor-pointer flex justify-center items-center h-8">
+          <div
+            className="bg-[#cc0000] rounded-md hover:brightness-95 lg:cursor-pointer flex justify-center items-center h-8"
+            // onClick={downloadImage}
+          >
             <p className="font-semibold font-poppins text-md text-white ">
               Unduh Brosur
             </p>

@@ -18,6 +18,7 @@
     "@types/socket.io": "^3.0.2",
     "axios": "^1.7.4",
     "crypto": "^1.0.1",
+    "file-saver": "^2.0.5",
     "framer-motion": "^11.3.29",
     "moment": "^2.30.1",
     "next": "14.2.5",
@@ -33,6 +34,7 @@
     "swiper": "^11.1.11"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/node": "20",
     "@types/react": "18",
     "@types/react-dom": "18",
