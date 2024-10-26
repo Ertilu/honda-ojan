@@ -21,6 +21,7 @@ import PartySocket from "partysocket";
 import { User } from "../../../party/utils/auth";
 import "./css/kontakwa.css";
 import { motion } from "framer-motion";
+import { IoCaretBack } from "react-icons/io5";
 
 function ComponentUI({
   isOpen,
@@ -139,7 +140,7 @@ function ComponentUI({
                       </div>
                     )}
                   </div>
-                  <div className="row-span-1 p-2 flex justify-center items-center">
+                  <div className="row-span-1 pt-2 flex justify-center items-center">
                     <div
                       className="bg-primaryRed rounded-lg w-full h-full flex justify-center items-center lg:cursor-pointer"
                       onClick={handleChatAdmin}
@@ -153,26 +154,37 @@ function ComponentUI({
               ) : (
                 <div className="h-full grid grid-rows-8">
                   {isKirim === false ? (
-                    <div className="row-span-7 bg-white px-2 flex justify-center items-center">
-                      <div>
+                    <div className="row-span-7 bg-white px-2 ">
+                      <div
+                        className="w-fit h-fit mt-2 px-2 py-1 rounded-lg bg-primaryRed lg:cursor-pointer"
+                        onClick={() => setIsChatAdmin(false)}
+                      >
+                        <p className="text-white text-sm font-semibold flex items-center">
+                          <IoCaretBack color="white" size={15} />
+                          Kembali
+                        </p>
+                      </div>
+                      <div className="flex justify-center items-center h-full -mt-6">
                         <div>
-                          <p className="text-black">Nama:</p>
-                          <input
-                            type="text"
-                            className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4 text-black"
-                            id="username"
-                            value={dataUser?.username}
-                            onChange={handleInput}
-                          />
-                        </div>
-                        <div>
-                          <p className="text-black">Pesan:</p>
-                          <textarea
-                            className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4 text-black"
-                            id="pesan"
-                            value={dataUser?.pesan}
-                            onChange={handleInput}
-                          />
+                          <div>
+                            <p className="text-black">Nama:</p>
+                            <input
+                              type="text"
+                              className="border-2 border-abu1 bg-abu1 h-8 w-full rounded-md px-4 text-black"
+                              id="username"
+                              value={dataUser?.username}
+                              onChange={handleInput}
+                            />
+                          </div>
+                          <div>
+                            <p className="text-black">Pesan:</p>
+                            <textarea
+                              className="border-2 border-abu1 bg-abu1 min-h-24 resize-none w-full rounded-md px-4 text-black"
+                              id="pesan"
+                              value={dataUser?.pesan}
+                              onChange={handleInput}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
