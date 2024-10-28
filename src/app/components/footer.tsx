@@ -94,6 +94,11 @@ export default function Footer() {
               <p className="text-lg font-normal">Kontak</p>
             </Link>
           </div>
+          <div className="border-b-2 border-abu2 w-full h-10 my-2">
+            <Link href="/about">
+              <p className="text-lg font-normal">Tentang</p>
+            </Link>
+          </div>
         </div>
 
         <div className="lg:hidden p-4 ">

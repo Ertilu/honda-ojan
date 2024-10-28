@@ -51,7 +51,7 @@ export default function About() {
       </p>
 
       <p className="my-6">Tags :</p>
-      <div className="grid grid-cols-3 grid-rows-3 gap-1 grid-flow-row-dense">
+      <div className="grid lg:grid-cols-3 lg:grid-rows-3 md:grid-rows-2 md:grid-cols-2 grid-cols-1 grid-rows-1 gap-1 grid-flow-row-dense">
         {tags.map((data: any, index) => (
           <div
             className="col-span-1 bg-abu1 text-abu2 text-sm rounded-md w-fit h-fit px-2 py-1"
