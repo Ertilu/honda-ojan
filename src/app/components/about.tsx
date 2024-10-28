@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 export default function About() {
   const tags = [
+    "Honda BAM",
+    "Honda Bumen Abadi Motor",
     "Honda Bekasi",
     "Honda Bekasi Timur",
     "Honda Jakarta",
