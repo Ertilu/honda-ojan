@@ -16,7 +16,7 @@ export default function Promo() {
         <p className="font-medium font-poppins text-3xl">Promo</p>
       </div>
 
-      <div className="w-full lg:min-h-[40rem] md:min-h-[30rem] min-h-80 lg:container">
+      <div className="w-full lg:min-h-[35rem] md:min-h-[30rem] min-h-80 lg:container">
         <PromoComp />
       </div>
 

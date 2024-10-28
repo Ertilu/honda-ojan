@@ -13,7 +13,7 @@ export default function About() {
       <div className="w-full h-16 bg-[#cc0000] flex justify-center items-center">
         <p className="font-medium font-poppins text-3xl">Tentang</p>
       </div>
-      <div className="w-full lg:min-h-[40rem] md:min-h-[30rem] min-h-80 my-2 lg:container ">
+      <div className="w-full lg:min-h-[35rem] md:min-h-[30rem] min-h-80 py-10 lg:container flex justify-center">
         <AboutComp />
       </div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
