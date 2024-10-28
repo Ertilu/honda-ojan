@@ -36,6 +36,11 @@ export default function Footer() {
               <p className="text-lg font-normal">Kontak</p>
             </Link>
           </div>
+          <div className="border-b-2 border-abu2 w-full h-10 my-2">
+            <Link href="/about">
+              <p className="text-lg font-normal">Tentang</p>
+            </Link>
+          </div>
           {/* <Link href="https://wa.me/625162955851?text=Halo mas" target="_blank">
           <div className="w-50 h-12 bg-[#1d1d1d] rounded-xl flex items-center justify-center p-2 lg:cursor-pointer">
             <div className="mr-4">

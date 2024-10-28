@@ -20,7 +20,7 @@ import {
 import PartySocket from "partysocket";
 import { User } from "../../../party/utils/auth";
 import "./css/kontakwa.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
 
 function ComponentUI({
@@ -271,7 +271,7 @@ function ComponentUI({
 
           <div className="fixed bottom-4 right-4 hidden lg:block ">
             <Link
-              href="https://wa.me/625162955851?text=Halo mas"
+              href="https://wa.me/628158320517?text=Halo Admin Honda BAM! saya tertarik dengan produk Anda."
               target="_blank"
             >
               <div className="bg-[#25D366] hover:brightness-95 text-white font-poppins py-2 px-4 rounded-full grid grid-cols-4 w-[252px] h-[50px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
@@ -289,7 +289,7 @@ function ComponentUI({
 
           <div className="fixed bottom-4 right-4 lg:hidden">
             <Link
-              href="https://wa.me/625162955851?text=Halo mas"
+              href="https://wa.me/628158320517?text=Halo Admin Honda BAM! saya tertarik dengan produk Anda."
               target="_blank"
             >
               <div className="bg-[#25D366] hover:brightness-90 p-2 rounded-full shadow-lg w-[60px] h-[60px] flex items-center justify-center">

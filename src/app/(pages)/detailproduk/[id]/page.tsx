@@ -56,12 +56,9 @@ export default function Detail() {
     hover: { opacity: "1", marginTop: "30px" },
   };
 
-  // const variantImage = {
-  //   // initial: { opacity: 0 },
-  //   // animate: { opacity: 1 },
-  //   // exit: { opacity: 0 },
-  //   rotate: { rotate: [0, -30, 0], transition: { duration: 0.5 } },
-  //   stop: { y: [0, -10, 0], transition: { repeat: Infinity, repeatDelay: 3 } },
+  // const itemVariants = {
+  //   initial: { x: "-100vw", opacity: 0 },
+  //   animate: { x: 0, opacity: 1 },
   // };
 
   // console.log("dataada", dataOpenFiturMobile);
@@ -113,14 +110,15 @@ export default function Detail() {
             <img src={data?.logo} className="h-full w-auto" alt="" />
           </div>
         </div>
-
+        {/* <AnimatePresence> */}
         <motion.img
           src={selectedColor?.image}
-          alt=""
           className="lg:h-80 h-56 w-auto z-40 absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
-          // animate={rotate ? "rotate" : "stop"}
-          // variants={variantImage}
+          // key={selectedColor?.image}
+          // animate={{ x: "0%", opacity: 1 }}
+          // transition={{ duration: 0.5 }}
         />
+        {/* </AnimatePresence> */}
 
         <div className="w-full lg:h-[35px] h-[30px] absolute lg:top-[70%] top-[67%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="bg-primaryRed w-fit px-4 py-1 rounded-md justify-items-center mx-auto mb-6">
