@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://honda-bam.com
+
+# Sitemaps
+Sitemap: https://honda-bam.com/sitemap.xml

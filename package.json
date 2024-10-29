@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "node": "node server.js"
+    "node": "node server.js",
+    "sitemap": "next-sitemap"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -22,6 +23,8 @@
     "framer-motion": "^11.3.29",
     "moment": "^2.30.1",
     "next": "14.2.5",
+    "next-seo": "^4.24.0",
+    "next-sitemap": "^4.2.3",
     "partysocket": "1.0.2",
     "primereact": "^10.8.2",
     "react": "18",
