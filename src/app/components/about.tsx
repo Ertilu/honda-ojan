@@ -39,7 +39,7 @@ export default function About() {
               url: "https://res.cloudinary.com/dthdnryp3/image/upload/v1730202111/Logo_Honda_Bam_Kotak_1_fhdbsh.png",
               width: 1200,
               height: 630,
-              alt: "About Us Image",
+              alt: "Tentang Honda BAM",
             },
           ],
         }}
