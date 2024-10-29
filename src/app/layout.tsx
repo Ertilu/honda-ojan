@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     "Dealer Motor Honda Resmi Jakarta",
     "Dealer Motor Honda Resmi Cikarang",
   ],
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+      "de-DE": "/de-DE",
+    },
+  },
   title: "Honda BAM",
   description:
     "Honda BAM - Dealer Resmi Motor Honda Terpercaya di Bekasi, Cikarang, Jakarta, Tambun. Temukan Beragam Model Motor Honda Terbaru, Suku Cadang, dan Layanan Servis Berkualitas Tinggi. Nikmati Penawaran Harga Terbaik dan Layanan Pelanggan Profesional untuk Semua Kebutuhan Motor Anda. Honda BAM: Solusi Berkendara Terbaik di Bekasi, Cikarang, Jakarta, Tambun",
