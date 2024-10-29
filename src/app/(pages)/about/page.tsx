@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Navbar from "@/app/components/navbar";
 import AboutComp from "@/app/components/about";
@@ -16,7 +14,7 @@ export default function About() {
         <p className="font-medium font-poppins text-3xl">Tentang</p>
       </div>
       <div className="w-full lg:min-h-[35rem] md:min-h-[30rem] min-h-80 py-10 px-6 lg:container flex justify-center">
-        {/* <AboutComp /> */}
+        <AboutComp />
       </div>
       <div id="footer" className="bg-[#363636] w-full flex justify-center">
         <Footer />

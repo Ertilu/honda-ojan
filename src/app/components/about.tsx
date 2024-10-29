@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { NextSeo } from "next-seo";
 
@@ -28,7 +26,7 @@ export default function About() {
 
   return (
     <div className="text-base font-medium text-black font-poppins w-[60em] ">
-      <NextSeo
+      {/* <NextSeo
         title="Tentang Honda BAM"
         description="Selamat datang di Honda BAM Terpercaya di Bekasi, Cikarang, Jakarta, Tambun, dealer resmi motor Honda yang siap melayani kebutuhan kendaraan roda dua Anda dengan sepenuh hati. Kami hadir untuk memberikan pengalaman terbaik bagi Anda yang mencari sepeda motor Honda berkualitas, dengan berbagai pilihan tipe dan model yang sesuai dengan kebutuhan berkendara di segala medan."
         openGraph={{
@@ -45,7 +43,7 @@ export default function About() {
             },
           ],
         }}
-      />
+      /> */}
       <p>
         <span className="text-xl">S</span>elamat datang di Honda BAM, dealer
         resmi motor Honda yang siap melayani kebutuhan kendaraan roda dua Anda
