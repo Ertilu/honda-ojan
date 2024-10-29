@@ -27,7 +27,8 @@ export const metadata: Metadata = {
     "Dealer Motor Honda Resmi Cikarang",
   ],
   title: "Honda BAM",
-  description: "Dealer Resmi Motor Honda Bekasi",
+  description:
+    "Honda BAM - Dealer Resmi Motor Honda Terpercaya di Bekasi, Cikarang, Jakarta, Tambun. Temukan Beragam Model Motor Honda Terbaru, Suku Cadang, dan Layanan Servis Berkualitas Tinggi. Nikmati Penawaran Harga Terbaik dan Layanan Pelanggan Profesional untuk Semua Kebutuhan Motor Anda. Honda BAM: Solusi Berkendara Terbaik di Bekasi, Cikarang, Jakarta, Tambun",
 };
 
 export default function RootLayout({
