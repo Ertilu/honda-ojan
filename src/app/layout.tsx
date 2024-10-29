@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   },
   title: "Honda BAM",
   description:
-    "Honda BAM - Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
+    "Honda BAM Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
   openGraph: {
     title: "Honda BAM",
     description:
-      "Honda BAM - Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
+      "Honda BAM Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
     url: "honda-bam.com",
     siteName: "Next.js",
     images: [
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Honda BAM",
     description:
-      "Honda BAM - Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
+      "Honda BAM Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
     images: [
       "https://res.cloudinary.com/dthdnryp3/image/upload/v1730202111/Logo_Honda_Bam_Kotak_1_fhdbsh.png",
     ],
