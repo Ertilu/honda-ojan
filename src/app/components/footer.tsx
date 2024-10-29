@@ -4,6 +4,7 @@ import Honda from "@/image/Honda-footer.png";
 import WA from "@/image/icon-wa-putih.png";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { GoDotFill } from "react-icons/go";
 
 export default function Footer() {
   return (
@@ -121,8 +122,12 @@ export default function Footer() {
         </Link> */}
         </div>
       </div>
-      <div className="flex justify-center items-center col-span-3 bg-[#1d1d1d] py-2 w-full">
-        <p className="font-poppins font-extralight">
+      <div className="flex justify-center items-center col-span-3 bg-[#1d1d1d] py-2 w-full gap-1">
+        <p className="font-poppins font-extralight text-white">
+          Dealer Motor Honda Bekasi
+        </p>
+        <GoDotFill size={10} color="white" />
+        <p className="font-poppins font-extralight text-white">
           Honda Bam &#169; {new Date().getFullYear()}
         </p>
       </div>
