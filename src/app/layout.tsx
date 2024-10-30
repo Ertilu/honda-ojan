@@ -44,12 +44,12 @@ export const metadata: Metadata = {
     siteName: "Next.js",
     images: [
       {
-        url: "https://res.cloudinary.com/dthdnryp3/image/upload/v1730202111/Logo_Honda_Bam_Kotak_1_fhdbsh.png", // Must be an absolute URL
+        url: "https://res.cloudinary.com/dthdnryp3/image/upload/v1730280225/Macbook-Air-1559x975_n9mkop.png", // Must be an absolute URL
         width: 800,
         height: 600,
       },
       {
-        url: "https://res.cloudinary.com/dthdnryp3/image/upload/v1730202111/Logo_Honda_Bam_Kotak_1_fhdbsh.png", // Must be an absolute URL
+        url: "https://res.cloudinary.com/dthdnryp3/image/upload/v1730280225/Macbook-Air-1559x975_n9mkop.png", // Must be an absolute URL
         width: 1800,
         height: 1600,
         alt: "Dealer Motor Honda Bekasi Tambun Jakarta Cikarang Honda Bam",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     description:
       "Honda BAM Dealer Resmi Motor Honda di Bekasi, Cikarang, Jakarta, dan Tambun. Menyediakan berbagai model motor Honda terbaru dengan harga terbaik, Dealer honda Bekasi.",
     images: [
-      "https://res.cloudinary.com/dthdnryp3/image/upload/v1730202111/Logo_Honda_Bam_Kotak_1_fhdbsh.png",
+      "https://res.cloudinary.com/dthdnryp3/image/upload/v1730280225/Macbook-Air-1559x975_n9mkop.png",
     ],
   },
 };
