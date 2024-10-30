@@ -45,12 +45,11 @@ export default function About() {
         }}
       /> */}
       <p>
-        <span className="text-xl">S</span>elamat datang di Honda BAM, dealer
-        resmi motor Honda yang siap melayani kebutuhan kendaraan roda dua Anda
-        dengan sepenuh hati. Kami hadir untuk memberikan pengalaman terbaik bagi
-        Anda yang mencari sepeda motor Honda berkualitas, dengan berbagai
-        pilihan tipe dan model yang sesuai dengan kebutuhan berkendara di segala
-        medan.
+        Selamat datang di Honda BAM, dealer resmi motor Honda yang siap melayani
+        kebutuhan kendaraan roda dua Anda dengan sepenuh hati. Kami hadir untuk
+        memberikan pengalaman terbaik bagi Anda yang mencari sepeda motor Honda
+        berkualitas, dengan berbagai pilihan tipe dan model yang sesuai dengan
+        kebutuhan berkendara di segala medan.
       </p>
       <p className="mt-6">Mengapa Memilih Honda BAM?</p>
       <ul className="list-disc p-6">
