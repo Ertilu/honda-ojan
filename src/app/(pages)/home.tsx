@@ -35,7 +35,7 @@ export default function Home() {
         <Footer />
       </div>
 
-      <div className="w-full z-40">
+      <div className="w-full z-40 lg:container">
         <Kontakwa />
       </div>
     </main>
