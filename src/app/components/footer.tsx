@@ -8,7 +8,7 @@ import { GoDotFill } from "react-icons/go";
 
 export default function Footer() {
   return (
-    <div className="w-full lg:min-h-[250px] min-h-[600px] h-auto">
+    <div className="w-full lg:min-h-[250px] min-h-[600px] h-auto flex flex-col items-center">
       <div className="lg:container w-full h-auto lg:grid lg:grid-cols-3">
         <div className="col-span-1 p-6 hidden lg:block">
           <Image src={Honda} alt="" className="h-20 w-auto pb-8" />

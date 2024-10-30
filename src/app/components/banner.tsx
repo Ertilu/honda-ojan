@@ -8,12 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { usePromoService } from "../queries/promo.query";
 
-export default function Banner({
-  getPromoList,
-}: {
-  getPromoList: UseQueryResult<any>;
-}) {
+export default function Banner() {
+  const { getPromoList } = usePromoService({ getPromoListParams: {} });
   const getPromoImages = useMemo(() => {
     return getPromoList?.data?.results?.map((item: any) => {
       return item?.images;

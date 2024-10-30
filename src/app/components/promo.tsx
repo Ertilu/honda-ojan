@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext, useMemo } from "react";
 import moment from "moment";
 import Link from "next/link";

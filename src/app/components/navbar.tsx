@@ -18,13 +18,7 @@ import { useProductService } from "../queries/product.query";
 import { GlobalContext } from "../context/globalContext";
 import { useScroll, useTransform, motion } from "framer-motion";
 
-interface Props {
-  textColor?: any;
-  background?: any;
-  height?: any;
-}
-
-export default function Navbar({ textColor, background, height }: Props) {
+export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState(false);
   const currentPath = usePathname();
   const router = useRouter();
@@ -32,6 +26,20 @@ export default function Navbar({ textColor, background, height }: Props) {
   const [cariProdukMobile, setCariProdukMobile] = useState("");
   const [debouncedValue, setDebouncedValue] = React.useState("");
   const { setData } = useContext(GlobalContext);
+
+  const { scrollY } = useScroll();
+  const background = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]
+  );
+  const height = useTransform(scrollY, [0, 100], [80, 60]);
+  const width = useTransform(scrollY, [0, 100], [120, 500]);
+  const textColor = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(230, 27, 51, 1)", "rgba(0, 0, 0, 1)"]
+  );
 
   const { getCatalogueList } = useProductService({
     getCatalogueListParams: {
@@ -72,12 +80,9 @@ export default function Navbar({ textColor, background, height }: Props) {
   }, [cariProduk, cariProdukMobile]);
   // shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]
   return (
-    <motion.div
-      className="w-full py-1 shadow-[0px_1px_1px_0px_#00000024]"
-      style={{ height, background }}
-    >
+    <motion.div className="w-full">
       <motion.div
-        className="w-full px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center"
+        className="w-full px-6 lg:px-2 grid grid-cols-3 lg:grid-cols-7 text-black lg:container justify-self-center  py-1 shadow-[0px_1px_1px_0px_#00000024]"
         style={{ height, background }}
       >
         <div className="col-span-2 lg:col-span-4 h-full w-full flex justify-start items-center lg:px-8">
