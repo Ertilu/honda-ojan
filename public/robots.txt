@@ -2,6 +2,15 @@
 User-agent: *
 Allow: /
 
+User-agent: bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
 # Host
 Host: https://honda-bam.com
 
