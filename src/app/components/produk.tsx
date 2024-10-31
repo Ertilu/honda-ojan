@@ -6,15 +6,11 @@ import { MdSort } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useProductService } from "../queries/product.query";
 
-export default function Produk({
-  initialCategory,
-}: {
-  initialCategory?: string;
-}) {
+export default function Produk() {
   const { setData } = useContext(GlobalContext);
   const [sortData, setSortData] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [categoryProduk, setCategoryProduk] = useState(initialCategory);
+  const [categoryProduk, setCategoryProduk] = useState("matic");
   const [isActiveMatic, setIsActiveMatic] = useState(true);
   const [isActiveSport, setIsActiveSport] = useState(false);
   const [isActiveCub, setIsActiveCub] = useState(false);

@@ -18,7 +18,7 @@ export default function Home() {
       </div>
 
       <div id="produk" className="w-full lg:container">
-        <Produk initialCategory="matic" />
+        <Produk />
       </div>
 
       <div id="promo" className="w-full my-8 lg:container">

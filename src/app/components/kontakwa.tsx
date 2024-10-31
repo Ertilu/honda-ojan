@@ -49,7 +49,7 @@ function ComponentUI({
   const [isChatAdmin, setIsChatAdmin] = useState(false);
   const [JawabFAQ, setJawabFAQ] = useState({
     alamat: "Alamat ku rt 5 rw 3 10 nomor rumah ku",
-    pertanyaan2: "Jawaban 2",
+    pertanyaan2: "",
     pertanyaan3: "Jawaban 3",
   });
   const [JawabanFAQ, setJawabanFAQ] = useState("");
@@ -126,14 +126,16 @@ function ComponentUI({
                       className="bg-abu1 my-1 lg:cursor-pointer rounded-lg w-fit h-fit py-1 px-2"
                       onClick={handleFAQ2}
                     >
-                      <p className="text-black font-poppins ">Pertanyaan2</p>
+                      <Link href="/list">
+                        <p className="text-black font-poppins ">Lihat Brosur</p>
+                      </Link>
                     </div>
-                    <div
+                    {/* <div
                       className="bg-abu1 my-1 lg:cursor-pointer rounded-lg w-fit h-fit py-1 px-2"
                       onClick={handleFAQ3}
                     >
                       <p className="text-black font-poppins ">Pertanyaan3</p>
-                    </div>
+                    </div> */}
                     {JawabanFAQ === "" ? null : (
                       <div className="mt-2 w-full h-[140px] p-2">
                         <p className="text-black">{JawabanFAQ}</p>
