@@ -8,15 +8,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { usePromoService } from "../queries/promo.query";
+// import { usePromoService } from "../queries/promo.query";
 
 export default function Banner() {
-  const { getPromoList } = usePromoService({ getPromoListParams: {} });
-  const getPromoImages = useMemo(() => {
-    return getPromoList?.data?.results?.map((item: any) => {
-      return item?.images;
-    });
-  }, [getPromoList]);
+  // const { getPromoList } = usePromoService({ getPromoListParams: {} });
+  // const getPromoImages = useMemo(() => {
+  //   return getPromoList?.data?.results?.map((item: any) => {
+  //     return item?.images;
+  //   });
+  // }, [getPromoList]);
+  const [dataBanner, setDataBanner] = useState<any>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(
+        "https://honda-bam-api.vercel.app/v1/images/banners"
+      );
+
+      setDataBanner(response);
+    };
+
+    getData();
+  }, []);
 
   const LoadingComponent = useMemo(() => {
     return (
@@ -41,9 +54,10 @@ export default function Banner() {
     );
   }, []);
 
+  // console.log("banr", dataBanner);
   return (
     <div className=" lg:container w-full">
-      {getPromoList?.isPending ? (
+      {dataBanner.length === 0 ? (
         <div className="lg:w-full lg:h-auto w-auto h-full flex justify-center items-start">
           {LoadingComponent}
         </div>
@@ -64,12 +78,12 @@ export default function Banner() {
             disableOnInteraction: false,
           }}
         >
-          {getPromoImages?.map((img: string, idx: string) => {
+          {dataBanner?.data?.resources?.map((data: any, idx: string) => {
             return (
               <SwiperSlide key={idx}>
                 <div className="flex justify-center items-start w-full h-auto">
                   <img
-                    src={img}
+                    src={data?.secure_url}
                     alt={`banner-${idx}`}
                     className="w-full h-auto object-cover"
                   />

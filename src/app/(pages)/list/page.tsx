@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Image from "next/image";
@@ -13,9 +16,22 @@ import Link from "next/link";
 import { saveAs } from "file-saver";
 
 export default function List() {
+  const [dataBrosur, getDataBrosur] = useState<any>({});
   // const downloadImage = () => {
   //   saveAs(Brosur, "image.jpg"); // Put your image URL here.
   // };
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(
+        "https://honda-bam-api.vercel.app/v1/images/brochure"
+      );
+      getDataBrosur(response);
+    };
+    getData();
+  }, []);
+
+  console.log("datawa", dataBrosur);
   return (
     <div className="w-full h-auto flex flex-col items-center lg:mx-auto bg-white">
       <div className="w-full sticky top-0 z-50 bg-white">
@@ -54,12 +70,12 @@ export default function List() {
         </div>
       </div>
       <div className="w-full h-auto lg:px-16 lg:p-6 flex flex-col justify-center items-center gap-4 my-6">
-        <Image src={Brosur} alt="" className="w-full h-auto " />
-
+        <img src={dataBrosur?.data?.data} alt="" className="w-full h-auto" />
         <a
           target="_blank"
-          href="http://honda-bam.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrosur.56ec84de.jpeg&w=1920&q=75"
-          download="brosur-BAM.jpeg"
+          //href="http://honda-bam.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrosur.56ec84de.jpeg&w=1920&q=75"
+          download="brosur-BAM.jpg"
+          href={dataBrosur?.data?.data}
           className="z-30 w-5/6"
         >
           <div
